@@ -1,0 +1,1 @@
+native2ascii -encoding utf-8 ./MartinDuerstTest.properties.utf8 ./MartinDuerstTest.properties
