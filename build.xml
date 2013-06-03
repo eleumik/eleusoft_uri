@@ -14,98 +14,93 @@ Permanent changes should be applied to the cited .eleant file
 rather than to this file, in order to generate a new build.xml 
 file like the one that contains this fragment (this file).
 
---><project eleant:time="20120326-1652" xmlns:eleant="http://www.eleusoft.org/eleant" eleant:today="March 26 2012" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.0" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
+--><project xmlns:eleant="http://www.eleusoft.org/eleant" eleant:time="20130603-1308" eleant:today="June 3 2013" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.0" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
 <fail if="${eleant_1_0_xml_entity}"/>
 <description>Build file for Eleusoft URI</description>
-<property value="1.0" name="eleant.version"/>
-<property value="eleusoft_uri" name="name"/>
-<property value="1.0" name="version"/>
-<property value="Eleusoft URI" name="project.label"/>
-<property value="Eleusoft" name="project.organization"/>
+<property name="eleant.version" value="1.0"/>
+<property name="name" value="eleusoft_uri"/>
+<property name="version" value="1.0"/>
+<property name="project.label" value="Eleusoft URI"/>
+<property name="project.organization" value="Eleusoft"/>
 <property name="Name" value="eleusoft_uri"/>
 <property name="project.copyright" value="2005-${year}"/>
 <property file="${user.home}/build.${name}.properties"/>
 <property file="${user.home}/build.properties"/>
 <property file="${basedir}/build.properties"/>
 <property file="${basedir}/default.properties"/>
-<target depends="stdProjectPaths, stdJavadoc" name="init">
+<target name="init" depends="stdProjectPaths, stdJavadoc">
 <!--Project license file. For global properties override consistency use [license.] prefix.-->
-<property value="./license.txt" name="license.eleusoft_uri"/>
-<property location="${license.eleusoft_uri}" name="project.license"/>
+<property name="license.eleusoft_uri" value="./license.txt"/>
+<property name="project.license" location="${license.eleusoft_uri}"/>
 <!--Java source files. For global properties override consistency use [src.] prefix.-->
-<property location="${src.home}" name="src.eleusoft_uri"/>
-<property location="${src.eleusoft_uri}" name="project.src"/>
+<property name="src.eleusoft_uri" location="${src.home}"/>
+<property name="project.src" location="${src.eleusoft_uri}"/>
 <!--Project library installation. For global properties override consistency use [jar.] prefix.-->
-<property location="${jar.home}/${project.jar.filename}" name="jar.eleusoft_uri"/>
-<property location="${jar.eleusoft_uri}" name="project.jar"/>
+<property name="jar.eleusoft_uri" location="${jar.home}/${project.jar.filename}"/>
+<property name="project.jar" location="${jar.eleusoft_uri}"/>
 <!--Project tests installation. For global properties override consistency use [jar.] prefix.-->
-<property location="${jar.home}/${project.tests.jar.filename}" name="jar.tests.eleusoft_uri"/>
-<property location="${jar.tests.eleusoft_uri}" name="project.tests.jar"/>
+<property name="jar.tests.eleusoft_uri" location="${jar.home}/${project.tests.jar.filename}"/>
+<property name="project.tests.jar" location="${jar.tests.eleusoft_uri}"/>
 <!--javac packages-->
 <property name="javac.packages" value="org/eleusoft/uri/*,org/eleusoft/uri/java4/*,org/eleusoft/uri/apache/*,"/>
 <!--javac packages exclude-->
 <property name="javac.packages.exclude" value=""/>
 <!--javadoc packages as a dirset-->
-<dirset defaultexcludes="yes" dir="${project.src}" id="javadoc.packages.dirset">
+<dirset id="javadoc.packages.dirset" dir="${project.src}" defaultexcludes="yes">
 <include name="org/eleusoft/uri"/>
 <include name="org/eleusoft/uri/java4"/>
 <include name="org/eleusoft/uri/apache"/>
 </dirset>
 <!--Jar manifest-->
-<property value="${name}" name="manifest.name"/>
-<property value="MANIFEST.MF" name="work.manifest"/>
+<property name="manifest.name" value="${name}"/>
+<property name="work.manifest" value="MANIFEST.MF"/>
 <manifest file="MANIFEST.MF">
 <section name="${manifest.name}">
-<attribute value="${project.label}" name="Implementation-Title"/>
-<attribute value="${version}" name="Implementation-Version"/>
-<attribute value="${project.organization}" name="Implementation-Vendor"/>
-<attribute value="${name}" name="AntID"/>
+<attribute name="Implementation-Title" value="${project.label}"/>
+<attribute name="Implementation-Version" value="${version}"/>
+<attribute name="Implementation-Vendor" value="${project.organization}"/>
+<attribute name="AntID" value="${name}"/>
 </section>
-<attribute value="${user.name}" name="Built-By"/>
-<attribute value="${now}" name="Built-At"/>
+<attribute name="Built-By" value="${user.name}"/>
+<attribute name="Built-At" value="${now}"/>
 <section name="org/eleusoft/uri">
-<attribute value="Eleusoft URI interfaces" name="Specification-Title"/>
-<attribute value="Eleusoft" name="Specification-Vendor"/>
-<attribute value="1.0" name="Specification-Version"/>
+<attribute name="Specification-Title" value="Eleusoft URI interfaces"/>
+<attribute name="Specification-Vendor" value="Eleusoft"/>
+<attribute name="Specification-Version" value="1.0"/>
 </section>
 <section name="org/eleusoft/uri/java4">
-<attribute value="1.1" name="Implementation-Version"/>
-<attribute value="JDK1.4+ URI implementation based on java.net.URI" name="Implementation-Title"/>
-<attribute value="Eleusoft" name="Implementation-Vendor"/>
+<attribute name="Implementation-Version" value="1.1"/>
+<attribute name="Implementation-Title" value="JDK1.4+ URI implementation based on java.net.URI"/>
+<attribute name="Implementation-Vendor" value="Eleusoft"/>
 </section>
 <section name="org/eleusoft/uri/apache">
-<attribute value="1.05" name="Implementation-Version"/>
-<attribute value="JDK1.2+ URI implementation based on apache URI " name="Implementation-Title"/>
-<attribute value="Eleusoft" name="Implementation-Vendor"/>
+<attribute name="Implementation-Version" value="1.05"/>
+<attribute name="Implementation-Title" value="JDK1.2+ URI implementation based on apache URI "/>
+<attribute name="Implementation-Vendor" value="Eleusoft"/>
 </section>
 </manifest>
-<property value="${lib.home}/commons-codec.jar" name="jar.commons-codec"/>
-<property value="${lib.home}/apacheutils.jar" name="jar.apacheutils"/>
+<property name="jar.commons-codec" value="${lib.home}/commons-codec-1.4.jar"/>
 <!--Javac Classpath. For global properties override consistency use [jar.] prefix-->
-<property name="javac.classpath" value="${jar.commons-codec};${jar.apacheutils};"/>
+<property name="javac.classpath" value="${jar.commons-codec};"/>
 <!--Check all jars exist-->
 <echo>Checking jar.commons-codec</echo>
-<available property="exist.commons-codec" file="${jar.commons-codec}"/>
+<available file="${jar.commons-codec}" property="exist.commons-codec"/>
 <echo>${jar.commons-codec} available : ${exist.commons-codec}</echo>
-<fail unless="exist.commons-codec" message="The jar file [commons-codec] does not exist [${jar.commons-codec}]. Build will stop."/>
-<echo>Checking jar.apacheutils</echo>
-<available property="exist.apacheutils" file="${jar.apacheutils}"/>
-<echo>${jar.apacheutils} available : ${exist.apacheutils}</echo>
-<fail unless="exist.apacheutils" message="The jar file [apacheutils] does not exist [${jar.apacheutils}]. Build will stop."/>
+<fail message="The jar file [commons-codec] does not exist [${jar.commons-codec}]. Build will stop." unless="exist.commons-codec"/>
 <!--Javadoc Classpath.-->
-<property value="${javac.classpath}" name="javadoc.classpath"/>
+<property name="javadoc.classpath" value="${javac.classpath}"/>
 <!--javadoc links - For global properties override consistency use [packagelist.] prefix 
 	Note: for local links the file must be an URI eg: file:/docs/api/-->
-<property value="http://java.sun.com/j2se/1.5.0/docs/api/" name="packagelist.jdk"/>
+<property name="packagelist.jdk" value="http://java.sun.com/j2se/1.5.0/docs/api/"/>
 <property name="javadoc.link.1" value="${packagelist.jdk}"/>
 <!--Compilation build extra files (those included in the jar). 
 		For example configuration files but not images or package.html.-->
-<fileset dir="${project.src}" id="compile.extra.fileset">
+<fileset id="compile.extra.fileset" dir="${project.src}">
 <include name="**/org/eleusoft/uri/*.properties"/>
 <include name="**/org/eleusoft/uri/java4/*.properties"/>
 <include name="**/org/eleusoft/uri/apache/*.properties"/>
 </fileset>
-<fileset dir="${project.src}" id="project.copysource">
+<fileset id="project.copysource" dir="${project.src}">
 <!--Source includes/excludes for org/eleusoft/uri-->
 <exclude name="**/Thumbs.db"/>
 <include name="org/eleusoft/uri/doc-files/*.*"/>
@@ -138,59 +133,56 @@ file like the one that contains this fragment (this file).
 </target>
 <target name="_event.alldist">
 <!--JAR [commons-codec] copy to dist folder-->
-<copy tofile="${_event.param.dest}/${lib.home}/commons-codec.jar" file="${jar.commons-codec}"/>
-<copy tofile="${_event.param.dest}/${lib.home}/license-commons-codec${license.extension}" file="${license.commons-codec}" failonerror="false"/>
-<!--JAR [apacheutils] copy to dist folder-->
-<copy tofile="${_event.param.dest}/${lib.home}/apacheutils.jar" file="${jar.apacheutils}"/>
-<copy tofile="${_event.param.dest}/${lib.home}/license-apacheutils${license.extension}" file="${license.apacheutils}" failonerror="false"/>
+<copy file="${jar.commons-codec}" tofile="${_event.param.dest}/${lib.home}/commons-codec-1.4.jar"/>
+<copy failonerror="false" file="${license.commons-codec}" tofile="${_event.param.dest}/${lib.home}/license-commons-codec${license.extension}"/>
 </target>
-<target description="Fix CRLF issues in source files" depends="~init" name="fixcrlf">
+<target name="fixcrlf" depends="~init" description="Fix CRLF issues in source files">
 <echo>Fixing CRLF in source files</echo>
-<fixcrlf eol="crlf" excludes="" srcdir="${project.src}">
+<fixcrlf srcdir="${project.src}" excludes="" eol="crlf">
 <include name="org/eleusoft/uri/*.java"/>
 <include name="org/eleusoft/uri/java4/*.java"/>
 <include name="org/eleusoft/uri/apache/*.java"/>
 </fixcrlf>
 </target>
-<property value="true" name="test.defined"/>
+<property name="test.defined" value="true"/>
 <property name="test.src.dir" value="${src.test.eleusoft_uri}"/>
-<target depends="~initwork" name="~inittest">
-<property name="test.javac.classpath" value="${jar.commons-codec};${jar.apacheutils};${jar.junit};${jar.ineo};"/>
+<target name="~inittest" depends="~initwork">
+<property name="test.javac.classpath" value="${jar.commons-codec};${jar.junit};${jar.ineo};"/>
 </target>
-<target description="Builds the tests jar." depends="~inittest, ~jartest" name="jartest"/>
-<target depends="~inittest" name="~jartest">
-<available property="test.jar.available" file="${project.jar}" type="file"/>
-<fail message="The project jar is not available, build it first using [ant jaronly]" unless="test.jar.available"/>
+<target name="jartest" depends="~inittest, ~jartest" description="Builds the tests jar."/>
+<target name="~jartest" depends="~inittest">
+<available type="file" file="${project.jar}" property="test.jar.available"/>
+<fail unless="test.jar.available" message="The project jar is not available, build it first using [ant jaronly]"/>
 <property name="test.package" value="junit/org/eleusoft/uri"/>
-<available property="test.src.available" file="${test.src.dir}" type="dir"/>
-<fail message="Not available: [test.src.dir]=${test.src.dir}" unless="test.src.available"/>
+<available type="dir" file="${test.src.dir}" property="test.src.available"/>
+<fail unless="test.src.available" message="Not available: [test.src.dir]=${test.src.dir}"/>
 <echo>Test source found</echo>
 <delete dir="${work.test.dir}"/>
 <mkdir dir="${work.test.dir}"/>
 <echo>Test Src Dir: ${test.src.dir}</echo>
 <echo>Test Classpath:${test.javac.classpath}</echo>
-<javac debug="${javac.debug}" listfiles="${javac.listfiles}" classpath="${test.javac.classpath}${project.jar}" optimize="${javac.optimize}" includes="junit/org/eleusoft/uri/**" destdir="${work.test.dir}" srcdir="${test.src.dir}"/>
+<javac srcdir="${test.src.dir}" destdir="${work.test.dir}" includes="junit/org/eleusoft/uri/**" optimize="${javac.optimize}" classpath="${test.javac.classpath}${project.jar}" listfiles="${javac.listfiles}" debug="${javac.debug}"/>
 <copy todir="${work.test.dir}">
 <fileset dir="${test.src.dir}">
 <include name="junit/org/eleusoft/uri/*.properties"/>
 </fileset>
 </copy>
-<jar manifest="MANIFEST.MF" basedir="${work.test.dir}" jarfile="${project.tests.jar}"/>
+<jar jarfile="${project.tests.jar}" basedir="${work.test.dir}" manifest="MANIFEST.MF"/>
 </target>
-<target description="Makes a jar of tests and runs them." depends="jartest, runtest" name="test"/>
-<target description="Runs the test without compilation." depends="~inittest" name="runtest">
+<target name="test" depends="jartest, runtest" description="Makes a jar of tests and runs them."/>
+<target name="runtest" depends="~inittest" description="Runs the test without compilation.">
 <!--Test Suite junit.org.eleusoft.uri.URITestSuite-->
-<java failonerror="${test.failonerror}" fork="yes" classname="${test.runner}" classpath="${test.javac.classpath}${project.jar};${project.tests.jar};">
+<java classname="${test.runner}" fork="yes" failonerror="${test.failonerror}" classpath="${test.javac.classpath}${project.jar};${project.tests.jar};">
 <arg value="junit.org.eleusoft.uri.URITestSuite"/>
 <sysproperty key="org.eleusoft.uri.URIProvider" value="org.eleusoft.uri.apache.ApacheURIProvider"/>
 </java>
 <!--Test Suite junit.org.eleusoft.uri.URITestSuite-->
-<java failonerror="${test.failonerror}" fork="yes" classname="${test.runner}" classpath="${test.javac.classpath}${project.jar};${project.tests.jar};">
+<java classname="${test.runner}" fork="yes" failonerror="${test.failonerror}" classpath="${test.javac.classpath}${project.jar};${project.tests.jar};">
 <arg value="junit.org.eleusoft.uri.URITestSuite"/>
 <sysproperty key="org.eleusoft.uri.URIProvider" value="org.eleusoft.uri.java4.Java4URIProvider"/>
 </java>
 <!--Test Suite junit.org.eleusoft.uri.URITestSuite-->
-<java failonerror="${test.failonerror}" fork="yes" classname="${test.runner}" classpath="${test.javac.classpath}${project.jar};${project.tests.jar};">
+<java classname="${test.runner}" fork="yes" failonerror="${test.failonerror}" classpath="${test.javac.classpath}${project.jar};${project.tests.jar};">
 <arg value="junit.org.eleusoft.uri.URITestSuite"/>
 <sysproperty key="org.eleusoft.uri.URIProvider" value="org.eleusoft.uri.java4.Java4URIProviderDefault"/>
 </java>
