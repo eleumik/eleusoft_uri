@@ -225,8 +225,10 @@ public class ApacheURIProvider implements URIProvider
                 if (!hasFragment()) return this;
                 else
                 {
-                    return newURI(uri.getScheme(), uri.getAuthority(),
-                        uri.getPath(), uri.getQuery(), null);
+                    return newURI(buildURIString(uri.getScheme(), 
+                        uri.getAuthority(),
+                        uri.getEscapedPath(), 
+                        uri.getEscapedQuery(), null));
                 }
             }
             catch(org.eleusoft.uri.apache.URIException use)
@@ -386,5 +388,21 @@ public class ApacheURIProvider implements URIProvider
         }
         //System.out.println("From uri:" + uri + "\nparts:" + scheme + "]\n" + ssp + "]\n" + fragment + "]");
         return new String[]{scheme, ssp, fragment};
+    }
+    
+ // P-prot for faster access from inner class.
+    static String buildURIString(String scheme, 
+            String authority, 
+            String path, 
+            String query, 
+            String fragment)
+    {
+        final StringBuffer sb = new StringBuffer();
+        if (scheme!=null) sb.append(scheme).append(':');
+        if (authority!=null) sb.append("//").append(authority);
+        if (path!=null) sb.append(path);
+        if (query!=null) sb.append('?').append(query);
+        if (fragment!=null) sb.append('#').append(fragment);
+        return sb.toString();
     }
 }

@@ -117,7 +117,7 @@ import java.util.Locale;
  * @author <a href="mailto:mbowler@GargoyleSoftware.com">Mike Bowler</a>
  * @version $Revision: 1.1 $ $Date: 2002/03/14 15:14:01
  */
- public class URI implements Comparable, Serializable {
+ class URI implements Comparable, Serializable {
 
 	private static boolean MVSURE = true;
 	private static boolean MV = true;

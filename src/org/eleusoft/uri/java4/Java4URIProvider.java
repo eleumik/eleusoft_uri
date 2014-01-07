@@ -230,7 +230,7 @@ public class Java4URIProvider implements URIProvider
                     
                     // Return this absolute uri with authority, query and fragment
                     // as determined
-                     System.out.println("NO AUTH ON REL RESOLVED PATH :" + getPath());       
+                    // System.out.println("NO AUTH ON REL RESOLVED PATH :" + getPath());       
                     // TODO : Return path "/" if this is absolute and has no path ??
                     return new JDK14URI(new java.net.URI(buildURIString(getScheme(), 
                         toUSEAuth,
@@ -268,12 +268,15 @@ public class Java4URIProvider implements URIProvider
                     {
                         path = removePathDots(path);
                         
+                       // return 
                         
                         //if (path==null ||  || path.startsWith(".."))
                         {
-                            return new JDK14URI(new java.net.URI(resolved.getScheme(), 
-                                resolved.getAuthority(), path,
-                                resolved.getQuery(), relativeURIFragment));
+                            return new JDK14URI(buildURIString(resolved.getScheme(), 
+                                resolved.getAuthority(), 
+                                new java.net.URI(null, null, path, null).toString(),
+                                resolved.getRawQuery(), 
+                                relativeURIFragment));
                             //throw new URIException("Path error, over the root:" + path, path);
                         }
                         
@@ -294,11 +297,11 @@ public class Java4URIProvider implements URIProvider
             {
                 return !hasFragment() ? this :
                     new JDK14URI(
-                        new java.net.URI(uri.getScheme(), 
+                        new java.net.URI(buildURIString(uri.getScheme(), 
                             uri.getAuthority(), 
-                            uri.getPath(),
-                            uri.getQuery(), 
-                            null));
+                            uri.getRawPath(),
+                            uri.getRawQuery(), 
+                            null)));
             }
             catch(java.net.URISyntaxException use)
             {

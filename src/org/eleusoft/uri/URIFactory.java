@@ -1,5 +1,8 @@
 package org.eleusoft.uri;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 
 /**
  * <b>Entry point</b> - This class offers static factory methods  for
@@ -7,6 +10,12 @@ package org.eleusoft.uri;
  */
 public final class URIFactory
 {
+    static final ArrayList providers = new ArrayList();
+    static
+    {
+        providers.add("org.eleusoft.uri.java4.Java4URIProvider");
+        providers.add("org.eleusoft.uri.apache.ApacheURIProvider");
+    }
     private URIFactory()
     {
     }
@@ -16,70 +25,65 @@ public final class URIFactory
 		// Not needed anymore !
         //System.setProperty("org.apache.commons.logging.Log",
         //    "org.apache.commons.logging.impl.SimpleLog");
-        String clazz;
         try
         {
-           clazz = System.getProperty(URIProvider.class.getName());
+            // for junit
+            final String clazz = System.getProperty(URIProvider.class.getName());
+           if (clazz != null) providers.add(0, clazz);
         }
         catch(SecurityException se)
         {
-            clazz = null;
+            // ignore
         }
-        URIProvider temp;
-        if (clazz!=null)
+        final Iterator i = providers.iterator();
+        URIProvider temp = null;
+        while(temp==null && i.hasNext())
         {
-            // very raw...just for junit
+            String provider = (String) i.next();
             try
             {
-                temp = (URIProvider)Class.forName(clazz).newInstance();
-                System.out.println("URIProvider loaded from System property:" + clazz);
+                temp = (URIProvider)Class.forName(provider).newInstance();
+                break;
             }
             catch(Throwable t)
             {
                 t.printStackTrace();
-                temp = null;
+                
             }
-
         }
-        else temp = null;
-
-        if (temp==null)
-        try
-        {
-            //temp = new  org.eleusoft.uri.java4.Java4URIProviderDefault();
-            temp = new org.eleusoft.uri.apache.ApacheURIProvider();
-            temp = new  org.eleusoft.uri.java4.Java4URIProvider();
-            //temp = new org.eleusoft.uri.apache.ApacheURIProvider();
-
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        catch(Error e)
-        {
-            throw e;
-        }
-        if (temp==null)
-        try
-        {
-            temp = new org.eleusoft.uri.apache.ApacheURIProvider();
-        }
-        catch(Error e2)
-        {
-
-        }
+        
+//        if (temp==null)
+//        try
+//        {
+//            //temp = new  org.eleusoft.uri.java4.Java4URIProviderDefault();
+////            temp = new org.eleusoft.uri.apache.ApacheURIProvider();
+//            temp = new  org.eleusoft.uri.java4.Java4URIProvider();
+//            //temp = new org.eleusoft.uri.apache.ApacheURIProvider();
+//
+//        }
+//        catch(Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//        catch(Error e)
+//        {
+//            throw e;
+//        }
+//        if (temp==null)
+//        try
+//        {
+//            temp = new org.eleusoft.uri.apache.ApacheURIProvider();
+//        }
+//        catch(Error e2)
+//        {
+//
+//        }
         if (temp==null) throw new RuntimeException("No URI provider available");
         instance = temp;
+        
+        // see URIFactoryTest
     }
-    public static void main(String[] args)
-    {
-        System.out.println("---");
-        System.out.println("Eleusoft URI Factory");
-        System.out.println("Current provider:");
-        System.out.println(instance.getClass().getName());
-        System.out.println("---");
-    }
+    
 
 
 
@@ -112,7 +116,7 @@ public final class URIFactory
      * <p>When there is no scheme the first item in the
      * array is null and the second contains the passed uri.
      * <p>This method does not check if the scheme
-     * specific part respects the generi uri syntax rules.
+     * specific part respects the generic uri syntax rules.
      * @throws URIException when the passed uri starts with
      *  colon char ':'
      */
@@ -159,7 +163,7 @@ public final class URIFactory
      * otherwise null; when the fragment is present
      * it might be also a zero length string.
      * <p>This method does not check if the URI
-     * specific part respects the generi uri syntax rules.
+     * specific part respects the generic uri syntax rules.
      */
     public final static String[] extractFragment(final String uri)
     {

@@ -22,7 +22,7 @@ package org.eleusoft.uri.apache;
  * @author Apache Software Foundation
  * @version $Id: CodecException.java,v 1.1 2007/07/10 18:19:30 mik Exp $
  */
-public class CodecException extends Exception {
+class CodecException extends Exception {
 
     /**
      * Creates a DecoderException

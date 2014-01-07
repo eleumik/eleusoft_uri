@@ -52,7 +52,7 @@ import org.apache.commons.codec.StringEncoder;
  * @since 1.2
  * @version $Id: URLCodec.java,v 1.1 2007/07/10 18:19:30 mik Exp $
  */
-public class URLCodec //implements BinaryEncoder, BinaryDecoder, StringEncoder, StringDecoder
+ class URLCodec //implements BinaryEncoder, BinaryDecoder, StringEncoder, StringDecoder
 {
 
     /**

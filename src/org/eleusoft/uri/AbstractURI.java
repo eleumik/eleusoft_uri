@@ -278,6 +278,7 @@ public abstract class AbstractURI implements URI, Comparable
     
     protected String removePathDots(String path) throws URIException
     {
+        boolean debug = false;
         try
         {
         if (path.equals("/.")) return "/";
@@ -288,13 +289,13 @@ public abstract class AbstractURI implements URI, Comparable
         int i = path.indexOf("/.");
         if (i==-1) return path;
         int last = 0;
-         System.out.println("&&&** Path is:" + path + " size:" + path.length() + " max index:" + pathLastCharIndex);
+        if (debug) System.out.println("&&&** Path is:" + path + " size:" + path.length() + " max index:" + pathLastCharIndex);
             
         StringBuffer sb = new StringBuffer();
         while(i!=-1)
         {
-            System.out.println("FOund at:" + i);
-            System.out.println("Add From last (" + last + ") to i is [" + path.substring(last, i) + "]");
+            if (debug) System.out.println("FOund at:" + i);
+            if (debug) System.out.println("Add From last (" + last + ") to i is [" + path.substring(last, i) + "]");
             
             sb.append(path.substring(last, i));
             last = i;
@@ -302,11 +303,11 @@ public abstract class AbstractURI implements URI, Comparable
             if (i<=pathLastCharIndex)
             {
                 char next = path.charAt(i+2);
-                System.out.println("next is:" + next);
+                if (debug) System.out.println("next is:" + next);
                 if (next=='/')
                 {
                     // remove
-                    System.out.println("Found, remove");
+                    if (debug) System.out.println("Found, remove");
                     last+=2;
                     
                     if (strict) throwExceptionForStrict("Resolving relative, new path is over the root: [" + path + "]");
@@ -317,36 +318,36 @@ public abstract class AbstractURI implements URI, Comparable
                     // remove two
                     last+=3;
                     i++;
-                    System.out.println("Found, remove two");
+                    if (debug) System.out.println("Found, remove two");
                    if (strict)  throwExceptionForStrict("Resolving relative, new path is over the root: [" + path + "]");
                 }
                 else
                 {
                     //sb.append("/.");
-                    System.out.println("Was not..add");
+                    if (debug) System.out.println("Was not..add");
                     //last++;
                 }
             }
             if (i < pathLastCharIndex)
             {
-                 System.out.println("find from " + (i+2));
+                if (debug) System.out.println("find from " + (i+2));
                
                 i = path.indexOf("/.", i+2);
            }
             else 
             {
-                System.out.println("last is:" + last + " exit.." + pathLastCharIndex);
+                if (debug)  System.out.println("last is:" + last + " exit.." + pathLastCharIndex);
                break;
              }
         }
         //if (last!=pathLastCharIndex+1)
         {   
             sb.append(path.substring(last, path.length() ));
-            System.out.println("At end add [" + path.substring(last, path.length() ) + "]");
+            if (debug) System.out.println("At end add [" + path.substring(last, path.length() ) + "]");
             
             
         }
-        System.out.println("FINISHED. Path was:" + path + " now is:" + sb.toString());
+        if (debug) System.out.println("FINISHED. Path was:" + path + " now is:" + sb.toString());
          
         //if (true) throw new Error("path was:" + path + " now is:" + sb.toString());
         return sb.toString();

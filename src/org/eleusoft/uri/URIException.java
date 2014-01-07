@@ -6,6 +6,11 @@ package org.eleusoft.uri;
 public class URIException extends Exception
 {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private Throwable root;
 	
 	protected String uri;
