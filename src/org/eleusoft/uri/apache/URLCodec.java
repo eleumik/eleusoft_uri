@@ -21,7 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.BitSet;
 
-import org.apache.commons.codec.EncoderException;
 
 /**
 import org.apache.commons.codec.BinaryDecoder;
