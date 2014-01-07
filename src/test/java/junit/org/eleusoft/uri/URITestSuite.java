@@ -13,6 +13,18 @@ import junit.framework.TestSuite;
 import org.eleusoft.uri.URIException;
 import org.eleusoft.uri.URIFactory;
 
+/**
+ * 201307 
+ * Apache 490 3E 29F
+ * JDK 490 10e 54f (this does not change for 1.4,1.5,1.6,1.7..)
+ * JDK Default 10E 81F 
+ * 201401
+ * Apache 496 2E 27F
+ * JDK 496 9E 54F
+ * JDK Default 496 9E 81F
+ * @author mik
+ *
+ */
 public class URITestSuite extends TestSuite
 {
 
@@ -81,6 +93,7 @@ public class URITestSuite extends TestSuite
 
 	    // Real world..
 	    suite.addTestSuite(Test_URI32_RealWorldURI.class);
+	    suite.addTestSuite(Test_URI33_URIQuery.class);
 
 
 
@@ -99,10 +112,11 @@ public class URITestSuite extends TestSuite
 
 	public void run(TestResult tr){
 		super.run(tr);
+		boolean fixedName = Boolean.getBoolean("report-fixed-name");
 		try
 		{
 			XReport xrep = BaseTestURI.getXReport();
-			String provider = URIFactory.createURI("ciao:ciao").getClass().getName();
+			String provider = fixedName ? "fixed" : URIFactory.createURI("ciao:ciao").getClass().getName();
 			String reportFileURI = "./uriResults_T" + xrep.count + "_F" + xrep.failures + "_E" + xrep.errors + "_" +  provider + "_" + dateFormat.format(new java.util.Date()) + ".html";
 
 			File file = new File(reportFileURI );
