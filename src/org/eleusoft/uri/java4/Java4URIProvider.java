@@ -60,7 +60,7 @@ public class Java4URIProvider implements URIProvider
         }
         else
         {
-            if (true) // Trying..
+            if (true) // This way has 4 errors less
                 return __createURI2(scheme, auth, path, query, fragment);
                 
             try

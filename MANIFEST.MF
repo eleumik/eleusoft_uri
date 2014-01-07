@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.0
+Created-By: 23.6-b04 (Oracle Corporation)
+Built-By: mik
+Built-At: 20140107-0823
+
+Name: eleusoft_uri
+Implementation-Title: Eleusoft URI
+Implementation-Version: 1.0.1
+Implementation-Vendor: Eleusoft
+AntID: eleusoft_uri
+
+Name: org/eleusoft/uri
+Specification-Title: Eleusoft URI interfaces
+Specification-Vendor: Eleusoft
+Specification-Version: 1.0
+
+Name: org/eleusoft/uri/java4
+Implementation-Version: 1.1
+Implementation-Title: JDK1.4+ URI implementation based on java.net.URI
+Implementation-Vendor: Eleusoft
+
+Name: org/eleusoft/uri/apache
+Implementation-Version: 1.05
+Implementation-Title: JDK1.2+ URI implementation based on apache URI
+Implementation-Vendor: Eleusoft
+

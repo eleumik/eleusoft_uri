@@ -13,8 +13,9 @@ public final class URIFactory
     static final ArrayList providers = new ArrayList();
     static
     {
-        providers.add("org.eleusoft.uri.java4.Java4URIProvider");
         providers.add("org.eleusoft.uri.apache.ApacheURIProvider");
+        providers.add("org.eleusoft.uri.java4.Java4URIProvider");
+        //providers.add("org.eleusoft.uri.java4.Java4URIProviderDefault");
     }
     private URIFactory()
     {

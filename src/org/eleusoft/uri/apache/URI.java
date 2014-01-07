@@ -528,12 +528,12 @@ import java.util.Locale;
 			// Case relative is absolute URI
 			// clone the relative apart fragment
             this._scheme = relative._scheme;
-            relative.copyNotOpaqueAllButScheme(this);
+            relative.copyNotOpaqueAllButScheme(this, false);
         } else if (relative._authority != null) {
 			// Case network path //myhost[..]
 			// Clone all but scheme and fragment of the base
             this._scheme = base._scheme;
-			relative.copyNotOpaqueAllButScheme(this);
+			relative.copyNotOpaqueAllButScheme(this, false);
         } else {
 
 			// Here relative has no scheme and no authority,
@@ -543,7 +543,7 @@ import java.util.Locale;
 			base.copyContext(this);
 
 			if (base._authority != null ) {
-				base.copyAuthority(this);
+				base.copyAuthority(this, false);
             }
             // Here remains to solve path, query and fragment.
             // If the relative has no path bu query and/or fragment
@@ -3451,7 +3451,7 @@ import java.util.Locale;
         if (isAbsPath()) {
             char[] npath = normalize(_path);
             URI uri = new URI();
-            copy(uri);
+            copy(uri, true);
             uri._path = npath;
             uri.setURI();
             return uri;
@@ -3664,20 +3664,27 @@ import java.util.Locale;
 			// NOTE: all implementations of copy accept a NEW uri,
 			// not an already filled, existing URI.
 
-		private void copy(final URI out) {
-			out._scheme = this._scheme;
-			out._uri = this._uri;
+		private void copy(final URI out, boolean normalize) {
+		    //normalize = false;
+			out._scheme = normalize ? toLowerCase(this._scheme) : this._scheme;
 			if (this._is_opaque_part) {
 				copyOpaqueAllButScheme(out);
 			} else {
 
-				copyNotOpaqueAllButScheme(out);
+				copyNotOpaqueAllButScheme(out, normalize);
 			}
+            out._uri = normalize ? this.toString().toCharArray() : this._uri;
 		}
-		private void copyNotOpaqueAllButScheme(final URI out) {
+		private char[] toLowerCase(char[] a)
+        {
+            return a == null ? null : new String(a).toLowerCase().toCharArray();
+        }
+
+
+        private void copyNotOpaqueAllButScheme(final URI out, boolean normalize) {
 			if (_is_opaque_part) throw new IllegalStateException();
 	       	copyContext(out);
-	        copyAuthority(out);
+	        copyAuthority(out, normalize);
 			copyPath(out);
 			copyQueryFragment(out);
 		}
@@ -3693,17 +3700,17 @@ import java.util.Locale;
 			out.protocolCharset = this.protocolCharset;
 		}
 
-	    private void copyAuthority(final URI out) {
+	    private void copyAuthority(final URI out, boolean normalize) {
 			out._is_hostname = this._is_hostname;
 			out._is_IPv4address = this._is_IPv4address;
 			out._is_IPv6reference = this._is_IPv6reference;
 
 			out._is_net_path = this._is_net_path;
-			out._authority = this._authority;
+			out._authority = normalize ? toLowerCase(this._authority) : this._authority;
 			if (this._is_server) {
 				out._is_server = this._is_server;
 				out._userinfo = this._userinfo;
-				out._host = this._host;
+				out._host = normalize ? toLowerCase(this._host) : this._host;
 				out._port = this._port;
 			} else if (this._is_reg_name) {
 				out._is_reg_name = this._is_reg_name;
