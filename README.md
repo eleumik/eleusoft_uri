@@ -12,7 +12,7 @@ This library has been started before 2005, when servers could run a version of J
 build
 -----
 
-Both Maven and Ant are supported, a pom.xml and a build.xml file are provided, use [ant jar] to create the jar, [ant test] to run the tests.
+Both Maven and Ant are supported, a pom.xml and a build.xml file are provided, use [ant jaronly] to create the jar, [ant test] to compile and run the tests.
 
 license
 -------
