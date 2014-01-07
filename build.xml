@@ -6,7 +6,7 @@ from an *.eleant configuration file for project:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Eleant Name:	eleusoft_uri
 Title:			Eleusoft URI	
-Version:		1.0
+Version:		1.0.1
 Eleant file:	configs/eleusoft_uri.eleant 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -14,12 +14,12 @@ Permanent changes should be applied to the cited .eleant file
 rather than to this file, in order to generate a new build.xml 
 file like the one that contains this fragment (this file).
 
---><project xmlns:eleant="http://www.eleusoft.org/eleant" eleant:time="20130603-1308" eleant:today="June 3 2013" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.0" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
+--><project xmlns:eleant="http://www.eleusoft.org/eleant" eleant:time="20140107-0753" eleant:today="January 7 2014" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.0.1" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
 <fail if="${eleant_1_0_xml_entity}"/>
 <description>Build file for Eleusoft URI</description>
 <property name="eleant.version" value="1.0"/>
 <property name="name" value="eleusoft_uri"/>
-<property name="version" value="1.0"/>
+<property name="version" value="1.0.1"/>
 <property name="project.label" value="Eleusoft URI"/>
 <property name="project.organization" value="Eleusoft"/>
 <property name="Name" value="eleusoft_uri"/>
@@ -28,13 +28,38 @@ file like the one that contains this fragment (this file).
 <property file="${user.home}/build.properties"/>
 <property file="${basedir}/build.properties"/>
 <property file="${basedir}/default.properties"/>
-<target name="init" depends="stdProjectPaths, stdJavadoc">
+<target name="mainSource" depends="mavenSource,stdSource"/>
+<target name="mavenSource" if="src.eleusoft_uri.maven">
+<property name="src.eleusoft_uri" location="${src.home}"/>
+<property name="project.root" location="${src.eleusoft_uri}"/>
+<property name="project.src.root" location="${src.eleusoft_uri}/src/main"/>
+<property name="project.src" location="${src.eleusoft_uri}/src/main/java"/>
+<property name="project.src.resources" location="${src.eleusoft_uri}/src/main/resources"/>
+<property name="project.test.src" location="${src.eleusoft_uri}/src/test/java"/>
+<property name="project.test.src.resources" location="${src.eleusoft_uri}/src/test/resources"/>
+<property name="project.maven" value="true"/>
+<echo message="Maven Source Structure"/>
+<fileset id="sourcedirset" dir="${project.src.root}">
+<include name="java/**/*.java"/>
+<include name="resources/**/*.*"/>
+</fileset>
+</target>
+<target name="stdSource" unless="src.eleusoft_uri.maven">
+<property name="src.eleusoft_uri" location="${src.home}"/>
+<property name="project.root" location="${src.eleusoft_uri}"/>
+<property name="project.src.root" location="${project.root}"/>
+<property name="project.src" location="${project.root}"/>
+<property name="project.src.resources" location="${project.root}"/>
+<echo message="Standard Source Structure (All in one dir, not Maven)"/>
+</target>
+<target name="init" depends="stdProjectPaths, stdJavadoc, mainSource">
 <!--Project license file. For global properties override consistency use [license.] prefix.-->
 <property name="license.eleusoft_uri" value="./license.txt"/>
 <property name="project.license" location="${license.eleusoft_uri}"/>
 <!--Java source files. For global properties override consistency use [src.] prefix.-->
-<property name="src.eleusoft_uri" location="${src.home}"/>
-<property name="project.src" location="${src.eleusoft_uri}"/>
+<copy todir="c:\tempmik\aa">
+<fileset refid="sourcedirset"/>
+</copy>
 <!--Project library installation. For global properties override consistency use [jar.] prefix.-->
 <property name="jar.eleusoft_uri" location="${jar.home}/${project.jar.filename}"/>
 <property name="project.jar" location="${jar.eleusoft_uri}"/>
@@ -79,14 +104,14 @@ file like the one that contains this fragment (this file).
 <attribute name="Implementation-Vendor" value="Eleusoft"/>
 </section>
 </manifest>
-<property name="jar.commons-codec" value="${lib.home}/commons-codec-1.4.jar"/>
+<property name="jar.junit" value="${lib.home}/junit.jar"/>
 <!--Javac Classpath. For global properties override consistency use [jar.] prefix-->
-<property name="javac.classpath" value="${jar.commons-codec};"/>
+<property name="javac.classpath" value="${jar.junit};"/>
 <!--Check all jars exist-->
-<echo>Checking jar.commons-codec</echo>
-<available file="${jar.commons-codec}" property="exist.commons-codec"/>
-<echo>${jar.commons-codec} available : ${exist.commons-codec}</echo>
-<fail message="The jar file [commons-codec] does not exist [${jar.commons-codec}]. Build will stop." unless="exist.commons-codec"/>
+<echo>Checking jar.junit</echo>
+<available file="${jar.junit}" property="exist.junit"/>
+<echo>${jar.junit} available : ${exist.junit}</echo>
+<fail message="The jar file [junit] does not exist [${jar.junit}]. Build will stop." unless="exist.junit"/>
 <!--Javadoc Classpath.-->
 <property name="javadoc.classpath" value="${javac.classpath}"/>
 <!--javadoc links - For global properties override consistency use [packagelist.] prefix 
@@ -95,7 +120,7 @@ file like the one that contains this fragment (this file).
 <property name="javadoc.link.1" value="${packagelist.jdk}"/>
 <!--Compilation build extra files (those included in the jar). 
 		For example configuration files but not images or package.html.-->
-<fileset id="compile.extra.fileset" dir="${project.src}">
+<fileset id="compile.extra.fileset" dir="${project.src.resources}">
 <include name="**/org/eleusoft/uri/*.properties"/>
 <include name="**/org/eleusoft/uri/java4/*.properties"/>
 <include name="**/org/eleusoft/uri/apache/*.properties"/>
@@ -132,9 +157,9 @@ file like the one that contains this fragment (this file).
 </fileset>
 </target>
 <target name="_event.alldist">
-<!--JAR [commons-codec] copy to dist folder-->
-<copy file="${jar.commons-codec}" tofile="${_event.param.dest}/${lib.home}/commons-codec-1.4.jar"/>
-<copy failonerror="false" file="${license.commons-codec}" tofile="${_event.param.dest}/${lib.home}/license-commons-codec${license.extension}"/>
+<!--JAR [junit] copy to dist folder-->
+<copy file="${jar.junit}" tofile="${_event.param.dest}/${lib.home}/junit.jar"/>
+<copy failonerror="false" file="${license.junit}" tofile="${_event.param.dest}/${lib.home}/license-junit${license.extension}"/>
 </target>
 <target name="fixcrlf" depends="~init" description="Fix CRLF issues in source files">
 <echo>Fixing CRLF in source files</echo>
@@ -147,7 +172,7 @@ file like the one that contains this fragment (this file).
 <property name="test.defined" value="true"/>
 <property name="test.src.dir" value="${src.test.eleusoft_uri}"/>
 <target name="~inittest" depends="~initwork">
-<property name="test.javac.classpath" value="${jar.commons-codec};${jar.junit};${jar.ineo};"/>
+<property name="test.javac.classpath" value="${jar.junit};"/>
 </target>
 <target name="jartest" depends="~inittest, ~jartest" description="Builds the tests jar."/>
 <target name="~jartest" depends="~inittest">
@@ -428,8 +453,19 @@ file like the one that contains this fragment (this file).
 		<!-- DEFAULT VALUES -->
 		<!-- compilation params -->
 		<property name="javac.optimize" value="on"/>
+		<property name="javac.verbose" value="no"/>
 		<property name="javac.listfiles" value="false"/>
 		<property name="javac.debug" value="off"/>
+		<!--
+		http://www.java-tips.org/other-api-tips/ant/how-to-use-javac-task.html
+		You can also use the compiler attribute to tell Ant which JDK version it shall assume 
+		when it puts together the command line switches - even if you set fork="true". 
+		This is useful if you want to run the compiler of JDK 1.1 while you current JDK is 1.2+. 
+		If you use compiler="javac1.1" and (for example) depend="true" 
+		Ant will use the command line switch -depend instead of -Xdepend.
+		-->
+		<property name="javac.compiler" value="modern"/>
+		<property name="javac.depend" value="false"/>
 		<!-- build.compiler is used for javac automagically by ant -->
 		<property name="build.compiler" value="classic"/>
 		<!-- javadoc -->
@@ -623,15 +659,24 @@ file like the one that contains this fragment (this file).
 		<mkdir dir="${work.classes}"/>
 		<copy todir="${work.classes}">
 		    <fileset refid="compile.extra.fileset"/>
-        </copy>
-        <echo>javac.packages= ${javac.packages}</echo>
+        	</copy>
+        	<echo>javac.packages= ${javac.packages}</echo>
 		<echo>javac.packages.exclude= ${javac.packages.exclude}</echo>
 		<echo>Project classpath= ${javac.classpath}</echo>
-		<echo>Project src= ${project.src}</echo>
+		<echo message=" Java Root folder: ${project.src.root}"/>
+		<echo message=" Java Source: ${project.src}"/>
+		<echo message=" Java Resources: ${project.src.resources}"/>
+
 		<antcall target="_event.compile.pre"/>
 		<path id="_source.path">
+			<!-- 
+			20130723 new, use ref=sourcedirset 
+			TODO check in manual if [_source.path] can be overridden or what is..
+			tried to remove @srcdir but is not possible "must be set". 
+			-->
+			<fileset refid="sourcedirset"/>
 		</path>
-		<javac sourcepathref="_source.path" srcdir="${project.src}" destdir="${work.classes}" includes="${javac.packages}" excludes="${javac.packages.exclude}" optimize="${javac.optimize}" classpath="${javac.classpath}" listfiles="${javac.listfiles}" debug="${javac.debug}">    
+		<javac sourcepathref="_source.path" srcdir="${project.src}" destdir="${work.classes}" includes="${javac.packages}" excludes="${javac.packages.exclude}" optimize="${javac.optimize}" depend="${javac.depend}" compiler="${javac.compiler}" verbose="${javac.verbose}" classpath="${javac.classpath}" listfiles="${javac.listfiles}" debug="${javac.debug}">    
 		</javac>
 		<antcall target="_event.compile.post"/>
 		<!-- flag for internal helpers -->
@@ -961,26 +1006,32 @@ file like the one that contains this fragment (this file).
 	<target name="where" depends="~init" description="Shows infos about the project paths.">
 		<echo>${project.label}</echo>
 		<echo>-------------------------------------------------------------</echo>
-		<echo>PROJECT FOLDERS</echo>
-	    <echo message=" Project [${name}] version [${version}]"/>
-        <echo message=" Ant project folder: ${basedir}"/>
-        <echo message=" Source files folder: ${project.src}"/>
-        <echo>BUILD OUTPUT FOLDERS</echo>
-	    <echo message=" Build : ${build.home}"/>
-	    <echo message=" Compiled classes: ${build.classes.home}"/>
-        <echo message=" Binary dist: ${distbin}"/>
-        <echo message=" Source dist: ${distsrc}"/>
+		<echo># PROJECT FOLDERS</echo>
+		<echo message=" Project [${name}] version [${version}]"/>
+		<echo message=" Ant Project folder: ${basedir}"/>
+		<echo message=" Project Folder: ${project.root}"/>
+		<echo message=" Main Folder: ${project.src.root}"/>
+		<echo message=" Java Sources: ${project.src}"/>
+		<echo message=" Java Resources: ${project.src.resources}"/>
+		<echo message=" Test Source: ${project.test.src}"/>
+		<echo message=" Test Resources: ${project.test.src.resources}"/>
+
+        	<echo># BUILD OUTPUT FOLDERS</echo>
+	    	<echo message=" Build : ${build.home}"/>
+	    	<echo message=" Compiled classes: ${build.classes.home}"/>
+        	<echo message=" Binary dist: ${distbin}"/>
+        	<echo message=" Source dist: ${distsrc}"/>
 		<echo message=" Source dist sources: ${distsrc.source.dir}"/>
-    	<echo message=" Javadoc: ${build.javadoc.home}"/>
-	    <echo message=" Archives: ${build.zip.home}"/>
-        <echo message=" Temp: ${temp.dir}"/>
-        <echo message=" Working folder: ${work.dir}"/>
-        <echo message="The build folder can be deleted with target [clear]"/>
-	    <echo message="All the archive files can be deleted with target [clearzip]"/>
-	    <echo message="The javadoc folder can be deleted with target [clearjdoc]"/>
-	    <echo message="Clear all with target [clearall]"/>
-	    <echo>JAR</echo>
-		<echo> The project jar is ${project.jar}</echo>
+    		<echo message=" Javadoc: ${build.javadoc.home}"/>
+		<echo message=" Archives: ${build.zip.home}"/>
+        	<echo message=" Temp: ${temp.dir}"/>
+        	<echo message=" Working folder: ${work.dir}"/>
+        	<echo message=" The build folder can be deleted with target [clear]"/>
+		<echo message=" All the archive files can be deleted with target [clearzip]"/>
+		<echo message=" The javadoc folder can be deleted with target [clearjdoc]"/>
+		<echo message=" Clear all with target [clearall]"/>
+		<echo># JAR</echo>
+		<echo> Output JAR: ${project.jar}</echo>
 		<echo> The [jaronly] ant target will write the jar to this location.</echo>
 		<echo> Use [classpath] ant target to see compilation infos.</echo>
 		<echo> Use [version] ant target to see version infos.</echo>
