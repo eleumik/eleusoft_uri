@@ -1,5 +1,9 @@
 package org.eleusoft.uri;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -10,11 +14,11 @@ import java.util.Iterator;
  */
 public final class URIFactory
 {
-    static final ArrayList providers = new ArrayList();
+    static final ArrayList defaultProviders = new ArrayList();
     static
     {
-        providers.add("org.eleusoft.uri.apache.ApacheURIProvider");
-        providers.add("org.eleusoft.uri.java4.Java4URIProvider");
+        defaultProviders.add("org.eleusoft.uri.apache.ApacheURIProvider");
+        defaultProviders.add("org.eleusoft.uri.java4.Java4URIProvider");
         //providers.add("org.eleusoft.uri.java4.Java4URIProviderDefault");
     }
     private URIFactory()
@@ -23,6 +27,8 @@ public final class URIFactory
     private static  URIProvider instance;
     static
     {
+        final ArrayList providers = new ArrayList();
+        
 		// Not needed anymore !
         //System.setProperty("org.apache.commons.logging.Log",
         //    "org.apache.commons.logging.impl.SimpleLog");
@@ -30,12 +36,54 @@ public final class URIFactory
         {
             // for junit
             final String clazz = System.getProperty(URIProvider.class.getName());
-           if (clazz != null) providers.add(0, clazz);
+           if (clazz != null) providers.add(clazz);
         }
         catch(SecurityException se)
         {
             // ignore
         }
+        
+        final InputStream is = URIFactory.class.getResourceAsStream("/META-INF/services/" + URIProvider.class.getName());
+        if (is != null)
+        {
+            BufferedReader br = null;
+            try
+            {
+                 br = new BufferedReader(new InputStreamReader(is));
+                 String line = br.readLine();
+                 while(line!=null)
+                 {
+                     String tl = line.trim();
+                     if (tl.length()==0  || tl.startsWith("#")) {
+                         // skip comment or empty
+                     } else {
+                         providers.add(tl);
+                     }
+                     line = br.readLine();
+                 }
+            }
+            catch(IOException e)
+            {
+                // ignore
+                e.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    if (br!=null) br.close();
+                    else is.close();
+                }
+                catch(IOException e)
+                {
+                    // ignore.
+                }
+            }
+        }
+        
+        providers.addAll(defaultProviders);
+        
+        
         final Iterator i = providers.iterator();
         URIProvider temp = null;
         while(temp==null && i.hasNext())
