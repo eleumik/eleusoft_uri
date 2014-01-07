@@ -14,7 +14,7 @@ Permanent changes should be applied to the cited .eleant file
 rather than to this file, in order to generate a new build.xml 
 file like the one that contains this fragment (this file).
 
---><project xmlns:eleant="http://www.eleusoft.org/eleant" eleant:time="20140107-1652" eleant:today="January 7 2014" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.2.1" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
+--><project xmlns:eleant="http://www.eleusoft.org/eleant" eleant:time="20140107-1656" eleant:today="January 7 2014" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.2.1" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
 <fail if="${eleant_1_0_xml_entity}"/>
 <description>Build file for Eleusoft URI</description>
 <property name="eleant.version" value="1.0"/>
@@ -94,12 +94,12 @@ file like the one that contains this fragment (this file).
 <attribute name="Specification-Version" value="1.0"/>
 </section>
 <section name="org/eleusoft/uri/java4">
-<attribute name="Implementation-Version" value="1.1"/>
+<attribute name="Implementation-Version" value="1.1.1"/>
 <attribute name="Implementation-Title" value="JDK1.4+ URI implementation based on java.net.URI"/>
 <attribute name="Implementation-Vendor" value="Eleusoft"/>
 </section>
 <section name="org/eleusoft/uri/apache">
-<attribute name="Implementation-Version" value="1.05"/>
+<attribute name="Implementation-Version" value="1.1.1"/>
 <attribute name="Implementation-Title" value="JDK1.2+ URI implementation based on apache URI "/>
 <attribute name="Implementation-Vendor" value="Eleusoft"/>
 </section>
