@@ -53,32 +53,7 @@ public final class URIFactory
             }
         }
         
-//        if (temp==null)
-//        try
-//        {
-//            //temp = new  org.eleusoft.uri.java4.Java4URIProviderDefault();
-////            temp = new org.eleusoft.uri.apache.ApacheURIProvider();
-//            temp = new  org.eleusoft.uri.java4.Java4URIProvider();
-//            //temp = new org.eleusoft.uri.apache.ApacheURIProvider();
-//
-//        }
-//        catch(Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//        catch(Error e)
-//        {
-//            throw e;
-//        }
-//        if (temp==null)
-//        try
-//        {
-//            temp = new org.eleusoft.uri.apache.ApacheURIProvider();
-//        }
-//        catch(Error e2)
-//        {
-//
-//        }
+
         if (temp==null) throw new RuntimeException("No URI provider available");
         instance = temp;
         
