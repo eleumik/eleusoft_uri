@@ -1,16 +1,18 @@
 package org.eleusoft.uri;
 
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-import org.eleusoft.uri.apache.URIUtil;
 
 /**
  * A class to parse the parameters
  * present in the Query String 
  * of an URI, supports different separators.
+ * <p>The default separator is <code>&amp;</code>
+ * and the default value-separator is <code>=</code>,
+ * the default encoding is <code>UTF-8</code>.
+ * 
  * @author mik
  *
  */
@@ -66,11 +68,10 @@ public final class URIQuery
         
         
     }
-    private final URI uri;
+    //private final URI uri;
     private final Vector params = new Vector();
     private final Exception exception;
     
-    private static final String charset = "UTF-8";
     
     /**
      * 
@@ -88,9 +89,22 @@ public final class URIQuery
     }
     public URIQuery(URI uri, String separator, String valueSeparator)
     {
+        this(uri, separator, valueSeparator, "UTF-8");
+    }
+    /**
+     * Most complete constructor, specifies 
+     * separators and encoding.
+     * @param uri A {@link URI}, never <code>null</code>.
+     * @param separator A {@link String}, never <code>null</code>.
+     * @param valueSeparator A {@link String}, never <code>null</code>.
+     * @param charset A {@link String} or <code>null</code>.
+     */
+    public URIQuery(URI uri, String separator, String valueSeparator, String encoding)
+    {
         if (separator==null) throw new IllegalArgumentException("null separator");
         if (valueSeparator==null) throw new IllegalArgumentException("null value separator");
-        this.uri = uri;
+        if (encoding==null) throw new IllegalArgumentException("null encoding");
+        //this.uri = uri;
         Exception exception = null;
         final String query = uri.getQuery();
         if (query!=null && query.length()!=0)
@@ -106,7 +120,7 @@ public final class URIQuery
                     String nameDecoded = querySegment;
                     try
                     {
-                        nameDecoded = URIFactory.decode(querySegment, charset);
+                        nameDecoded = URIFactory.decode(querySegment, encoding);
                     }
                     catch (Exception e) {
                         // silent, mark error
@@ -123,7 +137,7 @@ public final class URIQuery
                     String nameDecoded = name;
                     try
                     {
-                        valueDecoded = URIFactory.decode(value, charset );
+                        valueDecoded = URIFactory.decode(value, encoding );
                     }
                     catch (Exception e) {
                         // silent, mark error
@@ -131,7 +145,7 @@ public final class URIQuery
                     }
                     try
                     {
-                        nameDecoded = URIUtil.decode(name);
+                        nameDecoded = URIFactory.decode(name, encoding);
                     }
                     catch (Exception e) {
                         // silent, mark error
@@ -180,8 +194,8 @@ public final class URIQuery
      * with decoded name as passed, the value is returned percent decoded,
      * or if is impossible to percent-decode the value, as found in
      * the request.
-     * @param name
-     * @return
+     * @param name A {@link String}, never <code>null</code>.
+     * @return A {@link String} or <code>null</code>.
      */
     public String getParameterValue(final String name)
     {
@@ -198,11 +212,12 @@ public final class URIQuery
         
     }
     /**
-     * Static helper to get a single parameter value
-     * in a single shot.
-     * @param uri
-     * @param name
-     * @return
+     * Static helper to perform a very common
+     * operation: get a single parameter value
+     * in a single shot from a string URI.
+     * @param uri A {@link String}, never <code>null</code>.
+     * @param name A {@link String}, never <code>null</code>.
+     * @return A {@link String} or <code>null</code>.
      * @throws URIException
      */
     public static String getParameterValue(String uri, String name) throws URIException

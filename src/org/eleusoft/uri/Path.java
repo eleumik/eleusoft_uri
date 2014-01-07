@@ -224,12 +224,13 @@ public final class Path
 	 */
 	public final Path getContextPath() throws URIException
 	{
-	    if (true) return resolve(CONTEXT_PATH);
-	    final String name = getName();
-	    final String path = getPath();
-	    final String currHier = name==null ? path : path.substring(0, path.length() - name.length());
-	    //if (true) throw new Error("path:" + path + "] currHier:" + currHier+"[");
-	    return new Path(currHier);
+	    return resolve(CONTEXT_PATH);
+	    // 201401 old, was disabled:
+//	    final String name = getName();
+//	    final String path = getPath();
+//	    final String currHier = name==null ? path : path.substring(0, path.length() - name.length());
+//	    //if (true) throw new Error("path:" + path + "] currHier:" + currHier+"[");
+//	    return new Path(currHier);
 	}
 	
 	/**

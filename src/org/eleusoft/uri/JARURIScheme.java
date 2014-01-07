@@ -3,10 +3,6 @@
  */
 package org.eleusoft.uri;
 
-import org.eleusoft.uri.Path;
-import org.eleusoft.uri.URI;
-import org.eleusoft.uri.URIException;
-import org.eleusoft.uri.URIFactory;
 
 /**
  * A class to handle the <code>jar:</code> URI schema.
