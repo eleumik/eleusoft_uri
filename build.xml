@@ -14,7 +14,7 @@ Permanent changes should be applied to the cited .eleant file
 rather than to this file, in order to generate a new build.xml 
 file like the one that contains this fragment (this file).
 
---><project xmlns:eleant="http://www.eleusoft.org/eleant" eleant:time="20140108-1124" eleant:today="January 8 2014" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.2.1" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
+--><project xmlns:eleant="http://www.eleusoft.org/eleant" eleant:time="20140108-1247" eleant:today="January 8 2014" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.2.1" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
 <fail if="${eleant_1_0_xml_entity}"/>
 <description>Build file for Eleusoft URI</description>
 <property name="eleant.version" value="1.0"/>
@@ -84,12 +84,13 @@ file like the one that contains this fragment (this file).
 <property name="jar.tests.eleusoft_uri" location="${jar.home}/${project.tests.jar.filename}"/>
 <property name="project.tests.jar" location="${jar.tests.eleusoft_uri}"/>
 <!--javac packages-->
-<property name="javac.packages" value="org/eleusoft/uri/*,org/eleusoft/uri/java4/*,org/eleusoft/uri/apache/*,"/>
+<property name="javac.packages" value="org/eleusoft/uri/*,org/eleusoft/uri/util/*,org/eleusoft/uri/java4/*,org/eleusoft/uri/apache/*,"/>
 <!--javac packages exclude-->
 <property name="javac.packages.exclude" value=""/>
 <!--javadoc packages as a dirset-->
 <dirset id="javadoc.packages.dirset" dir="${project.src}" defaultexcludes="yes">
 <include name="org/eleusoft/uri"/>
+<include name="org/eleusoft/uri/util"/>
 <include name="org/eleusoft/uri/java4"/>
 <include name="org/eleusoft/uri/apache"/>
 </dirset>
@@ -109,6 +110,11 @@ file like the one that contains this fragment (this file).
 <attribute name="Specification-Title" value="Eleusoft URI interfaces"/>
 <attribute name="Specification-Vendor" value="Eleusoft"/>
 <attribute name="Specification-Version" value="1.0"/>
+</section>
+<section name="org/eleusoft/uri/util">
+<attribute name="Implementation-Version" value="1.1.1"/>
+<attribute name="Implementation-Title" value="JDK1.4+ URI utilities based on org.eleusoft.URI"/>
+<attribute name="Implementation-Vendor" value="Eleusoft"/>
 </section>
 <section name="org/eleusoft/uri/java4">
 <attribute name="Implementation-Version" value="1.1.1"/>
@@ -139,6 +145,7 @@ file like the one that contains this fragment (this file).
 		For example configuration files but not images or package.html.-->
 <fileset id="compile.extra.fileset" dir="${project.src.resources}">
 <include name="org/eleusoft/uri/**/*.properties"/>
+<include name="org/eleusoft/uri/util/**/*.properties"/>
 <include name="org/eleusoft/uri/java4/**/*.properties"/>
 <include name="org/eleusoft/uri/apache/**/*.properties"/>
 </fileset>
@@ -152,6 +159,15 @@ file like the one that contains this fragment (this file).
 <include name="org/eleusoft/uri/*.jpg"/>
 <include name="org/eleusoft/uri/*.gif"/>
 <include name="org/eleusoft/uri/*.html"/>
+<!--Source includes/excludes for org/eleusoft/uri/util-->
+<exclude name="**/Thumbs.db"/>
+<include name="org/eleusoft/uri/util/doc-files/*.*"/>
+<include name="org/eleusoft/uri/util/*.java"/>
+<include name="org/eleusoft/uri/util/*.properties"/>
+<include name="org/eleusoft/uri/util/*.jpeg"/>
+<include name="org/eleusoft/uri/util/*.jpg"/>
+<include name="org/eleusoft/uri/util/*.gif"/>
+<include name="org/eleusoft/uri/util/*.html"/>
 <!--Source includes/excludes for org/eleusoft/uri/java4-->
 <exclude name="**/Thumbs.db"/>
 <include name="org/eleusoft/uri/java4/doc-files/*.*"/>
@@ -182,6 +198,7 @@ file like the one that contains this fragment (this file).
 <echo>Fixing CRLF in source files</echo>
 <fixcrlf srcdir="${project.src}" excludes="" eol="crlf">
 <include name="org/eleusoft/uri/*.java"/>
+<include name="org/eleusoft/uri/util/*.java"/>
 <include name="org/eleusoft/uri/java4/*.java"/>
 <include name="org/eleusoft/uri/apache/*.java"/>
 </fixcrlf>
