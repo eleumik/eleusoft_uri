@@ -14,7 +14,7 @@ Permanent changes should be applied to the cited .eleant file
 rather than to this file, in order to generate a new build.xml 
 file like the one that contains this fragment (this file).
 
---><project xmlns:eleant="http://www.eleusoft.org/eleant" eleant:time="20140108-0940" eleant:today="January 8 2014" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.2.1" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
+--><project xmlns:eleant="http://www.eleusoft.org/eleant" eleant:time="20140108-1108" eleant:today="January 8 2014" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.2.1" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
 <fail if="${eleant_1_0_xml_entity}"/>
 <description>Build file for Eleusoft URI</description>
 <property name="eleant.version" value="1.0"/>
@@ -548,12 +548,20 @@ file like the one that contains this fragment (this file).
         <!-- client event -->
 		<antcall target="_event.src.pre"/>
         
-        <!-- copy init-configured source files fileset -->
+        <!-- 
+        copy init-configured source files fileset 
+        201401 thinking of add failonerror=false when doing update for maven,
+        	problem is: empty dir is not passed to git hub, cannot have one ?
+        	but no.. was missing a dir in git hub, thought was going away..
+        	OK splitted and added only to resource
+        -->
 		<copy todir="${distsrc.source.dir}">
 			<fileset refid="project.copysource"/>
+			
+		</copy>
+		<copy todir="${distsrc.source.dir}" failonerror="false">
 			<fileset refid="compile.extra.fileset"/>
 <!-- added resources 201401 -->
-			
 		</copy>
 		
         <!-- copy common distribution files -->
@@ -678,7 +686,8 @@ file like the one that contains this fragment (this file).
 	<target name="~compile" depends="~initwork">
 		<delete dir="${work.classes}"/>
 		<mkdir dir="${work.classes}"/>
-		<copy todir="${work.classes}">
+		<!-- 201401 failonerror='false' added for maven / github empty dir -->
+		<copy todir="${work.classes}" failonerror="false">
 		    <fileset refid="compile.extra.fileset"/>
         	</copy>
         	<echo>javac.packages= ${javac.packages}</echo>
