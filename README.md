@@ -10,7 +10,7 @@ This library includes a parser for URI(s) and for some URI components like the p
 Test Suite
 ----------
 
-This library includes a JUnit test suite with almost 500 tests, many have been collected from many sources like the URI RFC 3986, the URI Mailing List (uri@w3.org) and other works, see [credits](#credits). 
+This library includes a JUnit test suite with almost 500 tests, many have been collected from many sources like the URI RFC 3986, the URI Mailing List (uri@w3.org) and other works, see [credits](#Credits). 
 
 The test suite produces an HTML report at each run, these are the results in 2014:
 
@@ -30,7 +30,7 @@ The library has been used mainly to be able to be independent from the underlyin
 
 
 
-build
+Build
 -----
 
 Both Maven and Ant are supported, a `pom.xml` and a `build.xml` file are provided, 
@@ -42,17 +42,17 @@ Maven: since tests have failures use option `-Dmaven.test.failure.ignore=true`
 This package should be compiled with Java 4. Can be compiled in Java < 4 skipping the java4 package.
 
 
-dependencies
+Dependencies
 ------------
 
 No dependencies, Junit for testing. 
 
-license
+License
 -------
 
 Apache License 2.0
 
-credits
+Credits
 -------
 
 Martin Duerst
@@ -82,6 +82,11 @@ http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6338951
 http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4479463
 
 http://lists.fourthought.com/pipermail/4suite-dev/2006-June/002113.html
+
+Author
+------
+
+Michele Vivoda
 
 
 
