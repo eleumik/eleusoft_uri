@@ -29,7 +29,7 @@ public interface URICodec
      * 
      * @return the percent-escaped string, never <code>null</code>
      */
-    public String encodeQueryPart(final String decoded,
+    public String encode(final String decoded,
         final String encoding);
 
     

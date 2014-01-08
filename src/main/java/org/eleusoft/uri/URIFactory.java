@@ -15,6 +15,7 @@ import java.util.Iterator;
  */
 public final class URIFactory
 {
+    private static final String UTF_8 = "UTF-8";
     public static void main(String[] args)
     {
         System.out.println(org.eleusoft.uri.URIFactory.class.getName() + ", provider is " + instance);
@@ -390,7 +391,7 @@ public final class URIFactory
      */
     public final static String decode(final String encoded) throws URIException
     {
-        return decode(encoded, "UTF-8");
+        return decode(encoded, UTF_8);
     }
 
     /**
@@ -405,35 +406,23 @@ public final class URIFactory
      * 
      * @return the percent-escaped string, never <code>null</code>
      */
-    public final static String encodeQueryPart(final String decoded,
+    public final static String encode(final String decoded,
         final String encoding)
     {
-        return codec.encodeQueryPart(decoded, encoding);
+        return codec.encode(decoded, encoding);
     }
-    public final static String encodeQueryPart(final String decoded)
+    /**
+     * Like {@link #encode(String, String)} passing UTF-8 as encoding.
+     * @param decoded A {@link String}, never <code>null</code>.
+     * @return A {@link String}, never <code>null</code>.
+     */
+    public final static String encode(final String decoded)
     {
-        return encodeQueryPart(decoded, "UTF-8");
+        return encode(decoded, UTF_8);
     }
 
-    /**
-     * Percent-escapes a string following rules for fragment of a URI query
-     * component and using the passed encoding.
-     * 
-     * @return the percent-escaped string, never <code>null</code>
-     */
-    public final static String encodeFragment(final String decoded,
-        final String encoding)
-    {
-        // From RFC fragment and query are the same
-        return encodeQueryPart(decoded, encoding);
-    }
+    
 
-    /**
-     * Percent-escapes a string following URI rules and using UTF-8 encoding.
-     * 
-     * @return the percent-escaped string, never <code>null</code> public final
-     *         static String encode(final String decoded) { return
-     *         encode(decoded, "UTF-8"); }
-     */
+    
 
 }

@@ -23,7 +23,7 @@ public class ApacheURICodec implements URICodec
         }
     }
 
-    public String encodeQueryPart(String decoded, String encoding)
+    public String encode(String decoded, String encoding)
     {
         return org.eleusoft.uri.apache.URIUtil.encodeWithinQuery(decoded,
             encoding);
