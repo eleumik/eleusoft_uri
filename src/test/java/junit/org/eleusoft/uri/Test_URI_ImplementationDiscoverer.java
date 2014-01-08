@@ -12,10 +12,8 @@ public class Test_URI_ImplementationDiscoverer extends BaseTestURI
 	}
 
 
-	@Override
 	public String getName()
 	{
-	    // TODO Auto-generated method stub
 	    return getImplName();
 	}
 
