@@ -14,7 +14,7 @@ Permanent changes should be applied to the cited .eleant file
 rather than to this file, in order to generate a new build.xml 
 file like the one that contains this fragment (this file).
 
---><project xmlns:eleant="http://www.eleusoft.org/eleant" eleant:time="20140107-1656" eleant:today="January 7 2014" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.2.1" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
+--><project xmlns:eleant="http://www.eleusoft.org/eleant" eleant:time="20140108-0940" eleant:today="January 8 2014" eleant:version="1.0" name="eleusoft_uri" eleant:project.name="eleusoft_uri" eleant:project.label="Eleusoft URI" eleant:project.version="1.2.1" eleant:filename="configs/eleusoft_uri.eleant" basedir="." default="help">
 <fail if="${eleant_1_0_xml_entity}"/>
 <description>Build file for Eleusoft URI</description>
 <property name="eleant.version" value="1.0"/>
@@ -28,15 +28,22 @@ file like the one that contains this fragment (this file).
 <property file="${user.home}/build.properties"/>
 <property file="${basedir}/build.properties"/>
 <property file="${basedir}/default.properties"/>
-<target name="mainSource" depends="mavenSource,stdSource"/>
-<target name="mavenSource" if="src.eleusoft_uri.maven">
+<target name="mainSource" depends="mavenSourceDirect,mavenSourceByName,mavenSource,stdSource"/>
+<target name="mavenSourceDirect" if="maven">
+<echo>Used option -Dmaven=true</echo>
+</target>
+<target name="mavenSourceByName" if="src.eleusoft_uri.maven">
+<echo>Used option -Dsrc.eleusoft_uri.maven=true</echo>
+<property name="maven" value="true"/>
+</target>
+<target name="mavenSource" if="maven">
 <property name="src.eleusoft_uri" location="${src.home}"/>
 <property name="project.root" location="${src.eleusoft_uri}"/>
-<property name="project.src.root" location="${src.eleusoft_uri}/src/main"/>
-<property name="project.src" location="${src.eleusoft_uri}/src/main/java"/>
-<property name="project.src.resources" location="${src.eleusoft_uri}/src/main/resources"/>
-<property name="project.test.src" location="${src.eleusoft_uri}/src/test/java"/>
-<property name="project.test.src.resources" location="${src.eleusoft_uri}/src/test/resources"/>
+<property name="project.src.root" location="${src.eleusoft_uri}/main"/>
+<property name="project.src" location="${src.eleusoft_uri}/main/java"/>
+<property name="project.src.resources" location="${src.eleusoft_uri}/main/resources"/>
+<property name="project.test.src" location="${src.eleusoft_uri}/test/java"/>
+<property name="project.test.src.resources" location="${src.eleusoft_uri}/test/resources"/>
 <property name="project.maven" value="true"/>
 <echo message="Maven Source Structure"/>
 <fileset id="sourcedirset" dir="${project.src.root}">
@@ -44,22 +51,32 @@ file like the one that contains this fragment (this file).
 <include name="resources/**/*.*"/>
 </fileset>
 </target>
-<target name="stdSource" unless="src.eleusoft_uri.maven">
+<target name="stdSource" depends="stdSource_main,stdSource_test" unless="maven">
+<echo>Standard Source Structure</echo>
+<fileset id="sourcedirset" dir=".">
+<exclude name="**/*.*"/>
+</fileset>
+<echo message="Standard Source Structure (All in one dir, not Maven)"/>
+</target>
+<target name="stdSource_main">
 <property name="src.eleusoft_uri" location="${src.home}"/>
 <property name="project.root" location="${src.eleusoft_uri}"/>
 <property name="project.src.root" location="${project.root}"/>
 <property name="project.src" location="${project.root}"/>
-<property name="project.src.resources" location="${project.root}"/>
-<echo message="Standard Source Structure (All in one dir, not Maven)"/>
+<property name="src.resources.eleusoft_uri" location="${project.src}"/>
+<property name="project.src.resources" location="${src.resources.eleusoft_uri}"/>
+</target>
+<target name="stdSource_test">
+<property name="src.test.eleusoft_uri" location="${test.home}"/>
+<property name="project.test.src" location="${src.test.eleusoft_uri}"/>
+<property name="src.test.resources.eleusoft_uri" location="${project.test.src}"/>
+<property name="project.test.src.resources" location="${src.test.resources.eleusoft_uri}"/>
 </target>
 <target name="init" depends="stdProjectPaths, stdJavadoc, mainSource">
 <!--Project license file. For global properties override consistency use [license.] prefix.-->
 <property name="license.eleusoft_uri" value="./license.txt"/>
 <property name="project.license" location="${license.eleusoft_uri}"/>
 <!--Java source files. For global properties override consistency use [src.] prefix.-->
-<copy todir="c:\tempmik\aa">
-<fileset refid="sourcedirset"/>
-</copy>
 <!--Project library installation. For global properties override consistency use [jar.] prefix.-->
 <property name="jar.eleusoft_uri" location="${jar.home}/${project.jar.filename}"/>
 <property name="project.jar" location="${jar.eleusoft_uri}"/>
@@ -121,9 +138,9 @@ file like the one that contains this fragment (this file).
 <!--Compilation build extra files (those included in the jar). 
 		For example configuration files but not images or package.html.-->
 <fileset id="compile.extra.fileset" dir="${project.src.resources}">
-<include name="**/org/eleusoft/uri/*.properties"/>
-<include name="**/org/eleusoft/uri/java4/*.properties"/>
-<include name="**/org/eleusoft/uri/apache/*.properties"/>
+<include name="org/eleusoft/uri/**/*.properties"/>
+<include name="org/eleusoft/uri/java4/**/*.properties"/>
+<include name="org/eleusoft/uri/apache/**/*.properties"/>
 </fileset>
 <fileset id="project.copysource" dir="${project.src}">
 <!--Source includes/excludes for org/eleusoft/uri-->
@@ -170,8 +187,8 @@ file like the one that contains this fragment (this file).
 </fixcrlf>
 </target>
 <property name="test.defined" value="true"/>
-<property name="test.src.dir" value="${src.test.eleusoft_uri}"/>
 <target name="~inittest" depends="~initwork">
+<property name="test.src.dir" location="${project.test.src}"/>
 <property name="test.javac.classpath" value="${jar.junit};"/>
 </target>
 <target name="jartest" depends="~inittest, ~jartest" description="Builds the tests jar."/>
@@ -341,8 +358,8 @@ file like the one that contains this fragment (this file).
 	<property name="temp.dir" location="${java.io.tmpdir}"/>					<!--docdone-->
 	<!-- the base directory where the source files are placed by default -->
 	<property name="src.home" value="./src"/>
-	<!-- the base directory where the test source files are placed by default -->
-	<property name="test.home" value="."/>										<!-- -->
+	<!-- the base directory where the test source files are placed by default 201401 changed from empty to [./src] -->
+	<property name="test.home" value="./src"/>										<!-- -->
 	<property name="test.runner" value="junit.textui.TestRunner"/> 				<!--docdone-->
  	<property name="test.failonerror" value="true"/> 								<!--docdone-->
  	<!-- give a default to the test dir for this project -->
@@ -483,7 +500,7 @@ file like the one that contains this fragment (this file).
 	<target name="~initwork" depends="~init">
 		<echo>Using eleant v. ${eleant.version}</echo>
 		<fail if="__initialized" message="ELEANT INTERNAL ERROR: Cannot call init if already initialized"/>
-    	<fail if="${temp.dir}" message="ELEANT INTERNAL ERROR: Cannot get temp dir ${temp.dir}"/>
+    		<fail if="${temp.dir}" message="ELEANT INTERNAL ERROR: Cannot get temp dir ${temp.dir}"/>
 		
 		<!-- clean working dir --> 
 		<delete dir="${work.dir}"/>
@@ -515,6 +532,7 @@ file like the one that contains this fragment (this file).
 		<li>	deletes and creates ${distsrc} dir
 		<li>	creates source folder  (default is ${distsrc}/${src.home} == ${distsrc}/src )
 		<li>	copies project-init-defined fileset with id [project.copysource] to ${distsrc}/${src.home} 
+		<li>	201401 new: copy also 'resources' [compile.extra.fileset]
 		<li>	ant-calls project-specific _event.src.pre
 		<li>	ant-calls [~copycommonbuild] to copy the distribution common files to ${distsrc}
 		<li>	copies build.properties, build.xml and javadoc.css
@@ -533,6 +551,9 @@ file like the one that contains this fragment (this file).
         <!-- copy init-configured source files fileset -->
 		<copy todir="${distsrc.source.dir}">
 			<fileset refid="project.copysource"/>
+			<fileset refid="compile.extra.fileset"/>
+<!-- added resources 201401 -->
+			
 		</copy>
 		
         <!-- copy common distribution files -->
@@ -663,7 +684,6 @@ file like the one that contains this fragment (this file).
         	<echo>javac.packages= ${javac.packages}</echo>
 		<echo>javac.packages.exclude= ${javac.packages.exclude}</echo>
 		<echo>Project classpath= ${javac.classpath}</echo>
-		<echo message=" Java Root folder: ${project.src.root}"/>
 		<echo message=" Java Source: ${project.src}"/>
 		<echo message=" Java Resources: ${project.src.resources}"/>
 
@@ -1009,8 +1029,6 @@ file like the one that contains this fragment (this file).
 		<echo># PROJECT FOLDERS</echo>
 		<echo message=" Project [${name}] version [${version}]"/>
 		<echo message=" Ant Project folder: ${basedir}"/>
-		<echo message=" Project Folder: ${project.root}"/>
-		<echo message=" Main Folder: ${project.src.root}"/>
 		<echo message=" Java Sources: ${project.src}"/>
 		<echo message=" Java Resources: ${project.src.resources}"/>
 		<echo message=" Test Source: ${project.test.src}"/>
@@ -1073,6 +1091,10 @@ file like the one that contains this fragment (this file).
 		<echo message=" build      --&gt; generates the classes."/>
 		<echo message=" jaronly    --&gt; creates the project jar file. See [where] target."/>
 		<echo message=" fixcrlf    --&gt; fixes crlf issues in the source."/>
+		<echo message="TESTS"/>
+		<echo message=" test       --&gt; make jar and run tests."/>
+		<echo message=" jartest    --&gt; creates the test jar file. See [where] target."/>
+		<echo message=" runtest    --&gt; runs the tests of the project."/>
 		<echo message="DISTRIBUTIONS "/>
 		<echo message=" bin        --&gt; creates the binary dist"/>
 		<echo message=" binzip     --&gt; creates the binary dist zip"/>
