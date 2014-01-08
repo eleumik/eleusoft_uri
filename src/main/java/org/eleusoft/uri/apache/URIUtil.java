@@ -47,6 +47,9 @@ import java.util.BitSet;
  */
 public class URIUtil {
 
+    private URIUtil() {
+        // no inst
+    }
     // ----------------------------------------------------- Instance variables
 
     protected static final BitSet empty = new BitSet(1);
