@@ -16,7 +16,7 @@ The test suite produces an HTML report at each run, these are the results in 201
 
 [apache-uri-modified 496T 26F 2E](http://eleumik.github.io/eleusoft_uri/testresult/uriResults_T496_F26_E2_org.eleusoft.uri.apache.ApacheURIProvider$ApacheURI_2014-01-08T01-33.html)
 
-[jdk-uri-modified 296T 53F 9E](http://eleumik.github.io/eleusoft_uri/testresult/uriResults_T496_F53_E9_org.eleusoft.uri.java4.Java4URIProvider$JDK14URI_2014-01-08T01-33.html)
+[jdk-uri-modified 496T 53F 9E](http://eleumik.github.io/eleusoft_uri/testresult/uriResults_T496_F53_E9_org.eleusoft.uri.java4.Java4URIProvider$JDK14URI_2014-01-08T01-33.html)
 
 
 
