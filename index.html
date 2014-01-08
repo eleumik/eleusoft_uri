@@ -42,7 +42,11 @@
 
 <p>This library includes a JUnit test suite with almost 500 tests, many have been collected from many sources like the URI RFC 3986, the URI Mailing List (<a href="mailto:uri@w3.org">uri@w3.org</a>) and other works, see <a href="#credits">credits</a>. </p>
 
-<p>The test suite produces an HTML report at each run</p>
+<p>The test suite produces an HTML report at each run, these are the results in 2014:</p>
+
+<p><a href="http://eleumik.github.io/eleusoft_uri/testresult/uriResults_T496_F26_E2_org.eleusoft.uri.apache.ApacheURIProvider%24ApacheURI_2014-01-08T01-33.html">apache-uri-modified 496T 26F 2E</a></p>
+
+<p><a href="http://eleumik.github.io/eleusoft_uri/testresult/uriResults_T496_F53_E9_org.eleusoft.uri.java4.Java4URIProvider%24JDK14URI_2014-01-08T01-33.html">jdk-uri-modified 296T 53F 9E</a></p>
 
 <h2>
 <a name="details" class="anchor" href="#details"><span class="octicon octicon-link"></span></a>Details</h2>
@@ -57,6 +61,8 @@
 <p>Both Maven and Ant are supported, a <code>pom.xml</code> and a <code>build.xml</code> file are provided, </p>
 
 <p>Ant: use <code>ant -Dmaven=1 jaronly</code> to create the jar, <code>ant -Dmaven=1 test</code> to compile and run the tests. Junit must be in the <code>lib</code> dir or its position must be specified with <code>-Djar.junit=....</code> when running tests.</p>
+
+<p>Maven: since tests have failures use option <code>-Dmaven.test.failure.ignore=true</code></p>
 
 <p>This package should be compiled with Java 4. Can be compiled in Java &lt; 4 skipping the java4 package.</p>
 
