@@ -46,16 +46,20 @@
 
 <p>This library includes a parser for URI(s) and for some URI components like the path and the query string. It includes also some URI-scheme specific helpers, for example for the <code>file:</code> scheme and the <code>jar:</code> scheme.</p>
 
-<p>This library includes a JUnit test suite with almost 500 tests, that have been collected from many sources like the URI RFC 3986, the URI Mailing List (<a href="mailto:uri@w3.org">uri@w3.org</a>), some tests found in the web (thanks Martin Duerst, Graham Klyne) and many  other custom tests.  </p>
+<p>This library includes a JUnit test suite with almost 500 tests, that have been collected from many sources like the URI RFC 3986, the URI Mailing List (<a href="mailto:uri@w3.org">uri@w3.org</a>), some tests found in the web (thank you Martin Duerst, Graham Klyne) and many other custom tests.  </p>
 
 <p>This library has been started before 2005, when servers could run a version of Java &lt; 1.4 (only from Java 1.4 the java.net.URI class has been included in Java). There are mainly two implementations for the URI parser: one based on a modified version of <code>org.apache.commons.httpclient.URI</code> and one based on <code>java.net.URI</code>, also adapted (and one without fixes, for test comparison). Tests show less failures for the modified Apache implementation; for standard usage both versions are good enough.</p>
 
-<p>The library has been used mainly to be able to be independent from the underlying implementations. It has been also a way to correct some issues present in known implementations: cross testing of different implementations has been handy for finding and fixing the major issues.</p>
+<p>The library has been used mainly to be able to be independent from the underlying implementations. It has been also a way to correct some issues present in known implementations: cross testing of different implementations has been handy for finding and fixing the bugs.</p>
 
 <h2>
 <a name="build" class="anchor" href="#build"><span class="octicon octicon-link"></span></a>build</h2>
 
-<p>Both Maven and Ant are supported, a <code>pom.xml</code> and a <code>build.xml</code> file are provided, use <code>ant jaronly</code> to create the jar, <code>ant test</code> to compile and run the tests. Can be compiled in Java &lt; 4 skipping the java4 package.</p>
+<p>Both Maven and Ant are supported, a <code>pom.xml</code> and a <code>build.xml</code> file are provided, </p>
+
+<p>Ant: use <code>ant -Dmaven=1 jaronly</code> to create the jar, <code>ant -Dmaven=1 test</code> to compile and run the tests. </p>
+
+<p>This package should be compiled with Java 4. Can be compiled in Java &lt; 4 skipping the java4 package.</p>
 
 <h2>
 <a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>dependencies</h2>
