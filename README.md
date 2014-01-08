@@ -5,6 +5,7 @@ An URI parsing Java package with multiple implementations and a complete test su
 
 This library includes a parser for URI(s) and for some URI components like the path and the query string. It includes also some URI-scheme specific helpers, for example for the `file:` scheme and the `jar:` scheme.
 
+[JAVADOC](http://eleumik.github.io/eleusoft_uri/javadoc/)
 
 Test Suite
 ----------
