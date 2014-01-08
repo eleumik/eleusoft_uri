@@ -5,8 +5,8 @@ import java.util.Enumeration;
 import org.eleusoft.uri.URI;
 import org.eleusoft.uri.URIException;
 import org.eleusoft.uri.URIFactory;
-import org.eleusoft.uri.URIQuery;
-import org.eleusoft.uri.URIQuery.Param;
+import org.eleusoft.uri.util.URIQuery;
+import org.eleusoft.uri.util.URIQuery.Param;
 
 public class Test_URI33_URIQuery extends BaseTestURI
 {

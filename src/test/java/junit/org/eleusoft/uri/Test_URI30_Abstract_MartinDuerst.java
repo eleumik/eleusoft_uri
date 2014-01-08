@@ -13,7 +13,9 @@ public abstract class Test_URI30_Abstract_MartinDuerst extends BaseTestRFCExampl
 		super();
 		InputStream is =
 			getInputStreamFromFileName("MartinDuerstTest.properties");
-	 	props = new Properties();
+	 	if (is == null)
+	 	    throw new IllegalStateException("no file [MartinDuerstTest.properties], deploy error ?");
+		props = new Properties();
 	 	try
 	 	{
 	 		props.load(is);

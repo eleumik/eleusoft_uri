@@ -1,7 +1,7 @@
 package junit.org.eleusoft.uri;
 
-import org.eleusoft.uri.Path;
 import org.eleusoft.uri.URIException;
+import org.eleusoft.uri.util.Path;
 
 public class Test_URI10_Path extends BaseTestURI
 {

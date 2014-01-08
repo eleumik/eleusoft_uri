@@ -5,10 +5,10 @@ import java.io.InputStream;
 import junit.framework.TestCase;
 import junit.framework.TestResult;
 
-import org.eleusoft.uri.Path;
 import org.eleusoft.uri.URI;
 import org.eleusoft.uri.URIException;
 import org.eleusoft.uri.URIFactory;
+import org.eleusoft.uri.util.Path;
 
 /**
  *  Base abstract class for URI tests.
@@ -19,7 +19,7 @@ import org.eleusoft.uri.URIFactory;
  * <pre>
  * SET PROPS=-Dorg.eleusoft.uri.URIProvider=org.eleusoft.uri.java4.Java4URIProvider
  * java %PROPS% -classpath [my claspath] junit.swingui.TestRunner junit.org.eleusoft.uri.uriAnchorsMapuite
- * </pre>
+ *</pre>
  */
 public abstract class BaseTestURI extends TestCase
 {
@@ -35,7 +35,15 @@ public abstract class BaseTestURI extends TestCase
 	// URI - PATH FACTORY
 
 
-	protected final URI createURI(String uri) throws URIException
+	public BaseTestURI(String name)
+    {
+        super(name);
+    }
+
+
+
+
+    protected final URI createURI(String uri) throws URIException
 	{
 		return URIFactory.createURI(uri);
 	}
