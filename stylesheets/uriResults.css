@@ -1,0 +1,95 @@
+body
+{
+	background-color:#99ccff
+}
+
+CAPTION
+{
+	padding:1em;
+	font-size:2em ;
+}
+TABLE
+{
+	margin-top:1em;
+	xwidth:640px;
+}
+
+.tdname
+{
+font-size:0.8em
+}
+.tdid
+{
+font-size:0.8em
+}
+
+.menu
+{
+	font-weight:bolder;
+	color:black;
+	border:2px solid outset;
+	background-color:#8899cc;
+	text-align:center;
+	padding:1em;
+}
+
+
+.error
+{
+	font-weight:bolder;
+	color:white;
+	background-color:red;
+	text-align:center;
+}
+.ok
+{
+	background-color:lightgreen;
+	color:black;
+	text-align:center;
+}
+.failure
+{
+	font-weight:bolder;
+	color:black;
+	background-color:silver;
+	text-align:center;
+}
+
+.xresult
+{
+	color:black;
+	background-color:white;
+}
+
+.header
+{
+	color:black;
+	background-color:lightyellow;
+}
+
+.fmsg
+{
+	color:black;
+	background-color:#a0a0a0;
+}
+.emsg
+{
+	color:white;
+	background-color:red;
+}
+
+.normlink A
+{
+	color:black;
+}
+.faillink A
+{
+	color:black;
+	background-color:#a0a0a0;
+}
+.errlink A
+{
+	color:white;
+	background-color:red;
+}
+
