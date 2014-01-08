@@ -1,8 +1,12 @@
-package org.eleusoft.uri;
+package org.eleusoft.uri.util;
 
 import java.util.Enumeration;
 import java.util.StringTokenizer;
 import java.util.Vector;
+
+import org.eleusoft.uri.URI;
+import org.eleusoft.uri.URIException;
+import org.eleusoft.uri.URIFactory;
 
 
 /**

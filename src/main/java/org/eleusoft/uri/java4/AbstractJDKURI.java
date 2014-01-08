@@ -1,6 +1,6 @@
 package org.eleusoft.uri.java4;
 
-import org.eleusoft.uri.AbstractURI;
+import org.eleusoft.uri.util.AbstractURI;
 
 /**
  * Baseclass for implementing JDK URIs

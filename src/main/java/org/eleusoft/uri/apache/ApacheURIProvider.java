@@ -1,9 +1,9 @@
 package org.eleusoft.uri.apache;
 
-import org.eleusoft.uri.AbstractURI;
 import org.eleusoft.uri.URI;
 import org.eleusoft.uri.URIException;
 import org.eleusoft.uri.URIProvider;
+import org.eleusoft.uri.util.AbstractURI;
 
 public class ApacheURIProvider implements URIProvider
 {

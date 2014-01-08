@@ -1,7 +1,11 @@
 /**
  *
  */
-package org.eleusoft.uri;
+package org.eleusoft.uri.util;
+
+import org.eleusoft.uri.URI;
+import org.eleusoft.uri.URIException;
+import org.eleusoft.uri.URIFactory;
 
 
 /**

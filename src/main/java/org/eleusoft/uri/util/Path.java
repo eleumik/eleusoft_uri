@@ -1,8 +1,12 @@
-package org.eleusoft.uri;	
+package org.eleusoft.uri.util;	
 
 // This class exploits the current implementation of URI
 
 import java.util.StringTokenizer;
+
+import org.eleusoft.uri.URI;
+import org.eleusoft.uri.URIException;
+import org.eleusoft.uri.URIFactory;
 /**
  * Path class.
  * This class depends on the concept of path
@@ -108,7 +112,7 @@ public final class Path
         catch(URIException e)
         {
             e.printStackTrace();
-            throw new Error("Impossible ? org.eleusoft.uri.Path 35324:" + e.getMessage());
+            throw new Error("Impossible ? org.eleusoft.uri.util.Path 35324:" + e.getMessage());
         }
     }
     

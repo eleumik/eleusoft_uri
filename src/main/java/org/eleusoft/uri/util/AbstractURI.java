@@ -1,4 +1,7 @@
-package org.eleusoft.uri;
+package org.eleusoft.uri.util;
+
+import org.eleusoft.uri.URI;
+import org.eleusoft.uri.URIException;
 
 /**
  * Helper for implementing the {@link URI} interface.
