@@ -4,7 +4,12 @@ import org.eleusoft.uri.URI;
 import org.eleusoft.uri.URIException;
 import org.eleusoft.uri.URIProvider;
 import org.eleusoft.uri.util.AbstractURI;
-
+/**
+ * {@link URIProvider} derived from <code>org.apache.util.URI</code>.
+ * 
+ * @author Michele Vivoda
+ *
+ */
 public class ApacheURIProvider implements URIProvider
 {
     public ApacheURIProvider()

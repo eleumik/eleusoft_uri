@@ -5,7 +5,9 @@ import org.eleusoft.uri.URIException;
 import org.eleusoft.uri.URIProvider;
 
 /**
- * JAVA 4++ URI provider without corrections
+ * {@link URIProvider} that wraps a java.net.URI without performing any correction.
+ * 
+ * @author Michele Vivoda
  */
 public class Java4URIProviderDefault implements URIProvider
 {

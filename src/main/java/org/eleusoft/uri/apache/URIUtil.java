@@ -45,7 +45,7 @@ import java.util.BitSet;
  * @author <a href="mailto:jericho@apache.org">Sung-Gu</a>
  * @version $Revision: 1.1 $ $Date: 2002/03/14 15:14:01
  */
-public class URIUtil {
+class URIUtil {
 
     private URIUtil() {
         // no inst

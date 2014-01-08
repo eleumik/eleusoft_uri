@@ -530,6 +530,7 @@ import java.net.MalformedURLException;
  * http://www.w3.org/Addressing/URL/4_URI_Recommentations.html</a>
  * </ol>
  *
+ * @author Michele Vivoda
  */
 public interface URI
 {
