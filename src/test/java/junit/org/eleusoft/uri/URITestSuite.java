@@ -14,15 +14,16 @@ import org.eleusoft.uri.URIException;
 import org.eleusoft.uri.URIFactory;
 
 /**
- * 201307 
+ * 201307
  * Apache 490 3E 29F
  * JDK 490 10e 54f (this does not change for 1.4,1.5,1.6,1.7..)
- * JDK Default 10E 81F 
+ * JDK Default 10E 81F
  * 201401
  * Apache 496 2E 27F
  * JDK 496 9E 54F
  * JDK Default 496 9E 81F
  * @author mik
+ *
  *
  */
 public class URITestSuite extends TestSuite
