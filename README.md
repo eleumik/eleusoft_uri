@@ -39,7 +39,7 @@ Ant: use `ant -Dmaven=1 jaronly` to create the jar, `ant -Dmaven=1 test` to comp
 
 Maven: since tests have failures use option `-Dmaven.test.failure.ignore=true`
 
-This package should be compiled with Java 4. Can be compiled in Java < 4 skipping the java4 package.
+This project should be compiled with Java 4 when distributed. This project can be compiled in Java < 4 skipping the java4 package.
 
 
 Dependencies
