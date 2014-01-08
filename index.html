@@ -1,52 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Eleusoft uri by eleumik</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+    <title>Eleusoft uri by eleumik</title>
   </head>
+
   <body>
-
-      <header>
+    <header>
+      <div class="inner">
         <h1>Eleusoft uri</h1>
-        <p>An URI parsing package with multiple implementations and a complete test suite</p>
-      </header>
+        <h2>An URI parsing package with multiple implementations and a complete test suite</h2>
+        <a href="https://github.com/eleumik/eleusoft_uri" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
 
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="https://github.com/eleumik/eleusoft_uri" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/eleumik/eleusoft_uri/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/eleumik/eleusoft_uri/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
-
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-        <h1>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
 <a name="eleusoft_uri" class="anchor" href="#eleusoft_uri"><span class="octicon octicon-link"></span></a>eleusoft_uri</h1>
 
 <p>An URI parsing Java package with multiple implementations and a complete test suite.</p>
 
 <p>This library includes a parser for URI(s) and for some URI components like the path and the query string. It includes also some URI-scheme specific helpers, for example for the <code>file:</code> scheme and the <code>jar:</code> scheme.</p>
 
-<p>This library includes a JUnit test suite with almost 500 tests, that have been collected from many sources like the URI RFC 3986, the URI Mailing List (<a href="mailto:uri@w3.org">uri@w3.org</a>), some tests found in the web (thank you Martin Duerst, Graham Klyne) and many other custom tests.  </p>
+<h2>
+<a name="test-suite" class="anchor" href="#test-suite"><span class="octicon octicon-link"></span></a>Test Suite</h2>
+
+<p>This library includes a JUnit test suite with almost 500 tests, many have been collected from many sources like the URI RFC 3986, the URI Mailing List (<a href="mailto:uri@w3.org">uri@w3.org</a>) and other works, see <a href="#credits">credits</a>. </p>
+
+<p>The test suite produces an HTML report at each run</p>
+
+<h2>
+<a name="details" class="anchor" href="#details"><span class="octicon octicon-link"></span></a>Details</h2>
 
 <p>This library has been started before 2005, when servers could run a version of Java &lt; 1.4 (only from Java 1.4 the java.net.URI class has been included in Java). There are mainly two implementations for the URI parser: one based on a modified version of <code>org.apache.commons.httpclient.URI</code> and one based on <code>java.net.URI</code>, also adapted (and one without fixes, for test comparison). Tests show less failures for the modified Apache implementation; for standard usage both versions are good enough.</p>
 
@@ -57,7 +54,7 @@
 
 <p>Both Maven and Ant are supported, a <code>pom.xml</code> and a <code>build.xml</code> file are provided, </p>
 
-<p>Ant: use <code>ant -Dmaven=1 jaronly</code> to create the jar, <code>ant -Dmaven=1 test</code> to compile and run the tests. </p>
+<p>Ant: use <code>ant -Dmaven=1 jaronly</code> to create the jar, <code>ant -Dmaven=1 test</code> to compile and run the tests. Junit must be in the <code>lib</code> dir or its position must be specified with <code>-Djar.junit=....</code> when running tests.</p>
 
 <p>This package should be compiled with Java 4. Can be compiled in Java &lt; 4 skipping the java4 package.</p>
 
@@ -70,13 +67,56 @@
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>license</h2>
 
 <p>Apache License 2.0</p>
-      </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/eleumik">eleumik</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
-      </footer>
+
+<h2>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>credits</h2>
+
+<p>Martin Duerst</p>
+
+<p><a href="http://lists.w3.org/Archives/Public/uri/2004Apr/0034.html">http://lists.w3.org/Archives/Public/uri/2004Apr/0034.html</a></p>
+
+<p><a href="http://www.w3.org/2004/04/uri-rel-test.html">http://www.w3.org/2004/04/uri-rel-test.html</a></p>
+
+<p>Graham Klyne</p>
+
+<p><a href="http://lists.w3.org/Archives/Public/uri/2004Feb/0108.html">http://lists.w3.org/Archives/Public/uri/2004Feb/0108.html</a></p>
+
+<p>Adam Costello</p>
+
+<p><a href="http://lists.w3.org/Archives/Public/uri/2004Feb/0114.html">http://lists.w3.org/Archives/Public/uri/2004Feb/0114.html</a></p>
+
+<p>Other</p>
+
+<p><a href="http://lists.w3.org/Archives/Public/uri/2005May/0036.html">http://lists.w3.org/Archives/Public/uri/2005May/0036.html</a></p>
+
+<p><a href="http://lists.w3.org/Archives/Public/uri/2005May/0043.html">http://lists.w3.org/Archives/Public/uri/2005May/0043.html</a></p>
+
+<p><a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6345409">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6345409</a></p>
+
+<p><a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6338951">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6338951</a></p>
+
+<p><a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4479463">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4479463</a></p>
+
+<p><a href="http://lists.fourthought.com/pipermail/4suite-dev/2006-June/002113.html">http://lists.fourthought.com/pipermail/4suite-dev/2006-June/002113.html</a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/eleumik/eleusoft_uri/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/eleumik/eleusoft_uri/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/eleumik/eleusoft_uri"></a> is maintained by <a href="https://github.com/eleumik">eleumik</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
+  
   </body>
 </html>
