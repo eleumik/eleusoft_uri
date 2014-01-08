@@ -48,6 +48,7 @@ credits
 Martin Duerst
 
 http://lists.w3.org/Archives/Public/uri/2004Apr/0034.html
+
 http://www.w3.org/2004/04/uri-rel-test.html
 
 Graham Klyne
