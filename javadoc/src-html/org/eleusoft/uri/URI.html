@@ -533,370 +533,371 @@
 <FONT color="green">530</FONT>     * http://www.w3.org/Addressing/URL/4_URI_Recommentations.html&lt;/a&gt;<a name="line.530"></a>
 <FONT color="green">531</FONT>     * &lt;/ol&gt;<a name="line.531"></a>
 <FONT color="green">532</FONT>     *<a name="line.532"></a>
-<FONT color="green">533</FONT>     */<a name="line.533"></a>
-<FONT color="green">534</FONT>    public interface URI<a name="line.534"></a>
-<FONT color="green">535</FONT>    {<a name="line.535"></a>
-<FONT color="green">536</FONT>    <a name="line.536"></a>
-<FONT color="green">537</FONT>        /**<a name="line.537"></a>
-<FONT color="green">538</FONT>         * &lt;em&gt;Convenience method&lt;/em&gt; that<a name="line.538"></a>
-<FONT color="green">539</FONT>         * returns whether the URI is<a name="line.539"></a>
-<FONT color="green">540</FONT>         * absolute (has a scheme component).<a name="line.540"></a>
-<FONT color="green">541</FONT>         * &lt;p&gt;Since an implementation of this<a name="line.541"></a>
-<FONT color="green">542</FONT>         * interface cannot return an empty<a name="line.542"></a>
-<FONT color="green">543</FONT>         * string from {@link #getScheme()),<a name="line.543"></a>
-<FONT color="green">544</FONT>         * this method is equivalent to:<a name="line.544"></a>
-<FONT color="green">545</FONT>         * &lt;pre class=code&gt;<a name="line.545"></a>
-<FONT color="green">546</FONT>         *     return scheme!=null;<a name="line.546"></a>
-<FONT color="green">547</FONT>         * &lt;/pre&gt;<a name="line.547"></a>
-<FONT color="green">548</FONT>         * &lt;p&gt;Note that in RFC Section 4.3<a name="line.548"></a>
-<FONT color="green">549</FONT>         * &lt;a href='http://www.apps.ietf.org/rfc/rfc3986.html#sec-4.3'&gt;<a name="line.549"></a>
-<FONT color="green">550</FONT>         * http://www.apps.ietf.org/rfc/rfc3986.html#sec-4.3&lt;/a&gt;<a name="line.550"></a>
-<FONT color="green">551</FONT>         * an absolute uri is specified as also<a name="line.551"></a>
-<FONT color="green">552</FONT>         * having no fragment.<a name="line.552"></a>
-<FONT color="green">553</FONT>         * &lt;blockquote&gt;<a name="line.553"></a>
-<FONT color="green">554</FONT>         * Some protocol elements allow only the absolute form of a URI without<a name="line.554"></a>
-<FONT color="green">555</FONT>         * a fragment identifier. For example, defining a base URI for later<a name="line.555"></a>
-<FONT color="green">556</FONT>         * use by relative references calls for an absolute-URI syntax rule<a name="line.556"></a>
-<FONT color="green">557</FONT>         * that does not allow a fragment.<a name="line.557"></a>
-<FONT color="green">558</FONT>         * &lt;/blockquote&gt;<a name="line.558"></a>
-<FONT color="green">559</FONT>         * &lt;p&gt;Here instead only the scheme presence is tested.<a name="line.559"></a>
-<FONT color="green">560</FONT>         */<a name="line.560"></a>
-<FONT color="green">561</FONT>        boolean isAbsolute();<a name="line.561"></a>
-<FONT color="green">562</FONT>    <a name="line.562"></a>
-<FONT color="green">563</FONT>        /**<a name="line.563"></a>
-<FONT color="green">564</FONT>         * &lt;em&gt;Convenience method&lt;/em&gt; that<a name="line.564"></a>
-<FONT color="green">565</FONT>         * returns whether the URI is a relative URI<a name="line.565"></a>
-<FONT color="green">566</FONT>         * and has as path component a relative<a name="line.566"></a>
-<FONT color="green">567</FONT>         * path, that is a path that is empty<a name="line.567"></a>
-<FONT color="green">568</FONT>         * or does not start with the char &lt;code&gt;/&lt;/code&gt;.<a name="line.568"></a>
-<FONT color="green">569</FONT>         * &lt;p&gt;This method is equivalent to:<a name="line.569"></a>
-<FONT color="green">570</FONT>         * &lt;pre class=code&gt;<a name="line.570"></a>
-<FONT color="green">571</FONT>         * !uri.isAbsolute() &amp;&amp;<a name="line.571"></a>
-<FONT color="green">572</FONT>         *      (uri.isPathEmpty() || uri.getPEPath().charAt(0)!='/')<a name="line.572"></a>
-<FONT color="green">573</FONT>         * &lt;/pre&gt;<a name="line.573"></a>
-<FONT color="green">574</FONT>         */<a name="line.574"></a>
-<FONT color="green">575</FONT>        boolean isRelativePath();<a name="line.575"></a>
-<FONT color="green">576</FONT>    <a name="line.576"></a>
+<FONT color="green">533</FONT>     * @author Michele Vivoda<a name="line.533"></a>
+<FONT color="green">534</FONT>     */<a name="line.534"></a>
+<FONT color="green">535</FONT>    public interface URI<a name="line.535"></a>
+<FONT color="green">536</FONT>    {<a name="line.536"></a>
+<FONT color="green">537</FONT>    <a name="line.537"></a>
+<FONT color="green">538</FONT>        /**<a name="line.538"></a>
+<FONT color="green">539</FONT>         * &lt;em&gt;Convenience method&lt;/em&gt; that<a name="line.539"></a>
+<FONT color="green">540</FONT>         * returns whether the URI is<a name="line.540"></a>
+<FONT color="green">541</FONT>         * absolute (has a scheme component).<a name="line.541"></a>
+<FONT color="green">542</FONT>         * &lt;p&gt;Since an implementation of this<a name="line.542"></a>
+<FONT color="green">543</FONT>         * interface cannot return an empty<a name="line.543"></a>
+<FONT color="green">544</FONT>         * string from {@link #getScheme()),<a name="line.544"></a>
+<FONT color="green">545</FONT>         * this method is equivalent to:<a name="line.545"></a>
+<FONT color="green">546</FONT>         * &lt;pre class=code&gt;<a name="line.546"></a>
+<FONT color="green">547</FONT>         *     return scheme!=null;<a name="line.547"></a>
+<FONT color="green">548</FONT>         * &lt;/pre&gt;<a name="line.548"></a>
+<FONT color="green">549</FONT>         * &lt;p&gt;Note that in RFC Section 4.3<a name="line.549"></a>
+<FONT color="green">550</FONT>         * &lt;a href='http://www.apps.ietf.org/rfc/rfc3986.html#sec-4.3'&gt;<a name="line.550"></a>
+<FONT color="green">551</FONT>         * http://www.apps.ietf.org/rfc/rfc3986.html#sec-4.3&lt;/a&gt;<a name="line.551"></a>
+<FONT color="green">552</FONT>         * an absolute uri is specified as also<a name="line.552"></a>
+<FONT color="green">553</FONT>         * having no fragment.<a name="line.553"></a>
+<FONT color="green">554</FONT>         * &lt;blockquote&gt;<a name="line.554"></a>
+<FONT color="green">555</FONT>         * Some protocol elements allow only the absolute form of a URI without<a name="line.555"></a>
+<FONT color="green">556</FONT>         * a fragment identifier. For example, defining a base URI for later<a name="line.556"></a>
+<FONT color="green">557</FONT>         * use by relative references calls for an absolute-URI syntax rule<a name="line.557"></a>
+<FONT color="green">558</FONT>         * that does not allow a fragment.<a name="line.558"></a>
+<FONT color="green">559</FONT>         * &lt;/blockquote&gt;<a name="line.559"></a>
+<FONT color="green">560</FONT>         * &lt;p&gt;Here instead only the scheme presence is tested.<a name="line.560"></a>
+<FONT color="green">561</FONT>         */<a name="line.561"></a>
+<FONT color="green">562</FONT>        boolean isAbsolute();<a name="line.562"></a>
+<FONT color="green">563</FONT>    <a name="line.563"></a>
+<FONT color="green">564</FONT>        /**<a name="line.564"></a>
+<FONT color="green">565</FONT>         * &lt;em&gt;Convenience method&lt;/em&gt; that<a name="line.565"></a>
+<FONT color="green">566</FONT>         * returns whether the URI is a relative URI<a name="line.566"></a>
+<FONT color="green">567</FONT>         * and has as path component a relative<a name="line.567"></a>
+<FONT color="green">568</FONT>         * path, that is a path that is empty<a name="line.568"></a>
+<FONT color="green">569</FONT>         * or does not start with the char &lt;code&gt;/&lt;/code&gt;.<a name="line.569"></a>
+<FONT color="green">570</FONT>         * &lt;p&gt;This method is equivalent to:<a name="line.570"></a>
+<FONT color="green">571</FONT>         * &lt;pre class=code&gt;<a name="line.571"></a>
+<FONT color="green">572</FONT>         * !uri.isAbsolute() &amp;&amp;<a name="line.572"></a>
+<FONT color="green">573</FONT>         *      (uri.isPathEmpty() || uri.getPEPath().charAt(0)!='/')<a name="line.573"></a>
+<FONT color="green">574</FONT>         * &lt;/pre&gt;<a name="line.574"></a>
+<FONT color="green">575</FONT>         */<a name="line.575"></a>
+<FONT color="green">576</FONT>        boolean isRelativePath();<a name="line.576"></a>
 <FONT color="green">577</FONT>    <a name="line.577"></a>
-<FONT color="green">578</FONT>        /**<a name="line.578"></a>
-<FONT color="green">579</FONT>         * Returns the &lt;code&gt;scheme&lt;/code&gt;<a name="line.579"></a>
-<FONT color="green">580</FONT>         * component of the URI.<a name="line.580"></a>
-<FONT color="green">581</FONT>         * &lt;p&gt;<a name="line.581"></a>
-<FONT color="green">582</FONT>         * &lt;pre class=code&gt;<a name="line.582"></a>
-<FONT color="green">583</FONT>         * scheme      = ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )<a name="line.583"></a>
-<FONT color="green">584</FONT>         * &lt;/pre&gt;<a name="line.584"></a>
-<FONT color="green">585</FONT>         * &lt;p&gt;The URI &lt;code&gt;scheme&lt;/code&gt;<a name="line.585"></a>
-<FONT color="green">586</FONT>         * cannot be empty, it is either absent<a name="line.586"></a>
-<FONT color="green">587</FONT>         * or with a non-empty value<a name="line.587"></a>
-<FONT color="green">588</FONT>         * so this method must never return an empty<a name="line.588"></a>
-<FONT color="green">589</FONT>         * string.<a name="line.589"></a>
-<FONT color="green">590</FONT>         * &lt;p&gt;The URI &lt;code&gt;scheme&lt;/code&gt; cannot<a name="line.590"></a>
-<FONT color="green">591</FONT>         * contain percent encoded characters<a name="line.591"></a>
-<FONT color="green">592</FONT>         * so there is no difference between the<a name="line.592"></a>
-<FONT color="green">593</FONT>         * two forms.<a name="line.593"></a>
-<FONT color="green">594</FONT>         * &lt;p&gt;The URI &lt;code&gt;scheme&lt;/code&gt; is case - unsensitive,<a name="line.594"></a>
-<FONT color="green">595</FONT>         * upper case scheme are accepted<a name="line.595"></a>
-<FONT color="green">596</FONT>         * but this method returns always a lowercase<a name="line.596"></a>
-<FONT color="green">597</FONT>         * string.<a name="line.597"></a>
-<FONT color="green">598</FONT>         * &lt;blockquote&gt;<a name="line.598"></a>
-<FONT color="green">599</FONT>         * FROM RFC3986 - Section 3.1 - Scheme<a name="line.599"></a>
-<FONT color="green">600</FONT>         * &lt;p&gt;&lt;cite&gt;Although schemes are case-<a name="line.600"></a>
-<FONT color="green">601</FONT>         *  insensitive, the canonical form is lowercase<a name="line.601"></a>
-<FONT color="green">602</FONT>         * and documents that  specify schemes must do so<a name="line.602"></a>
-<FONT color="green">603</FONT>         * with lowercase letters.  An implementation<a name="line.603"></a>
-<FONT color="green">604</FONT>         * should accept uppercase letters as equivalent<a name="line.604"></a>
-<FONT color="green">605</FONT>         * to lowercase in scheme names<a name="line.605"></a>
-<FONT color="green">606</FONT>         * (e.g., allow "HTTP" as well as "http")<a name="line.606"></a>
-<FONT color="green">607</FONT>         * for the sake of  robustness but should<a name="line.607"></a>
-<FONT color="green">608</FONT>         * only produce lowercase scheme names for<a name="line.608"></a>
-<FONT color="green">609</FONT>         * consistency.&lt;/cite&gt;<a name="line.609"></a>
-<FONT color="green">610</FONT>         * &lt;/blockquote&gt;<a name="line.610"></a>
-<FONT color="green">611</FONT>         * @return the lower case value of the scheme<a name="line.611"></a>
-<FONT color="green">612</FONT>         * component or null when the scheme is absent,<a name="line.612"></a>
-<FONT color="green">613</FONT>         * never empty string.<a name="line.613"></a>
-<FONT color="green">614</FONT>         */<a name="line.614"></a>
-<FONT color="green">615</FONT>        String getScheme();<a name="line.615"></a>
-<FONT color="green">616</FONT>    <a name="line.616"></a>
-<FONT color="green">617</FONT>        /**<a name="line.617"></a>
-<FONT color="green">618</FONT>         * Tells whether or not this URI is opaque.<a name="line.618"></a>
-<FONT color="green">619</FONT>         * An opaque URI is not parsed beyond the scheme component.<a name="line.619"></a>
-<FONT color="green">620</FONT>         * When the uri is opaque its scheme specific part<a name="line.620"></a>
-<FONT color="green">621</FONT>         * can be retrieved using {@link #getSchemeSpecificPart()}<a name="line.621"></a>
-<FONT color="green">622</FONT>         */<a name="line.622"></a>
-<FONT color="green">623</FONT>    <a name="line.623"></a>
-<FONT color="green">624</FONT>        public boolean isOpaque();<a name="line.624"></a>
-<FONT color="green">625</FONT>    <a name="line.625"></a>
-<FONT color="green">626</FONT>        /**<a name="line.626"></a>
-<FONT color="green">627</FONT>         * Returns the decoded scheme-specific<a name="line.627"></a>
-<FONT color="green">628</FONT>         * part of this URI when opaque.<a name="line.628"></a>
-<FONT color="green">629</FONT>         */<a name="line.629"></a>
-<FONT color="green">630</FONT>        public String getSchemeSpecificPart();<a name="line.630"></a>
-<FONT color="green">631</FONT>    <a name="line.631"></a>
+<FONT color="green">578</FONT>    <a name="line.578"></a>
+<FONT color="green">579</FONT>        /**<a name="line.579"></a>
+<FONT color="green">580</FONT>         * Returns the &lt;code&gt;scheme&lt;/code&gt;<a name="line.580"></a>
+<FONT color="green">581</FONT>         * component of the URI.<a name="line.581"></a>
+<FONT color="green">582</FONT>         * &lt;p&gt;<a name="line.582"></a>
+<FONT color="green">583</FONT>         * &lt;pre class=code&gt;<a name="line.583"></a>
+<FONT color="green">584</FONT>         * scheme      = ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )<a name="line.584"></a>
+<FONT color="green">585</FONT>         * &lt;/pre&gt;<a name="line.585"></a>
+<FONT color="green">586</FONT>         * &lt;p&gt;The URI &lt;code&gt;scheme&lt;/code&gt;<a name="line.586"></a>
+<FONT color="green">587</FONT>         * cannot be empty, it is either absent<a name="line.587"></a>
+<FONT color="green">588</FONT>         * or with a non-empty value<a name="line.588"></a>
+<FONT color="green">589</FONT>         * so this method must never return an empty<a name="line.589"></a>
+<FONT color="green">590</FONT>         * string.<a name="line.590"></a>
+<FONT color="green">591</FONT>         * &lt;p&gt;The URI &lt;code&gt;scheme&lt;/code&gt; cannot<a name="line.591"></a>
+<FONT color="green">592</FONT>         * contain percent encoded characters<a name="line.592"></a>
+<FONT color="green">593</FONT>         * so there is no difference between the<a name="line.593"></a>
+<FONT color="green">594</FONT>         * two forms.<a name="line.594"></a>
+<FONT color="green">595</FONT>         * &lt;p&gt;The URI &lt;code&gt;scheme&lt;/code&gt; is case - unsensitive,<a name="line.595"></a>
+<FONT color="green">596</FONT>         * upper case scheme are accepted<a name="line.596"></a>
+<FONT color="green">597</FONT>         * but this method returns always a lowercase<a name="line.597"></a>
+<FONT color="green">598</FONT>         * string.<a name="line.598"></a>
+<FONT color="green">599</FONT>         * &lt;blockquote&gt;<a name="line.599"></a>
+<FONT color="green">600</FONT>         * FROM RFC3986 - Section 3.1 - Scheme<a name="line.600"></a>
+<FONT color="green">601</FONT>         * &lt;p&gt;&lt;cite&gt;Although schemes are case-<a name="line.601"></a>
+<FONT color="green">602</FONT>         *  insensitive, the canonical form is lowercase<a name="line.602"></a>
+<FONT color="green">603</FONT>         * and documents that  specify schemes must do so<a name="line.603"></a>
+<FONT color="green">604</FONT>         * with lowercase letters.  An implementation<a name="line.604"></a>
+<FONT color="green">605</FONT>         * should accept uppercase letters as equivalent<a name="line.605"></a>
+<FONT color="green">606</FONT>         * to lowercase in scheme names<a name="line.606"></a>
+<FONT color="green">607</FONT>         * (e.g., allow "HTTP" as well as "http")<a name="line.607"></a>
+<FONT color="green">608</FONT>         * for the sake of  robustness but should<a name="line.608"></a>
+<FONT color="green">609</FONT>         * only produce lowercase scheme names for<a name="line.609"></a>
+<FONT color="green">610</FONT>         * consistency.&lt;/cite&gt;<a name="line.610"></a>
+<FONT color="green">611</FONT>         * &lt;/blockquote&gt;<a name="line.611"></a>
+<FONT color="green">612</FONT>         * @return the lower case value of the scheme<a name="line.612"></a>
+<FONT color="green">613</FONT>         * component or null when the scheme is absent,<a name="line.613"></a>
+<FONT color="green">614</FONT>         * never empty string.<a name="line.614"></a>
+<FONT color="green">615</FONT>         */<a name="line.615"></a>
+<FONT color="green">616</FONT>        String getScheme();<a name="line.616"></a>
+<FONT color="green">617</FONT>    <a name="line.617"></a>
+<FONT color="green">618</FONT>        /**<a name="line.618"></a>
+<FONT color="green">619</FONT>         * Tells whether or not this URI is opaque.<a name="line.619"></a>
+<FONT color="green">620</FONT>         * An opaque URI is not parsed beyond the scheme component.<a name="line.620"></a>
+<FONT color="green">621</FONT>         * When the uri is opaque its scheme specific part<a name="line.621"></a>
+<FONT color="green">622</FONT>         * can be retrieved using {@link #getSchemeSpecificPart()}<a name="line.622"></a>
+<FONT color="green">623</FONT>         */<a name="line.623"></a>
+<FONT color="green">624</FONT>    <a name="line.624"></a>
+<FONT color="green">625</FONT>        public boolean isOpaque();<a name="line.625"></a>
+<FONT color="green">626</FONT>    <a name="line.626"></a>
+<FONT color="green">627</FONT>        /**<a name="line.627"></a>
+<FONT color="green">628</FONT>         * Returns the decoded scheme-specific<a name="line.628"></a>
+<FONT color="green">629</FONT>         * part of this URI when opaque.<a name="line.629"></a>
+<FONT color="green">630</FONT>         */<a name="line.630"></a>
+<FONT color="green">631</FONT>        public String getSchemeSpecificPart();<a name="line.631"></a>
 <FONT color="green">632</FONT>    <a name="line.632"></a>
 <FONT color="green">633</FONT>    <a name="line.633"></a>
-<FONT color="green">634</FONT>        /**<a name="line.634"></a>
-<FONT color="green">635</FONT>         * Returns the &lt;code&gt;authority&lt;/code&gt;<a name="line.635"></a>
-<FONT color="green">636</FONT>         * component of the URI.<a name="line.636"></a>
-<FONT color="green">637</FONT>         * The authority value returned by<a name="line.637"></a>
-<FONT color="green">638</FONT>         * this method is unescaped.<a name="line.638"></a>
-<FONT color="green">639</FONT>         */<a name="line.639"></a>
-<FONT color="green">640</FONT>        String getAuthority();<a name="line.640"></a>
-<FONT color="green">641</FONT>    <a name="line.641"></a>
-<FONT color="green">642</FONT>            //hm...2 cases empty and absent boolean hasAuthority();<a name="line.642"></a>
-<FONT color="green">643</FONT>        /**<a name="line.643"></a>
-<FONT color="green">644</FONT>             * Retrieves the &lt;b&gt;p&lt;/b&gt;ercent-&lt;b&gt;d&lt;/b&gt;ecoded<a name="line.644"></a>
-<FONT color="green">645</FONT>             * path component of the uri.<a name="line.645"></a>
-<FONT color="green">646</FONT>             */<a name="line.646"></a>
-<FONT color="green">647</FONT>            String getPDPath();<a name="line.647"></a>
-<FONT color="green">648</FONT>            /**<a name="line.648"></a>
-<FONT color="green">649</FONT>             * Retrieves the &lt;b&gt;p&lt;/b&gt;ercent &lt;b&gt;e&lt;/b&gt;ncoded<a name="line.649"></a>
-<FONT color="green">650</FONT>             * path component of the uri.<a name="line.650"></a>
-<FONT color="green">651</FONT>             */<a name="line.651"></a>
-<FONT color="green">652</FONT>            String getPEPath();<a name="line.652"></a>
-<FONT color="green">653</FONT>            /**<a name="line.653"></a>
-<FONT color="green">654</FONT>             * Signals whether the path component<a name="line.654"></a>
-<FONT color="green">655</FONT>             * is empty.<a name="line.655"></a>
-<FONT color="green">656</FONT>             * &lt;p&gt;<a name="line.656"></a>
-<FONT color="green">657</FONT>             * &lt;blockquote class=code&gt;<a name="line.657"></a>
-<FONT color="green">658</FONT>             * &lt;p&gt;RFC3986 Section 3.3 - Path<a name="line.658"></a>
-<FONT color="green">659</FONT>             * &lt;p&gt;&lt;cite&gt;<a name="line.659"></a>
-<FONT color="green">660</FONT>             * &lt;pre&gt;A path is always defined for a URI, though the<a name="line.660"></a>
-<FONT color="green">661</FONT>         * defined path may be empty (zero length).<a name="line.661"></a>
-<FONT color="green">662</FONT>         * Use of the slash character<a name="line.662"></a>
-<FONT color="green">663</FONT>         * to indicate hierarchy is only required when a URI will be used as the<a name="line.663"></a>
-<FONT color="green">664</FONT>         * context for relative references.  For example, the URI<a name="line.664"></a>
-<FONT color="green">665</FONT>         * &amp;lt;mailto:fred@example.com&gt; has a path of "fred@example.com", whereas<a name="line.665"></a>
-<FONT color="green">666</FONT>         * the URI &amp;lt;foo://info.example.com?fred&gt; has an empty path.&lt;/cite&gt;<a name="line.666"></a>
-<FONT color="green">667</FONT>         * &lt;/blockquote&gt;<a name="line.667"></a>
-<FONT color="green">668</FONT>         */<a name="line.668"></a>
-<FONT color="green">669</FONT>        boolean isPathEmpty();<a name="line.669"></a>
-<FONT color="green">670</FONT>    <a name="line.670"></a>
-<FONT color="green">671</FONT>            /**<a name="line.671"></a>
-<FONT color="green">672</FONT>             * Signals whether the path component<a name="line.672"></a>
-<FONT color="green">673</FONT>             * does not start with slash '/' character.<a name="line.673"></a>
-<FONT color="green">674</FONT>             * &lt;p&gt;<a name="line.674"></a>
-<FONT color="green">675</FONT>             * &lt;blockquote class=code&gt;<a name="line.675"></a>
-<FONT color="green">676</FONT>             * &lt;p&gt;RFC3986 Section 3.3 - Path<a name="line.676"></a>
-<FONT color="green">677</FONT>             * &lt;p&gt;&lt;cite&gt;<a name="line.677"></a>
-<FONT color="green">678</FONT>             * &lt;pre&gt;path-rootless = segment-nz *( "/" segment )&lt;/pre&gt;&lt;/cite&gt;<a name="line.678"></a>
-<FONT color="green">679</FONT>         * &lt;/blockquote&gt;<a name="line.679"></a>
-<FONT color="green">680</FONT>         * &lt;p&gt;For example the URI<a name="line.680"></a>
-<FONT color="green">681</FONT>         * &amp;lt;mailto:fred@example.com&gt; has a path of "fred@example.com"<a name="line.681"></a>
-<FONT color="green">682</FONT>         * and so is root less.<a name="line.682"></a>
-<FONT color="green">683</FONT>         * &lt;p&gt;When the result of this method is anded together<a name="line.683"></a>
-<FONT color="green">684</FONT>         * with the result of {@link #isAbsolute()},<a name="line.684"></a>
-<FONT color="green">685</FONT>         * it generate the result of {@link #isOpaque()}<a name="line.685"></a>
-<FONT color="green">686</FONT>         */<a name="line.686"></a>
-<FONT color="green">687</FONT>        boolean isPathRootless();<a name="line.687"></a>
-<FONT color="green">688</FONT>    <a name="line.688"></a>
-<FONT color="green">689</FONT>        /**<a name="line.689"></a>
-<FONT color="green">690</FONT>         * Returns the percent encoded &lt;code&gt;query&lt;/code&gt;<a name="line.690"></a>
-<FONT color="green">691</FONT>         * component of the URI.<a name="line.691"></a>
-<FONT color="green">692</FONT>         * &lt;pre class=code&gt;<a name="line.692"></a>
-<FONT color="green">693</FONT>             * query = *( pchar / "/" / "?" )<a name="line.693"></a>
-<FONT color="green">694</FONT>         * &lt;/pre&gt;<a name="line.694"></a>
-<FONT color="green">695</FONT>         * &lt;p&gt;The query is always percent encoded,<a name="line.695"></a>
-<FONT color="green">696</FONT>         * since subsequent decoding and encoding<a name="line.696"></a>
-<FONT color="green">697</FONT>         * might cause data lost.<a name="line.697"></a>
-<FONT color="green">698</FONT>         * &lt;p&gt;Example of data loss (param value containing &amp; symbol):<a name="line.698"></a>
-<FONT color="green">699</FONT>         * &lt;p&gt;&lt;pre class=code&gt;<a name="line.699"></a>
-<FONT color="green">700</FONT>         * URI: http://127.0.0.1:8080/Test.jsp?current=R%26D<a name="line.700"></a>
-<FONT color="green">701</FONT>         * QUERY param name: current<a name="line.701"></a>
-<FONT color="green">702</FONT>         * QUERY param value: R&amp;D<a name="line.702"></a>
-<FONT color="green">703</FONT>         * UNESCAPED QUERY: current=R&amp;D<a name="line.703"></a>
-<FONT color="green">704</FONT>         * ESCAPED QUERY: current=R&amp;D<a name="line.704"></a>
-<FONT color="green">705</FONT>         *          !!! error:<a name="line.705"></a>
-<FONT color="green">706</FONT>         *          [char '&amp;' is interpreted as a query param delimiter]<a name="line.706"></a>
-<FONT color="green">707</FONT>         * &lt;/pre&gt;<a name="line.707"></a>
-<FONT color="green">708</FONT>         * @return the percent encoded query string value<a name="line.708"></a>
-<FONT color="green">709</FONT>         * or null when no query component.<a name="line.709"></a>
-<FONT color="green">710</FONT>         * Might return the empty string.<a name="line.710"></a>
-<FONT color="green">711</FONT>         */<a name="line.711"></a>
-<FONT color="green">712</FONT>        String getQuery();<a name="line.712"></a>
-<FONT color="green">713</FONT>    <a name="line.713"></a>
-<FONT color="green">714</FONT>        /**<a name="line.714"></a>
-<FONT color="green">715</FONT>         * &lt;em&gt;Convenience method&lt;/em&gt; that<a name="line.715"></a>
-<FONT color="green">716</FONT>         * returns whether the<a name="line.716"></a>
-<FONT color="green">717</FONT>         * &lt;code&gt;query&lt;/code&gt; is &lt;em&gt;absent&lt;/em&gt;.<a name="line.717"></a>
-<FONT color="green">718</FONT>         * &lt;p&gt;Equivalent to:<a name="line.718"></a>
-<FONT color="green">719</FONT>         * &lt;pre class=code&gt;<a name="line.719"></a>
-<FONT color="green">720</FONT>         * uri.getQuery()!=null<a name="line.720"></a>
-<FONT color="green">721</FONT>         * &lt;/pre&gt;<a name="line.721"></a>
-<FONT color="green">722</FONT>         * &lt;p&gt;When the query is empty<a name="line.722"></a>
-<FONT color="green">723</FONT>         * (a zero length string)<a name="line.723"></a>
-<FONT color="green">724</FONT>         * this method returns true.<a name="line.724"></a>
-<FONT color="green">725</FONT>         * &lt;p&gt;An empty query is built for<a name="line.725"></a>
-<FONT color="green">726</FONT>         * example from an uri like the following:<a name="line.726"></a>
-<FONT color="green">727</FONT>         * &amp;lt;&amp;lt;&lt;code&gt;http://www.example.com/index.jsp?&lt;/code&gt;&amp;gt;&amp;gt;<a name="line.727"></a>
-<FONT color="green">728</FONT>         *<a name="line.728"></a>
-<FONT color="green">729</FONT>         */<a name="line.729"></a>
-<FONT color="green">730</FONT>        public boolean hasQuery();<a name="line.730"></a>
-<FONT color="green">731</FONT>    <a name="line.731"></a>
-<FONT color="green">732</FONT>        /**<a name="line.732"></a>
-<FONT color="green">733</FONT>         * Returns the &lt;code&gt;fragment&lt;/code&gt;<a name="line.733"></a>
-<FONT color="green">734</FONT>         * component of the URI.<a name="line.734"></a>
-<FONT color="green">735</FONT>         * The path value returned by<a name="line.735"></a>
-<FONT color="green">736</FONT>         * this method is unescaped.<a name="line.736"></a>
-<FONT color="green">737</FONT>         */<a name="line.737"></a>
-<FONT color="green">738</FONT>        String getFragment();<a name="line.738"></a>
-<FONT color="green">739</FONT>    <a name="line.739"></a>
-<FONT color="green">740</FONT>            /**<a name="line.740"></a>
-<FONT color="green">741</FONT>             * Returns the percent encoded fragment.<a name="line.741"></a>
-<FONT color="green">742</FONT>             * &lt;pre class=code&gt;<a name="line.742"></a>
-<FONT color="green">743</FONT>             * fragment    = *( pchar / "/" / "?" )<a name="line.743"></a>
-<FONT color="green">744</FONT>         * &lt;/pre&gt;<a name="line.744"></a>
-<FONT color="green">745</FONT>             * &lt;blockquote class=code&gt;<a name="line.745"></a>
-<FONT color="green">746</FONT>             * &lt;p&gt;RFC3986 Section 3.5 - Fragment<a name="line.746"></a>
-<FONT color="green">747</FONT>             * &lt;p&gt;&lt;cite&gt;<a name="line.747"></a>
-<FONT color="green">748</FONT>         * The fragment identifier component of a URI allows indirect<a name="line.748"></a>
-<FONT color="green">749</FONT>         * identification of a secondary resource by reference to a<a name="line.749"></a>
-<FONT color="green">750</FONT>         * primary resource and additional identifying information.<a name="line.750"></a>
-<FONT color="green">751</FONT>         * The identified secondary resource may be some portion or subset<a name="line.751"></a>
-<FONT color="green">752</FONT>         * of the primary resource, some view on representations of<a name="line.752"></a>
-<FONT color="green">753</FONT>         * the primary resource, or some other resource defined or<a name="line.753"></a>
-<FONT color="green">754</FONT>         * described by those representations. A fragment identifier<a name="line.754"></a>
-<FONT color="green">755</FONT>         * component is indicated by the presence of a number sign<a name="line.755"></a>
-<FONT color="green">756</FONT>         * ("#") character and terminated by the end of the URI.<a name="line.756"></a>
-<FONT color="green">757</FONT>         * @return the percent encoded fragment or null when no fragment.<a name="line.757"></a>
-<FONT color="green">758</FONT>         * Might return the empty string.<a name="line.758"></a>
-<FONT color="green">759</FONT>             */<a name="line.759"></a>
-<FONT color="green">760</FONT>        String getPEFragment();<a name="line.760"></a>
-<FONT color="green">761</FONT>        /**<a name="line.761"></a>
-<FONT color="green">762</FONT>         * &lt;em&gt;Convenience method&lt;/em&gt; that<a name="line.762"></a>
-<FONT color="green">763</FONT>         * returns whether the<a name="line.763"></a>
-<FONT color="green">764</FONT>         * fragment is &lt;em&gt;absent&lt;/em&gt;.<a name="line.764"></a>
-<FONT color="green">765</FONT>         * &lt;p&gt;Equivalent to:<a name="line.765"></a>
-<FONT color="green">766</FONT>         * &lt;pre class=code&gt;<a name="line.766"></a>
-<FONT color="green">767</FONT>         * uri.getFragment()!=null<a name="line.767"></a>
-<FONT color="green">768</FONT>         * &lt;/pre&gt;<a name="line.768"></a>
-<FONT color="green">769</FONT>         * &lt;p&gt;When the fragment is empty<a name="line.769"></a>
-<FONT color="green">770</FONT>         * (a zero length string)<a name="line.770"></a>
-<FONT color="green">771</FONT>         * this method returns true.<a name="line.771"></a>
-<FONT color="green">772</FONT>         * &lt;p&gt;An empty fragment is built for<a name="line.772"></a>
-<FONT color="green">773</FONT>         * example from an uri like the following:<a name="line.773"></a>
-<FONT color="green">774</FONT>         * &amp;lt;&amp;lt;&lt;code&gt;http://www.example.com/index.jsp#&lt;/code&gt;&amp;gt;&amp;gt;<a name="line.774"></a>
-<FONT color="green">775</FONT>         */<a name="line.775"></a>
-<FONT color="green">776</FONT>        boolean hasFragment();<a name="line.776"></a>
-<FONT color="green">777</FONT>        /**<a name="line.777"></a>
-<FONT color="green">778</FONT>         * Returns a readable URI.<a name="line.778"></a>
-<FONT color="green">779</FONT>         * The returned string<a name="line.779"></a>
-<FONT color="green">780</FONT>         * can be only used<a name="line.780"></a>
-<FONT color="green">781</FONT>         * for presentation scopes<a name="line.781"></a>
-<FONT color="green">782</FONT>         * since it is possible that<a name="line.782"></a>
-<FONT color="green">783</FONT>         * is not anymore parsable<a name="line.783"></a>
-<FONT color="green">784</FONT>         * by a {@link URIFactory}.<a name="line.784"></a>
-<FONT color="green">785</FONT>         */<a name="line.785"></a>
-<FONT color="green">786</FONT>        String toReadableURI();<a name="line.786"></a>
-<FONT color="green">787</FONT>    <a name="line.787"></a>
-<FONT color="green">788</FONT>        /**<a name="line.788"></a>
-<FONT color="green">789</FONT>         * Returns the string representation<a name="line.789"></a>
-<FONT color="green">790</FONT>         * of an URI in percent encoded form.<a name="line.790"></a>
-<FONT color="green">791</FONT>         */<a name="line.791"></a>
-<FONT color="green">792</FONT>        String toString();<a name="line.792"></a>
-<FONT color="green">793</FONT>    <a name="line.793"></a>
-<FONT color="green">794</FONT>        /**<a name="line.794"></a>
-<FONT color="green">795</FONT>         * Resolves the given URI against this URI.<a name="line.795"></a>
-<FONT color="green">796</FONT>         */<a name="line.796"></a>
-<FONT color="green">797</FONT>        public URI resolve(URI relative) throws URIException;<a name="line.797"></a>
-<FONT color="green">798</FONT>    <a name="line.798"></a>
-<FONT color="green">799</FONT>        /**<a name="line.799"></a>
-<FONT color="green">800</FONT>         * Relativizes the given URI against this URI.<a name="line.800"></a>
-<FONT color="green">801</FONT>         * The relativization of the given URI against<a name="line.801"></a>
-<FONT color="green">802</FONT>         * this URI is computed as follows:<a name="line.802"></a>
-<FONT color="green">803</FONT>         * &lt;ol&gt;&lt;li&gt;<a name="line.803"></a>
-<FONT color="green">804</FONT>         * If either this URI or the given URI are opaque,<a name="line.804"></a>
-<FONT color="green">805</FONT>         * or if the scheme and authority components<a name="line.805"></a>
-<FONT color="green">806</FONT>         * of the two URIs are not identical,<a name="line.806"></a>
-<FONT color="green">807</FONT>         * or if the path of this URI is not a prefix<a name="line.807"></a>
-<FONT color="green">808</FONT>         * of the path of the given URI, then the given URI is returned.<a name="line.808"></a>
-<FONT color="green">809</FONT>         * &lt;li&gt;Otherwise a new relative hierarchical<a name="line.809"></a>
-<FONT color="green">810</FONT>         * URI is constructed with query and fragment<a name="line.810"></a>
-<FONT color="green">811</FONT>         * components taken from the given URI<a name="line.811"></a>
-<FONT color="green">812</FONT>         * and with a path component computed by<a name="line.812"></a>
-<FONT color="green">813</FONT>         * removing this URI's path from the<a name="line.813"></a>
-<FONT color="green">814</FONT>         * beginning of the given URI's path.<a name="line.814"></a>
-<FONT color="green">815</FONT>         * &lt;/ol&gt;<a name="line.815"></a>
-<FONT color="green">816</FONT>         */<a name="line.816"></a>
-<FONT color="green">817</FONT>        //public URI relativize(URI uri) throws URIException;<a name="line.817"></a>
-<FONT color="green">818</FONT>    <a name="line.818"></a>
-<FONT color="green">819</FONT>        /**<a name="line.819"></a>
-<FONT color="green">820</FONT>         * Retrieves an uri that is the copy of this<a name="line.820"></a>
-<FONT color="green">821</FONT>         * URI with no fragment.<a name="line.821"></a>
-<FONT color="green">822</FONT>         */<a name="line.822"></a>
-<FONT color="green">823</FONT>        public URI removeFragment() throws URIException;<a name="line.823"></a>
-<FONT color="green">824</FONT>    <a name="line.824"></a>
-<FONT color="green">825</FONT>        /**<a name="line.825"></a>
-<FONT color="green">826</FONT>         * Normalizes this URI's path.<a name="line.826"></a>
-<FONT color="green">827</FONT>         * &lt;p&gt;When in the relative path there are more<a name="line.827"></a>
-<FONT color="green">828</FONT>         *  relative path ".." segments than there are hierarchical levels in the<a name="line.828"></a>
-<FONT color="green">829</FONT>         *  base URI's path this method returns an URI with &lt;em&gt;empty path&lt;/em&gt;.<a name="line.829"></a>
-<FONT color="green">830</FONT>         * &lt;p&gt;See  RFC 2396, section 5.2, step 6, sub-steps c through f;<a name="line.830"></a>
-<FONT color="green">831</FONT>         * &lt;blockquote&gt;&lt;code&gt;from Appendix C.2. "Abnormal Examples"&lt;/code&gt;<a name="line.831"></a>
-<FONT color="green">832</FONT>         *  &lt;p&gt;Parsers must be careful in handling the case where there are more<a name="line.832"></a>
-<FONT color="green">833</FONT>         *  relative path ".." segments than there are hierarchical levels in the<a name="line.833"></a>
-<FONT color="green">834</FONT>         *  base URI's path.  Note that the ".." syntax cannot be used to change<a name="line.834"></a>
-<FONT color="green">835</FONT>         *  the authority component of a URI.<a name="line.835"></a>
-<FONT color="green">836</FONT>         *  &lt;pre class=code&gt;<a name="line.836"></a>
-<FONT color="green">837</FONT>         *  BASE URI: http://a/b/c/d;p?q<a name="line.837"></a>
-<FONT color="green">838</FONT>         *<a name="line.838"></a>
-<FONT color="green">839</FONT>         *  ../../../g    =  http://a/../g<a name="line.839"></a>
-<FONT color="green">840</FONT>         *  ../../../../g =  http://a/../../g<a name="line.840"></a>
-<FONT color="green">841</FONT>         *  &lt;/pre&gt;<a name="line.841"></a>
-<FONT color="green">842</FONT>         *  &lt;p&gt;In practice, some implementations strip leading relative symbolic<a name="line.842"></a>
-<FONT color="green">843</FONT>         * elements (".", "..") after applying a relative URI calculation, based<a name="line.843"></a>
-<FONT color="green">844</FONT>         * on the theory that compensating for obvious author errors is better<a name="line.844"></a>
-<FONT color="green">845</FONT>         * than allowing the request to fail.  Thus, the above two references<a name="line.845"></a>
-<FONT color="green">846</FONT>         * will be interpreted as "http://a/g" by some implementations.<a name="line.846"></a>
-<FONT color="green">847</FONT>         * &lt;/blockquote&gt;<a name="line.847"></a>
-<FONT color="green">848</FONT>         * &lt;p&gt;Implementations of this interface won't return &lt;code&gt;http://a/g&lt;/code&gt;<a name="line.848"></a>
-<FONT color="green">849</FONT>         * in this case but &lt;code&gt;http://a&lt;/code&gt;<a name="line.849"></a>
-<FONT color="green">850</FONT>         * &lt;blockquote&gt;<a name="line.850"></a>
-<FONT color="green">851</FONT>         * &lt;p&gt;Continuing from  RFC 2396<a name="line.851"></a>
-<FONT color="green">852</FONT>         * &lt;p&gt;Similarly, parsers must avoid treating "." and ".." as special when<a name="line.852"></a>
-<FONT color="green">853</FONT>         *  they are not complete components of a relative path.<a name="line.853"></a>
-<FONT color="green">854</FONT>         * &lt;pre class=code&gt;<a name="line.854"></a>
-<FONT color="green">855</FONT>         *  /./g          =  http://a/./g<a name="line.855"></a>
-<FONT color="green">856</FONT>         *  /../g         =  http://a/../g<a name="line.856"></a>
-<FONT color="green">857</FONT>         *  g.            =  http://a/b/c/g.<a name="line.857"></a>
-<FONT color="green">858</FONT>         *  .g            =  http://a/b/c/.g<a name="line.858"></a>
-<FONT color="green">859</FONT>         *  g..           =  http://a/b/c/g..<a name="line.859"></a>
-<FONT color="green">860</FONT>         *  ..g           =  http://a/b/c/..g<a name="line.860"></a>
-<FONT color="green">861</FONT>         * &lt;/pre&gt;<a name="line.861"></a>
-<FONT color="green">862</FONT>         * &lt;/blockquote&gt;<a name="line.862"></a>
-<FONT color="green">863</FONT>         * &lt;p&gt;Implementations of this interface must give results that conform<a name="line.863"></a>
-<FONT color="green">864</FONT>         * to this last list of examples.<a name="line.864"></a>
-<FONT color="green">865</FONT>         * &lt;p&gt;See also class description.<a name="line.865"></a>
-<FONT color="green">866</FONT>         */<a name="line.866"></a>
-<FONT color="green">867</FONT>        URI normalize() throws URIException;<a name="line.867"></a>
-<FONT color="green">868</FONT>    <a name="line.868"></a>
-<FONT color="green">869</FONT>        /**<a name="line.869"></a>
-<FONT color="green">870</FONT>         * Retrieves this URI as a java.net.URL<a name="line.870"></a>
-<FONT color="green">871</FONT>         * @throws IllegalArgumentException - If this URL is not absolute<a name="line.871"></a>
-<FONT color="green">872</FONT>         * @throws MalformedURLException - If a protocol handler for the URL<a name="line.872"></a>
-<FONT color="green">873</FONT>         *      could not be found, or if some other error occurred<a name="line.873"></a>
-<FONT color="green">874</FONT>         *      while constructing the URL<a name="line.874"></a>
-<FONT color="green">875</FONT>         * @return the URL instance, never null.<a name="line.875"></a>
-<FONT color="green">876</FONT>         */<a name="line.876"></a>
-<FONT color="green">877</FONT>        java.net.URL toURL() throws java.net.MalformedURLException;<a name="line.877"></a>
-<FONT color="green">878</FONT>    <a name="line.878"></a>
-<FONT color="green">879</FONT>    ///////////////// OUTSIDE RFC - EXTENSIONS<a name="line.879"></a>
-<FONT color="green">880</FONT>    <a name="line.880"></a>
-<FONT color="green">881</FONT>        /**<a name="line.881"></a>
-<FONT color="green">882</FONT>         * &lt;em&gt;Not standard&lt;/em&gt; -<a name="line.882"></a>
-<FONT color="green">883</FONT>         * Returns the percent decoded<a name="line.883"></a>
-<FONT color="green">884</FONT>         * name part of the path<a name="line.884"></a>
-<FONT color="green">885</FONT>         * component. The name is the<a name="line.885"></a>
-<FONT color="green">886</FONT>         * value of the last segment of the<a name="line.886"></a>
-<FONT color="green">887</FONT>         * path.<a name="line.887"></a>
-<FONT color="green">888</FONT>         * &lt;p&gt;&lt;table class='Bordered' cellpadding=4 border=1&gt;<a name="line.888"></a>
-<FONT color="green">889</FONT>         * &lt;tr&gt;&lt;th&gt;path&lt;/th&gt;&lt;th&gt;name&lt;/th&gt;&lt;/tr&gt;<a name="line.889"></a>
-<FONT color="green">890</FONT>         * &lt;tr&gt;&lt;td&gt;/a/b.xml&lt;/td&gt;&lt;td&gt;b.xml&lt;/td&gt;&lt;/tr&gt;<a name="line.890"></a>
-<FONT color="green">891</FONT>         * &lt;tr&gt;&lt;td&gt;/a/&lt;/td&gt;&lt;td&gt;[empty string]&lt;/td&gt;&lt;/tr&gt;<a name="line.891"></a>
-<FONT color="green">892</FONT>         * &lt;tr&gt;&lt;td&gt;/&lt;/td&gt;&lt;td&gt;[empty string]&lt;/td&gt;&lt;/tr&gt;<a name="line.892"></a>
-<FONT color="green">893</FONT>         * &lt;/table&gt;<a name="line.893"></a>
-<FONT color="green">894</FONT>         */<a name="line.894"></a>
-<FONT color="green">895</FONT>        String getName();<a name="line.895"></a>
-<FONT color="green">896</FONT>    }<a name="line.896"></a>
+<FONT color="green">634</FONT>    <a name="line.634"></a>
+<FONT color="green">635</FONT>        /**<a name="line.635"></a>
+<FONT color="green">636</FONT>         * Returns the &lt;code&gt;authority&lt;/code&gt;<a name="line.636"></a>
+<FONT color="green">637</FONT>         * component of the URI.<a name="line.637"></a>
+<FONT color="green">638</FONT>         * The authority value returned by<a name="line.638"></a>
+<FONT color="green">639</FONT>         * this method is unescaped.<a name="line.639"></a>
+<FONT color="green">640</FONT>         */<a name="line.640"></a>
+<FONT color="green">641</FONT>        String getAuthority();<a name="line.641"></a>
+<FONT color="green">642</FONT>    <a name="line.642"></a>
+<FONT color="green">643</FONT>            //hm...2 cases empty and absent boolean hasAuthority();<a name="line.643"></a>
+<FONT color="green">644</FONT>        /**<a name="line.644"></a>
+<FONT color="green">645</FONT>             * Retrieves the &lt;b&gt;p&lt;/b&gt;ercent-&lt;b&gt;d&lt;/b&gt;ecoded<a name="line.645"></a>
+<FONT color="green">646</FONT>             * path component of the uri.<a name="line.646"></a>
+<FONT color="green">647</FONT>             */<a name="line.647"></a>
+<FONT color="green">648</FONT>            String getPDPath();<a name="line.648"></a>
+<FONT color="green">649</FONT>            /**<a name="line.649"></a>
+<FONT color="green">650</FONT>             * Retrieves the &lt;b&gt;p&lt;/b&gt;ercent &lt;b&gt;e&lt;/b&gt;ncoded<a name="line.650"></a>
+<FONT color="green">651</FONT>             * path component of the uri.<a name="line.651"></a>
+<FONT color="green">652</FONT>             */<a name="line.652"></a>
+<FONT color="green">653</FONT>            String getPEPath();<a name="line.653"></a>
+<FONT color="green">654</FONT>            /**<a name="line.654"></a>
+<FONT color="green">655</FONT>             * Signals whether the path component<a name="line.655"></a>
+<FONT color="green">656</FONT>             * is empty.<a name="line.656"></a>
+<FONT color="green">657</FONT>             * &lt;p&gt;<a name="line.657"></a>
+<FONT color="green">658</FONT>             * &lt;blockquote class=code&gt;<a name="line.658"></a>
+<FONT color="green">659</FONT>             * &lt;p&gt;RFC3986 Section 3.3 - Path<a name="line.659"></a>
+<FONT color="green">660</FONT>             * &lt;p&gt;&lt;cite&gt;<a name="line.660"></a>
+<FONT color="green">661</FONT>             * &lt;pre&gt;A path is always defined for a URI, though the<a name="line.661"></a>
+<FONT color="green">662</FONT>         * defined path may be empty (zero length).<a name="line.662"></a>
+<FONT color="green">663</FONT>         * Use of the slash character<a name="line.663"></a>
+<FONT color="green">664</FONT>         * to indicate hierarchy is only required when a URI will be used as the<a name="line.664"></a>
+<FONT color="green">665</FONT>         * context for relative references.  For example, the URI<a name="line.665"></a>
+<FONT color="green">666</FONT>         * &amp;lt;mailto:fred@example.com&gt; has a path of "fred@example.com", whereas<a name="line.666"></a>
+<FONT color="green">667</FONT>         * the URI &amp;lt;foo://info.example.com?fred&gt; has an empty path.&lt;/cite&gt;<a name="line.667"></a>
+<FONT color="green">668</FONT>         * &lt;/blockquote&gt;<a name="line.668"></a>
+<FONT color="green">669</FONT>         */<a name="line.669"></a>
+<FONT color="green">670</FONT>        boolean isPathEmpty();<a name="line.670"></a>
+<FONT color="green">671</FONT>    <a name="line.671"></a>
+<FONT color="green">672</FONT>            /**<a name="line.672"></a>
+<FONT color="green">673</FONT>             * Signals whether the path component<a name="line.673"></a>
+<FONT color="green">674</FONT>             * does not start with slash '/' character.<a name="line.674"></a>
+<FONT color="green">675</FONT>             * &lt;p&gt;<a name="line.675"></a>
+<FONT color="green">676</FONT>             * &lt;blockquote class=code&gt;<a name="line.676"></a>
+<FONT color="green">677</FONT>             * &lt;p&gt;RFC3986 Section 3.3 - Path<a name="line.677"></a>
+<FONT color="green">678</FONT>             * &lt;p&gt;&lt;cite&gt;<a name="line.678"></a>
+<FONT color="green">679</FONT>             * &lt;pre&gt;path-rootless = segment-nz *( "/" segment )&lt;/pre&gt;&lt;/cite&gt;<a name="line.679"></a>
+<FONT color="green">680</FONT>         * &lt;/blockquote&gt;<a name="line.680"></a>
+<FONT color="green">681</FONT>         * &lt;p&gt;For example the URI<a name="line.681"></a>
+<FONT color="green">682</FONT>         * &amp;lt;mailto:fred@example.com&gt; has a path of "fred@example.com"<a name="line.682"></a>
+<FONT color="green">683</FONT>         * and so is root less.<a name="line.683"></a>
+<FONT color="green">684</FONT>         * &lt;p&gt;When the result of this method is anded together<a name="line.684"></a>
+<FONT color="green">685</FONT>         * with the result of {@link #isAbsolute()},<a name="line.685"></a>
+<FONT color="green">686</FONT>         * it generate the result of {@link #isOpaque()}<a name="line.686"></a>
+<FONT color="green">687</FONT>         */<a name="line.687"></a>
+<FONT color="green">688</FONT>        boolean isPathRootless();<a name="line.688"></a>
+<FONT color="green">689</FONT>    <a name="line.689"></a>
+<FONT color="green">690</FONT>        /**<a name="line.690"></a>
+<FONT color="green">691</FONT>         * Returns the percent encoded &lt;code&gt;query&lt;/code&gt;<a name="line.691"></a>
+<FONT color="green">692</FONT>         * component of the URI.<a name="line.692"></a>
+<FONT color="green">693</FONT>         * &lt;pre class=code&gt;<a name="line.693"></a>
+<FONT color="green">694</FONT>             * query = *( pchar / "/" / "?" )<a name="line.694"></a>
+<FONT color="green">695</FONT>         * &lt;/pre&gt;<a name="line.695"></a>
+<FONT color="green">696</FONT>         * &lt;p&gt;The query is always percent encoded,<a name="line.696"></a>
+<FONT color="green">697</FONT>         * since subsequent decoding and encoding<a name="line.697"></a>
+<FONT color="green">698</FONT>         * might cause data lost.<a name="line.698"></a>
+<FONT color="green">699</FONT>         * &lt;p&gt;Example of data loss (param value containing &amp; symbol):<a name="line.699"></a>
+<FONT color="green">700</FONT>         * &lt;p&gt;&lt;pre class=code&gt;<a name="line.700"></a>
+<FONT color="green">701</FONT>         * URI: http://127.0.0.1:8080/Test.jsp?current=R%26D<a name="line.701"></a>
+<FONT color="green">702</FONT>         * QUERY param name: current<a name="line.702"></a>
+<FONT color="green">703</FONT>         * QUERY param value: R&amp;D<a name="line.703"></a>
+<FONT color="green">704</FONT>         * UNESCAPED QUERY: current=R&amp;D<a name="line.704"></a>
+<FONT color="green">705</FONT>         * ESCAPED QUERY: current=R&amp;D<a name="line.705"></a>
+<FONT color="green">706</FONT>         *          !!! error:<a name="line.706"></a>
+<FONT color="green">707</FONT>         *          [char '&amp;' is interpreted as a query param delimiter]<a name="line.707"></a>
+<FONT color="green">708</FONT>         * &lt;/pre&gt;<a name="line.708"></a>
+<FONT color="green">709</FONT>         * @return the percent encoded query string value<a name="line.709"></a>
+<FONT color="green">710</FONT>         * or null when no query component.<a name="line.710"></a>
+<FONT color="green">711</FONT>         * Might return the empty string.<a name="line.711"></a>
+<FONT color="green">712</FONT>         */<a name="line.712"></a>
+<FONT color="green">713</FONT>        String getQuery();<a name="line.713"></a>
+<FONT color="green">714</FONT>    <a name="line.714"></a>
+<FONT color="green">715</FONT>        /**<a name="line.715"></a>
+<FONT color="green">716</FONT>         * &lt;em&gt;Convenience method&lt;/em&gt; that<a name="line.716"></a>
+<FONT color="green">717</FONT>         * returns whether the<a name="line.717"></a>
+<FONT color="green">718</FONT>         * &lt;code&gt;query&lt;/code&gt; is &lt;em&gt;absent&lt;/em&gt;.<a name="line.718"></a>
+<FONT color="green">719</FONT>         * &lt;p&gt;Equivalent to:<a name="line.719"></a>
+<FONT color="green">720</FONT>         * &lt;pre class=code&gt;<a name="line.720"></a>
+<FONT color="green">721</FONT>         * uri.getQuery()!=null<a name="line.721"></a>
+<FONT color="green">722</FONT>         * &lt;/pre&gt;<a name="line.722"></a>
+<FONT color="green">723</FONT>         * &lt;p&gt;When the query is empty<a name="line.723"></a>
+<FONT color="green">724</FONT>         * (a zero length string)<a name="line.724"></a>
+<FONT color="green">725</FONT>         * this method returns true.<a name="line.725"></a>
+<FONT color="green">726</FONT>         * &lt;p&gt;An empty query is built for<a name="line.726"></a>
+<FONT color="green">727</FONT>         * example from an uri like the following:<a name="line.727"></a>
+<FONT color="green">728</FONT>         * &amp;lt;&amp;lt;&lt;code&gt;http://www.example.com/index.jsp?&lt;/code&gt;&amp;gt;&amp;gt;<a name="line.728"></a>
+<FONT color="green">729</FONT>         *<a name="line.729"></a>
+<FONT color="green">730</FONT>         */<a name="line.730"></a>
+<FONT color="green">731</FONT>        public boolean hasQuery();<a name="line.731"></a>
+<FONT color="green">732</FONT>    <a name="line.732"></a>
+<FONT color="green">733</FONT>        /**<a name="line.733"></a>
+<FONT color="green">734</FONT>         * Returns the &lt;code&gt;fragment&lt;/code&gt;<a name="line.734"></a>
+<FONT color="green">735</FONT>         * component of the URI.<a name="line.735"></a>
+<FONT color="green">736</FONT>         * The path value returned by<a name="line.736"></a>
+<FONT color="green">737</FONT>         * this method is unescaped.<a name="line.737"></a>
+<FONT color="green">738</FONT>         */<a name="line.738"></a>
+<FONT color="green">739</FONT>        String getFragment();<a name="line.739"></a>
+<FONT color="green">740</FONT>    <a name="line.740"></a>
+<FONT color="green">741</FONT>            /**<a name="line.741"></a>
+<FONT color="green">742</FONT>             * Returns the percent encoded fragment.<a name="line.742"></a>
+<FONT color="green">743</FONT>             * &lt;pre class=code&gt;<a name="line.743"></a>
+<FONT color="green">744</FONT>             * fragment    = *( pchar / "/" / "?" )<a name="line.744"></a>
+<FONT color="green">745</FONT>         * &lt;/pre&gt;<a name="line.745"></a>
+<FONT color="green">746</FONT>             * &lt;blockquote class=code&gt;<a name="line.746"></a>
+<FONT color="green">747</FONT>             * &lt;p&gt;RFC3986 Section 3.5 - Fragment<a name="line.747"></a>
+<FONT color="green">748</FONT>             * &lt;p&gt;&lt;cite&gt;<a name="line.748"></a>
+<FONT color="green">749</FONT>         * The fragment identifier component of a URI allows indirect<a name="line.749"></a>
+<FONT color="green">750</FONT>         * identification of a secondary resource by reference to a<a name="line.750"></a>
+<FONT color="green">751</FONT>         * primary resource and additional identifying information.<a name="line.751"></a>
+<FONT color="green">752</FONT>         * The identified secondary resource may be some portion or subset<a name="line.752"></a>
+<FONT color="green">753</FONT>         * of the primary resource, some view on representations of<a name="line.753"></a>
+<FONT color="green">754</FONT>         * the primary resource, or some other resource defined or<a name="line.754"></a>
+<FONT color="green">755</FONT>         * described by those representations. A fragment identifier<a name="line.755"></a>
+<FONT color="green">756</FONT>         * component is indicated by the presence of a number sign<a name="line.756"></a>
+<FONT color="green">757</FONT>         * ("#") character and terminated by the end of the URI.<a name="line.757"></a>
+<FONT color="green">758</FONT>         * @return the percent encoded fragment or null when no fragment.<a name="line.758"></a>
+<FONT color="green">759</FONT>         * Might return the empty string.<a name="line.759"></a>
+<FONT color="green">760</FONT>             */<a name="line.760"></a>
+<FONT color="green">761</FONT>        String getPEFragment();<a name="line.761"></a>
+<FONT color="green">762</FONT>        /**<a name="line.762"></a>
+<FONT color="green">763</FONT>         * &lt;em&gt;Convenience method&lt;/em&gt; that<a name="line.763"></a>
+<FONT color="green">764</FONT>         * returns whether the<a name="line.764"></a>
+<FONT color="green">765</FONT>         * fragment is &lt;em&gt;absent&lt;/em&gt;.<a name="line.765"></a>
+<FONT color="green">766</FONT>         * &lt;p&gt;Equivalent to:<a name="line.766"></a>
+<FONT color="green">767</FONT>         * &lt;pre class=code&gt;<a name="line.767"></a>
+<FONT color="green">768</FONT>         * uri.getFragment()!=null<a name="line.768"></a>
+<FONT color="green">769</FONT>         * &lt;/pre&gt;<a name="line.769"></a>
+<FONT color="green">770</FONT>         * &lt;p&gt;When the fragment is empty<a name="line.770"></a>
+<FONT color="green">771</FONT>         * (a zero length string)<a name="line.771"></a>
+<FONT color="green">772</FONT>         * this method returns true.<a name="line.772"></a>
+<FONT color="green">773</FONT>         * &lt;p&gt;An empty fragment is built for<a name="line.773"></a>
+<FONT color="green">774</FONT>         * example from an uri like the following:<a name="line.774"></a>
+<FONT color="green">775</FONT>         * &amp;lt;&amp;lt;&lt;code&gt;http://www.example.com/index.jsp#&lt;/code&gt;&amp;gt;&amp;gt;<a name="line.775"></a>
+<FONT color="green">776</FONT>         */<a name="line.776"></a>
+<FONT color="green">777</FONT>        boolean hasFragment();<a name="line.777"></a>
+<FONT color="green">778</FONT>        /**<a name="line.778"></a>
+<FONT color="green">779</FONT>         * Returns a readable URI.<a name="line.779"></a>
+<FONT color="green">780</FONT>         * The returned string<a name="line.780"></a>
+<FONT color="green">781</FONT>         * can be only used<a name="line.781"></a>
+<FONT color="green">782</FONT>         * for presentation scopes<a name="line.782"></a>
+<FONT color="green">783</FONT>         * since it is possible that<a name="line.783"></a>
+<FONT color="green">784</FONT>         * is not anymore parsable<a name="line.784"></a>
+<FONT color="green">785</FONT>         * by a {@link URIFactory}.<a name="line.785"></a>
+<FONT color="green">786</FONT>         */<a name="line.786"></a>
+<FONT color="green">787</FONT>        String toReadableURI();<a name="line.787"></a>
+<FONT color="green">788</FONT>    <a name="line.788"></a>
+<FONT color="green">789</FONT>        /**<a name="line.789"></a>
+<FONT color="green">790</FONT>         * Returns the string representation<a name="line.790"></a>
+<FONT color="green">791</FONT>         * of an URI in percent encoded form.<a name="line.791"></a>
+<FONT color="green">792</FONT>         */<a name="line.792"></a>
+<FONT color="green">793</FONT>        String toString();<a name="line.793"></a>
+<FONT color="green">794</FONT>    <a name="line.794"></a>
+<FONT color="green">795</FONT>        /**<a name="line.795"></a>
+<FONT color="green">796</FONT>         * Resolves the given URI against this URI.<a name="line.796"></a>
+<FONT color="green">797</FONT>         */<a name="line.797"></a>
+<FONT color="green">798</FONT>        public URI resolve(URI relative) throws URIException;<a name="line.798"></a>
+<FONT color="green">799</FONT>    <a name="line.799"></a>
+<FONT color="green">800</FONT>        /**<a name="line.800"></a>
+<FONT color="green">801</FONT>         * Relativizes the given URI against this URI.<a name="line.801"></a>
+<FONT color="green">802</FONT>         * The relativization of the given URI against<a name="line.802"></a>
+<FONT color="green">803</FONT>         * this URI is computed as follows:<a name="line.803"></a>
+<FONT color="green">804</FONT>         * &lt;ol&gt;&lt;li&gt;<a name="line.804"></a>
+<FONT color="green">805</FONT>         * If either this URI or the given URI are opaque,<a name="line.805"></a>
+<FONT color="green">806</FONT>         * or if the scheme and authority components<a name="line.806"></a>
+<FONT color="green">807</FONT>         * of the two URIs are not identical,<a name="line.807"></a>
+<FONT color="green">808</FONT>         * or if the path of this URI is not a prefix<a name="line.808"></a>
+<FONT color="green">809</FONT>         * of the path of the given URI, then the given URI is returned.<a name="line.809"></a>
+<FONT color="green">810</FONT>         * &lt;li&gt;Otherwise a new relative hierarchical<a name="line.810"></a>
+<FONT color="green">811</FONT>         * URI is constructed with query and fragment<a name="line.811"></a>
+<FONT color="green">812</FONT>         * components taken from the given URI<a name="line.812"></a>
+<FONT color="green">813</FONT>         * and with a path component computed by<a name="line.813"></a>
+<FONT color="green">814</FONT>         * removing this URI's path from the<a name="line.814"></a>
+<FONT color="green">815</FONT>         * beginning of the given URI's path.<a name="line.815"></a>
+<FONT color="green">816</FONT>         * &lt;/ol&gt;<a name="line.816"></a>
+<FONT color="green">817</FONT>         */<a name="line.817"></a>
+<FONT color="green">818</FONT>        //public URI relativize(URI uri) throws URIException;<a name="line.818"></a>
+<FONT color="green">819</FONT>    <a name="line.819"></a>
+<FONT color="green">820</FONT>        /**<a name="line.820"></a>
+<FONT color="green">821</FONT>         * Retrieves an uri that is the copy of this<a name="line.821"></a>
+<FONT color="green">822</FONT>         * URI with no fragment.<a name="line.822"></a>
+<FONT color="green">823</FONT>         */<a name="line.823"></a>
+<FONT color="green">824</FONT>        public URI removeFragment() throws URIException;<a name="line.824"></a>
+<FONT color="green">825</FONT>    <a name="line.825"></a>
+<FONT color="green">826</FONT>        /**<a name="line.826"></a>
+<FONT color="green">827</FONT>         * Normalizes this URI's path.<a name="line.827"></a>
+<FONT color="green">828</FONT>         * &lt;p&gt;When in the relative path there are more<a name="line.828"></a>
+<FONT color="green">829</FONT>         *  relative path ".." segments than there are hierarchical levels in the<a name="line.829"></a>
+<FONT color="green">830</FONT>         *  base URI's path this method returns an URI with &lt;em&gt;empty path&lt;/em&gt;.<a name="line.830"></a>
+<FONT color="green">831</FONT>         * &lt;p&gt;See  RFC 2396, section 5.2, step 6, sub-steps c through f;<a name="line.831"></a>
+<FONT color="green">832</FONT>         * &lt;blockquote&gt;&lt;code&gt;from Appendix C.2. "Abnormal Examples"&lt;/code&gt;<a name="line.832"></a>
+<FONT color="green">833</FONT>         *  &lt;p&gt;Parsers must be careful in handling the case where there are more<a name="line.833"></a>
+<FONT color="green">834</FONT>         *  relative path ".." segments than there are hierarchical levels in the<a name="line.834"></a>
+<FONT color="green">835</FONT>         *  base URI's path.  Note that the ".." syntax cannot be used to change<a name="line.835"></a>
+<FONT color="green">836</FONT>         *  the authority component of a URI.<a name="line.836"></a>
+<FONT color="green">837</FONT>         *  &lt;pre class=code&gt;<a name="line.837"></a>
+<FONT color="green">838</FONT>         *  BASE URI: http://a/b/c/d;p?q<a name="line.838"></a>
+<FONT color="green">839</FONT>         *<a name="line.839"></a>
+<FONT color="green">840</FONT>         *  ../../../g    =  http://a/../g<a name="line.840"></a>
+<FONT color="green">841</FONT>         *  ../../../../g =  http://a/../../g<a name="line.841"></a>
+<FONT color="green">842</FONT>         *  &lt;/pre&gt;<a name="line.842"></a>
+<FONT color="green">843</FONT>         *  &lt;p&gt;In practice, some implementations strip leading relative symbolic<a name="line.843"></a>
+<FONT color="green">844</FONT>         * elements (".", "..") after applying a relative URI calculation, based<a name="line.844"></a>
+<FONT color="green">845</FONT>         * on the theory that compensating for obvious author errors is better<a name="line.845"></a>
+<FONT color="green">846</FONT>         * than allowing the request to fail.  Thus, the above two references<a name="line.846"></a>
+<FONT color="green">847</FONT>         * will be interpreted as "http://a/g" by some implementations.<a name="line.847"></a>
+<FONT color="green">848</FONT>         * &lt;/blockquote&gt;<a name="line.848"></a>
+<FONT color="green">849</FONT>         * &lt;p&gt;Implementations of this interface won't return &lt;code&gt;http://a/g&lt;/code&gt;<a name="line.849"></a>
+<FONT color="green">850</FONT>         * in this case but &lt;code&gt;http://a&lt;/code&gt;<a name="line.850"></a>
+<FONT color="green">851</FONT>         * &lt;blockquote&gt;<a name="line.851"></a>
+<FONT color="green">852</FONT>         * &lt;p&gt;Continuing from  RFC 2396<a name="line.852"></a>
+<FONT color="green">853</FONT>         * &lt;p&gt;Similarly, parsers must avoid treating "." and ".." as special when<a name="line.853"></a>
+<FONT color="green">854</FONT>         *  they are not complete components of a relative path.<a name="line.854"></a>
+<FONT color="green">855</FONT>         * &lt;pre class=code&gt;<a name="line.855"></a>
+<FONT color="green">856</FONT>         *  /./g          =  http://a/./g<a name="line.856"></a>
+<FONT color="green">857</FONT>         *  /../g         =  http://a/../g<a name="line.857"></a>
+<FONT color="green">858</FONT>         *  g.            =  http://a/b/c/g.<a name="line.858"></a>
+<FONT color="green">859</FONT>         *  .g            =  http://a/b/c/.g<a name="line.859"></a>
+<FONT color="green">860</FONT>         *  g..           =  http://a/b/c/g..<a name="line.860"></a>
+<FONT color="green">861</FONT>         *  ..g           =  http://a/b/c/..g<a name="line.861"></a>
+<FONT color="green">862</FONT>         * &lt;/pre&gt;<a name="line.862"></a>
+<FONT color="green">863</FONT>         * &lt;/blockquote&gt;<a name="line.863"></a>
+<FONT color="green">864</FONT>         * &lt;p&gt;Implementations of this interface must give results that conform<a name="line.864"></a>
+<FONT color="green">865</FONT>         * to this last list of examples.<a name="line.865"></a>
+<FONT color="green">866</FONT>         * &lt;p&gt;See also class description.<a name="line.866"></a>
+<FONT color="green">867</FONT>         */<a name="line.867"></a>
+<FONT color="green">868</FONT>        URI normalize() throws URIException;<a name="line.868"></a>
+<FONT color="green">869</FONT>    <a name="line.869"></a>
+<FONT color="green">870</FONT>        /**<a name="line.870"></a>
+<FONT color="green">871</FONT>         * Retrieves this URI as a java.net.URL<a name="line.871"></a>
+<FONT color="green">872</FONT>         * @throws IllegalArgumentException - If this URL is not absolute<a name="line.872"></a>
+<FONT color="green">873</FONT>         * @throws MalformedURLException - If a protocol handler for the URL<a name="line.873"></a>
+<FONT color="green">874</FONT>         *      could not be found, or if some other error occurred<a name="line.874"></a>
+<FONT color="green">875</FONT>         *      while constructing the URL<a name="line.875"></a>
+<FONT color="green">876</FONT>         * @return the URL instance, never null.<a name="line.876"></a>
+<FONT color="green">877</FONT>         */<a name="line.877"></a>
+<FONT color="green">878</FONT>        java.net.URL toURL() throws java.net.MalformedURLException;<a name="line.878"></a>
+<FONT color="green">879</FONT>    <a name="line.879"></a>
+<FONT color="green">880</FONT>    ///////////////// OUTSIDE RFC - EXTENSIONS<a name="line.880"></a>
+<FONT color="green">881</FONT>    <a name="line.881"></a>
+<FONT color="green">882</FONT>        /**<a name="line.882"></a>
+<FONT color="green">883</FONT>         * &lt;em&gt;Not standard&lt;/em&gt; -<a name="line.883"></a>
+<FONT color="green">884</FONT>         * Returns the percent decoded<a name="line.884"></a>
+<FONT color="green">885</FONT>         * name part of the path<a name="line.885"></a>
+<FONT color="green">886</FONT>         * component. The name is the<a name="line.886"></a>
+<FONT color="green">887</FONT>         * value of the last segment of the<a name="line.887"></a>
+<FONT color="green">888</FONT>         * path.<a name="line.888"></a>
+<FONT color="green">889</FONT>         * &lt;p&gt;&lt;table class='Bordered' cellpadding=4 border=1&gt;<a name="line.889"></a>
+<FONT color="green">890</FONT>         * &lt;tr&gt;&lt;th&gt;path&lt;/th&gt;&lt;th&gt;name&lt;/th&gt;&lt;/tr&gt;<a name="line.890"></a>
+<FONT color="green">891</FONT>         * &lt;tr&gt;&lt;td&gt;/a/b.xml&lt;/td&gt;&lt;td&gt;b.xml&lt;/td&gt;&lt;/tr&gt;<a name="line.891"></a>
+<FONT color="green">892</FONT>         * &lt;tr&gt;&lt;td&gt;/a/&lt;/td&gt;&lt;td&gt;[empty string]&lt;/td&gt;&lt;/tr&gt;<a name="line.892"></a>
+<FONT color="green">893</FONT>         * &lt;tr&gt;&lt;td&gt;/&lt;/td&gt;&lt;td&gt;[empty string]&lt;/td&gt;&lt;/tr&gt;<a name="line.893"></a>
+<FONT color="green">894</FONT>         * &lt;/table&gt;<a name="line.894"></a>
+<FONT color="green">895</FONT>         */<a name="line.895"></a>
+<FONT color="green">896</FONT>        String getName();<a name="line.896"></a>
+<FONT color="green">897</FONT>    }<a name="line.897"></a>
 
 
 
