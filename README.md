@@ -24,7 +24,7 @@ The test suite produces an HTML report at each run, these are the results in 201
 Details
 -------
 
-This library has been started before 2005, when servers could run a version of Java < 1.4 (only from Java 1.4 the java.net.URI class has been included in Java). There are mainly two implementations for the URI parser: one based on a modified version of `org.apache.commons.httpclient.URI` and one based on `java.net.URI`, also adapted (and one without fixes, for test comparison). Tests show less failures for the modified Apache implementation; for standard usage both versions are good enough.
+This library has been started before 2005, when servers could run a version of Java < 1.4 (only from Java 1.4 the java.net.URI class has been included in Java). There are mainly two implementations for the URI parser: one based on a modified version of [`org.apache.commons.httpclient.URI`](http://hc.apache.org/httpclient-3.x/apidocs/org/apache/commons/httpclient/URI.html) and one based on [`java.net.URI`](http://docs.oracle.com/javase/7/docs/api/java/net/URI.html), also adapted (and one without fixes, for test comparison). Tests show less failures for the modified Apache implementation; for standard usage both versions are good enough.
 
 The library has been used mainly to be able to be independent from the underlying implementations. It has been also a way to correct some issues present in known implementations: cross testing of different implementations has been handy for finding and fixing the bugs.
 
