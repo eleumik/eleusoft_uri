@@ -19,7 +19,7 @@ import org.eleusoft.uri.util.Path;
  * <pre>
  * SET PROPS=-Dorg.eleusoft.uri.URIProvider=org.eleusoft.uri.java4.Java4URIProvider
  * java %PROPS% -classpath [my claspath] junit.swingui.TestRunner junit.org.eleusoft.uri.uriAnchorsMapuite
- *</pre>
+ *</pre> 
  */
 public abstract class BaseTestURI extends TestCase
 {

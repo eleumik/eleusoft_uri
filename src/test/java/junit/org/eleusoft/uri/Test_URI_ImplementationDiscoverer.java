@@ -26,7 +26,7 @@ public class Test_URI_ImplementationDiscoverer extends BaseTestURI
 	{
 		String clazz = getImplName();
 		info(IDIS, new String[]{clazz});
-		//fail("Implementation in use is :" + clazz);
+		System.out.println("Implementation in use is :" + clazz);
 
 	}
     protected static String getImplName() //throws URIException

@@ -204,7 +204,7 @@ public class Test_URI40_URI2014 extends BaseTestURI
     }
     public void testDecodePlusAsURL() throws URIException
     {
-        assertEquals(" ", URIFactory.decode("+"));
+        assertEquals(" ", URIFactory.decodeURL("+"));
     }
     
 
