@@ -23,7 +23,7 @@ public interface URIProvider
      * @param auth 
      * @param path percent decoded path
      * @param query percent encoded query
-     * @param fragment percent encoded fragment
+     * @param fragment percent decoded fragment
      * @return
      * @throws URIException
      */

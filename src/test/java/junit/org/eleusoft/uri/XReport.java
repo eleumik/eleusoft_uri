@@ -96,12 +96,16 @@ public class XReport  implements TestListener
 
 
 	}
+	final StringBuffer codes = new StringBuffer();
 	public void addFailure(Test test, AssertionFailedError t)
 	{
-		failures++;
+	    failures++;
 		// See addError
 		if (currentXResult==null)  info("[Test DOES NOT CALL info()] - Failure for: " + test.toString(), new String[]{"[Test DOES NOT CALL info()] "} );
 		else currentXResult.failure = getErrorMsg(test, t);
+		
+		codes.append("\t" + currentXResult.index);
+        
 	}
 	public void endTest(Test test)
 	{
@@ -407,6 +411,8 @@ public class XReport  implements TestListener
 		out.write("</uriindex>");
 		out.write("</results>");
 		out.write("</body></html>");
+
+	      System.out.println("Codes:" + codes.toString());
 
 	}
 

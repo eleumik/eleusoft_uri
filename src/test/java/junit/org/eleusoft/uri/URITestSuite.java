@@ -96,6 +96,8 @@ public class URITestSuite extends TestSuite
 	    suite.addTestSuite(Test_URI32_RealWorldURI.class);
 	    suite.addTestSuite(Test_URI33_URIQuery.class);
 
+	    // Add the new here so that they stay at end in report
+        suite.addTestSuite(Test_URI40_URI2014.class);
 
 
 

@@ -124,7 +124,7 @@ public final class URIQuery
                     String nameDecoded = querySegment;
                     try
                     {
-                        nameDecoded = URIFactory.decode(querySegment, encoding);
+                        nameDecoded = decodeQuery(querySegment, encoding); 
                     }
                     catch (Exception e) {
                         // silent, mark error
@@ -141,7 +141,7 @@ public final class URIQuery
                     String nameDecoded = name;
                     try
                     {
-                        valueDecoded = URIFactory.decode(value, encoding );
+                        valueDecoded = decodeQuery(value, encoding );
                     }
                     catch (Exception e) {
                         // silent, mark error
@@ -149,7 +149,7 @@ public final class URIQuery
                     }
                     try
                     {
-                        nameDecoded = URIFactory.decode(name, encoding);
+                        nameDecoded = decodeQuery(name, encoding);
                     }
                     catch (Exception e) {
                         // silent, mark error
@@ -163,6 +163,11 @@ public final class URIQuery
         this.exception = exception;
     }
     
+    private String decodeQuery(String querySegment, String encoding) throws URIException
+    {
+        return URIFactory.decodeURL(querySegment, encoding); // THIS IS URL DECODING: '+' becomes space
+    }
+
     /**
      * The URI passed in constructor
      * or constructed from the string passed

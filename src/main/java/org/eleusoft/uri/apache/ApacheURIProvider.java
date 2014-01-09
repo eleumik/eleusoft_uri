@@ -32,7 +32,10 @@ public class ApacheURIProvider implements URIProvider
 		    // unescaping it..
 		    //URI uri = new URI(null, null, normalize(URLUtil.URLEncode(val, "UTF-8")), null, null);
 
-            return newURI(scheme, auth, path, query, fragment);
+            // 201401 added escaping of fragment..
+            // then removed since now is specified to pass escaped fragment.
+            final String peFrag = fragment; // fragment==null ? null : URIUtil.encodeFragment(fragment, "UTF-8");
+            return newURI(scheme, auth, path, query, peFrag);
         }
         catch(org.eleusoft.uri.apache.URIException use)
         {
@@ -295,6 +298,17 @@ public class ApacheURIProvider implements URIProvider
         }
     }
 
+    /**
+     * All parameters percent encoded
+     * @param scheme
+     * @param auth
+     * @param path
+     * @param query
+     * @param fragment
+     * @return
+     * @throws org.eleusoft.uri.apache.URIException
+     * @throws URIException
+     */
     private static final URI newURI(String scheme, String auth, String path, String query, String fragment)
         throws org.eleusoft.uri.apache.URIException, URIException
     {

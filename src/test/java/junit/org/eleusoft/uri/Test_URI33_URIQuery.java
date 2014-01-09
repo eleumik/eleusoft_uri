@@ -34,6 +34,16 @@ public class Test_URI33_URIQuery extends BaseTestURI
         assertEquals("34", p.getValue());
         assertFalse(e.hasMoreElements());
     }
+    public void testParse_WithValuePlusInValueMustBecomeSpace() throws Exception
+    {
+        final String u = "?$a=3+4";
+        Enumeration e = doT(u);
+        URIQuery.Param p = (Param) e.nextElement();
+        assertEquals("$a", p.getName());
+        assertEquals("3+4", p.getValue());
+        assertEquals("3 4", p.getValueDecoded());
+        assertFalse(e.hasMoreElements());
+    }
 
     public void testParse_WithValueDollarInName_GetValue() throws Exception
     {

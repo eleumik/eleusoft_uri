@@ -533,8 +533,17 @@ class URIUtil {
      */
     public static String decode(String escaped) throws URIException {
         try {
-            byte[] rawdata = URLCodec.decodeUrl(EncodingUtil.getAsciiBytes(escaped));
+            byte[] rawdata = URLCodec.decodeUrl(EncodingUtil.getAsciiBytes(escaped), true);
             return EncodingUtil.getString(rawdata, URI.getDefaultProtocolCharset());
+        } catch (CodecException e) {
+            throw new URIException(e.getMessage());
+        }
+    }
+    // ADDED 201401
+    public static String decodeURI(String escaped, String encoding) throws URIException {
+        try {
+            byte[] rawdata = URLCodec.decodeUrl(EncodingUtil.getAsciiBytes(escaped), false);
+            return EncodingUtil.getString(rawdata, encoding);
         } catch (CodecException e) {
             throw new URIException(e.getMessage());
         }

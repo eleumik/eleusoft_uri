@@ -26,7 +26,7 @@ public final class URIFactory
     static
     {
         final String[] defaultProviders = new String[]{
-            "org.eleusoft.uri.apache.ApacheURIProvider",
+          "org.eleusoft.uri.apache.ApacheURIProvider",
             "org.eleusoft.uri.java4.Java4URIProvider"};
         final String[] defaultCodecs = new String[]{
             "org.eleusoft.uri.apache.ApacheURICodec"};
@@ -309,7 +309,7 @@ public final class URIFactory
 
     /**
      * Creates an {@link URI} instance from the components of an hierarchical
-     * uri .
+     * uri. 
      * 
      * @param scheme the scheme component, might be null or not empty. Passing
      *            an empty string as scheme is an error and will cause an
@@ -317,11 +317,11 @@ public final class URIFactory
      * @param auth the authority component, might be null or be non empty.
      *            Passing an empty authority must be interpreted by
      *            implementation as a null authority.
-     * @param path the unescaped path If a URI contains an authority component,
+     * @param path the <em>unescaped</em> path. If a URI contains an authority component,
      *            then the path component must either be empty or begin with a
-     *            slash ("/") character. Cannot be null.
-     * @param query the escaped query
-     * @param fragment the un-escaped fragment
+     *            slash ("/") character. The <b>path can never be null</b>.
+     * @param query the percent escaped query
+     * @param fragment the percent escaped fragment
      * 
      * @throws URIException when one of the components is wrong for its syntax
      *             or for the context, for example when the path is null or when
@@ -363,7 +363,7 @@ public final class URIFactory
         {
             // Was using URLUtil..now checking for char + of lookup 200609
             // String u = org.apache.util.URLUtil.URLDecode(encoded, encoding);
-            // Infact URL makes + become space, URI not
+            // Indeed URL makes + become space, URI not
             final String u2 = codec.decode(encoded,
                 encoding);
             // if (!u.equals(u2)) throw new Error("apache.util:" + u +
@@ -372,10 +372,41 @@ public final class URIFactory
         }
         catch (Exception e)
         {
-            throw new URIException("Could not decode:" + encoded, encoded, e);
+            throw new URIException("Could not URI-decode:" + encoded, encoded, e);
         }
     }
 
+    /**
+     * Decodes an percent-escaped string following URL rules and using the
+     * passed encoding.
+     * <p>
+     * Note: '<code>+</code>' becomes space '<code> </code>', while following URI rules it
+     * would stay plus '<code>+</code>'.
+     * 
+     * @throws URIException when
+     *             <ul>
+     *             <li>The syntax of the escaped uri is wrong.
+     *             </ul>
+     * @return the decoded string, never <code>null</code>
+     */
+    public final static String decodeURL(final String encoded,
+        final String encoding) throws URIException
+    {
+        try
+        {
+            final String u2 = codec.decodeURL(encoded,
+                encoding);
+            return u2;
+        }
+        catch (Exception e)
+        {
+            throw new URIException("Could not URL-decode:" + encoded, encoded, e);
+        }
+    }
+    public final static String decodeURL(final String encoded) throws URIException
+    {
+        return decodeURL(encoded, UTF_8);
+    }
     /**
      * Decodes an percent-escaped string following URI rules and using the UTF-8
      * encoding.
@@ -394,15 +425,9 @@ public final class URIFactory
         return decode(encoded, UTF_8);
     }
 
+    
     /**
-     * Percent-escapes a string following URI rules and using the passed
-     * encoding.
-     * 
-     * @return the percent-escaped string, never <code>null</code> 
-     */
-    /**
-     * Percent-escapes a string following rules for single param name or param
-     * value of a URI query component and using the passed encoding.
+     * Percent-escapes a string following URI rules and using the passed encoding.
      * 
      * @return the percent-escaped string, never <code>null</code>
      */

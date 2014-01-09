@@ -22,15 +22,30 @@ public interface URICodec
      */
     public String decode(final String encoded,
         final String encoding) throws URIException;
-    
+
     /**
-     * Percent-escapes a string following rules for single param name or param
-     * value of a URI query component and using the passed encoding.
+     * Decodes an percent-escaped string following URL rules and using the
+     * passed encoding.
+     * <p>
+     * Note: '<code>+</code>' becomes space '<code> </code>', while following URI rules it
+     * would stay plus '<code>+</code>'.
+     * 
+     * @throws URIException when
+     *             <ul>
+     *             <li>The syntax of the escaped uri is wrong.
+     *             </ul>
+     * @return the decoded string, never <code>null</code>
+     */
+    public String decodeURL(String encoded, String encoding) throws URIException;
+
+    /**
+     * Percent-escapes a string following URI rules and using the passed encoding.
      * 
      * @return the percent-escaped string, never <code>null</code>
      */
     public String encode(final String decoded,
         final String encoding);
+
 
     
 

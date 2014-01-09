@@ -158,7 +158,7 @@ import org.apache.commons.codec.StringEncoder;
      * @return array of original bytes
      * @throws CodecException Thrown if URL decoding is unsuccessful
      */
-    public static final byte[] decodeUrl(byte[] bytes)
+    public static final byte[] decodeUrl(byte[] bytes, boolean plusIsSpace)
          throws CodecException
     {
         if (bytes == null) {
@@ -167,7 +167,7 @@ import org.apache.commons.codec.StringEncoder;
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         for (int i = 0; i < bytes.length; i++) {
             int b = bytes[i];
-            if (b == '+') {
+            if (b == '+' && plusIsSpace) {
                 buffer.write(' ');
             } else if (b == '%') {
                 try {
@@ -210,8 +210,9 @@ import org.apache.commons.codec.StringEncoder;
      * @throws CodecException Thrown if URL decoding is unsuccessful
      */
     public byte[] decode(byte[] bytes) throws CodecException {
-        return decodeUrl(bytes);
+        return decodeUrl(bytes, true);
     }
+    
 
 
     /**

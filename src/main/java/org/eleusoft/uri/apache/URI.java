@@ -1896,7 +1896,7 @@ import java.util.Locale;
         }
         byte[] rawdata = null;
         try {
-            rawdata = URLCodec.decodeUrl(EncodingUtil.getAsciiBytes(component));
+            rawdata = URLCodec.decodeUrl(EncodingUtil.getAsciiBytes(component), true);
         } catch (CodecException e) {
             throw new URIException(e.getMessage());
         }
@@ -3320,8 +3320,18 @@ import java.util.Locale;
      * Package-friend for Apache URI Provider
      */
     String getFragment() throws URIException {
-        return (_fragment == null) ? null : decode(_fragment,
-                getProtocolCharset());
+//        return (_fragment == null) ? null : decode(_fragment,
+//            getProtocolCharset());
+        try
+        {
+            return (_fragment == null) ? null : EncodingUtil.getString(URLCodec.decodeUrl(EncodingUtil.getAsciiBytes(
+                new String(_fragment)),
+                false), getProtocolCharset());
+        }
+        catch (CodecException e)
+        {
+            throw new URIException("Could not decode fragment: " +  e.getMessage());
+        }
     }
 
     // ------------------------------------------------------------- Utilities
