@@ -29,7 +29,7 @@
 <FONT color="green">026</FONT>        static<a name="line.26"></a>
 <FONT color="green">027</FONT>        {<a name="line.27"></a>
 <FONT color="green">028</FONT>            final String[] defaultProviders = new String[]{<a name="line.28"></a>
-<FONT color="green">029</FONT>                "org.eleusoft.uri.apache.ApacheURIProvider",<a name="line.29"></a>
+<FONT color="green">029</FONT>              "org.eleusoft.uri.apache.ApacheURIProvider",<a name="line.29"></a>
 <FONT color="green">030</FONT>                "org.eleusoft.uri.java4.Java4URIProvider"};<a name="line.30"></a>
 <FONT color="green">031</FONT>            final String[] defaultCodecs = new String[]{<a name="line.31"></a>
 <FONT color="green">032</FONT>                "org.eleusoft.uri.apache.ApacheURICodec"};<a name="line.32"></a>
@@ -312,7 +312,7 @@
 <FONT color="green">309</FONT>    <a name="line.309"></a>
 <FONT color="green">310</FONT>        /**<a name="line.310"></a>
 <FONT color="green">311</FONT>         * Creates an {@link URI} instance from the components of an hierarchical<a name="line.311"></a>
-<FONT color="green">312</FONT>         * uri .<a name="line.312"></a>
+<FONT color="green">312</FONT>         * uri. <a name="line.312"></a>
 <FONT color="green">313</FONT>         * <a name="line.313"></a>
 <FONT color="green">314</FONT>         * @param scheme the scheme component, might be null or not empty. Passing<a name="line.314"></a>
 <FONT color="green">315</FONT>         *            an empty string as scheme is an error and will cause an<a name="line.315"></a>
@@ -320,11 +320,11 @@
 <FONT color="green">317</FONT>         * @param auth the authority component, might be null or be non empty.<a name="line.317"></a>
 <FONT color="green">318</FONT>         *            Passing an empty authority must be interpreted by<a name="line.318"></a>
 <FONT color="green">319</FONT>         *            implementation as a null authority.<a name="line.319"></a>
-<FONT color="green">320</FONT>         * @param path the unescaped path If a URI contains an authority component,<a name="line.320"></a>
+<FONT color="green">320</FONT>         * @param path the &lt;em&gt;unescaped&lt;/em&gt; path. If a URI contains an authority component,<a name="line.320"></a>
 <FONT color="green">321</FONT>         *            then the path component must either be empty or begin with a<a name="line.321"></a>
-<FONT color="green">322</FONT>         *            slash ("/") character. Cannot be null.<a name="line.322"></a>
-<FONT color="green">323</FONT>         * @param query the escaped query<a name="line.323"></a>
-<FONT color="green">324</FONT>         * @param fragment the un-escaped fragment<a name="line.324"></a>
+<FONT color="green">322</FONT>         *            slash ("/") character. The &lt;b&gt;path can never be null&lt;/b&gt;.<a name="line.322"></a>
+<FONT color="green">323</FONT>         * @param query the percent escaped query<a name="line.323"></a>
+<FONT color="green">324</FONT>         * @param fragment the percent escaped fragment<a name="line.324"></a>
 <FONT color="green">325</FONT>         * <a name="line.325"></a>
 <FONT color="green">326</FONT>         * @throws URIException when one of the components is wrong for its syntax<a name="line.326"></a>
 <FONT color="green">327</FONT>         *             or for the context, for example when the path is null or when<a name="line.327"></a>
@@ -366,7 +366,7 @@
 <FONT color="green">363</FONT>            {<a name="line.363"></a>
 <FONT color="green">364</FONT>                // Was using URLUtil..now checking for char + of lookup 200609<a name="line.364"></a>
 <FONT color="green">365</FONT>                // String u = org.apache.util.URLUtil.URLDecode(encoded, encoding);<a name="line.365"></a>
-<FONT color="green">366</FONT>                // Infact URL makes + become space, URI not<a name="line.366"></a>
+<FONT color="green">366</FONT>                // Indeed URL makes + become space, URI not<a name="line.366"></a>
 <FONT color="green">367</FONT>                final String u2 = codec.decode(encoded,<a name="line.367"></a>
 <FONT color="green">368</FONT>                    encoding);<a name="line.368"></a>
 <FONT color="green">369</FONT>                // if (!u.equals(u2)) throw new Error("apache.util:" + u +<a name="line.369"></a>
@@ -375,16 +375,16 @@
 <FONT color="green">372</FONT>            }<a name="line.372"></a>
 <FONT color="green">373</FONT>            catch (Exception e)<a name="line.373"></a>
 <FONT color="green">374</FONT>            {<a name="line.374"></a>
-<FONT color="green">375</FONT>                throw new URIException("Could not decode:" + encoded, encoded, e);<a name="line.375"></a>
+<FONT color="green">375</FONT>                throw new URIException("Could not URI-decode:" + encoded, encoded, e);<a name="line.375"></a>
 <FONT color="green">376</FONT>            }<a name="line.376"></a>
 <FONT color="green">377</FONT>        }<a name="line.377"></a>
 <FONT color="green">378</FONT>    <a name="line.378"></a>
 <FONT color="green">379</FONT>        /**<a name="line.379"></a>
-<FONT color="green">380</FONT>         * Decodes an percent-escaped string following URI rules and using the UTF-8<a name="line.380"></a>
-<FONT color="green">381</FONT>         * encoding.<a name="line.381"></a>
+<FONT color="green">380</FONT>         * Decodes an percent-escaped string following URL rules and using the<a name="line.380"></a>
+<FONT color="green">381</FONT>         * passed encoding.<a name="line.381"></a>
 <FONT color="green">382</FONT>         * &lt;p&gt;<a name="line.382"></a>
-<FONT color="green">383</FONT>         * Note: &lt;code&gt;+&lt;/code&gt; remains &lt;code&gt;+&lt;/code&gt;, while following URL rules it<a name="line.383"></a>
-<FONT color="green">384</FONT>         * becomes a space.<a name="line.384"></a>
+<FONT color="green">383</FONT>         * Note: '&lt;code&gt;+&lt;/code&gt;' becomes space '&lt;code&gt; &lt;/code&gt;', while following URI rules it<a name="line.383"></a>
+<FONT color="green">384</FONT>         * would stay plus '&lt;code&gt;+&lt;/code&gt;'.<a name="line.384"></a>
 <FONT color="green">385</FONT>         * <a name="line.385"></a>
 <FONT color="green">386</FONT>         * @throws URIException when<a name="line.386"></a>
 <FONT color="green">387</FONT>         *             &lt;ul&gt;<a name="line.387"></a>
@@ -392,43 +392,68 @@
 <FONT color="green">389</FONT>         *             &lt;/ul&gt;<a name="line.389"></a>
 <FONT color="green">390</FONT>         * @return the decoded string, never &lt;code&gt;null&lt;/code&gt;<a name="line.390"></a>
 <FONT color="green">391</FONT>         */<a name="line.391"></a>
-<FONT color="green">392</FONT>        public final static String decode(final String encoded) throws URIException<a name="line.392"></a>
-<FONT color="green">393</FONT>        {<a name="line.393"></a>
-<FONT color="green">394</FONT>            return decode(encoded, UTF_8);<a name="line.394"></a>
-<FONT color="green">395</FONT>        }<a name="line.395"></a>
-<FONT color="green">396</FONT>    <a name="line.396"></a>
-<FONT color="green">397</FONT>        /**<a name="line.397"></a>
-<FONT color="green">398</FONT>         * Percent-escapes a string following URI rules and using the passed<a name="line.398"></a>
-<FONT color="green">399</FONT>         * encoding.<a name="line.399"></a>
-<FONT color="green">400</FONT>         * <a name="line.400"></a>
-<FONT color="green">401</FONT>         * @return the percent-escaped string, never &lt;code&gt;null&lt;/code&gt; <a name="line.401"></a>
-<FONT color="green">402</FONT>         */<a name="line.402"></a>
-<FONT color="green">403</FONT>        /**<a name="line.403"></a>
-<FONT color="green">404</FONT>         * Percent-escapes a string following rules for single param name or param<a name="line.404"></a>
-<FONT color="green">405</FONT>         * value of a URI query component and using the passed encoding.<a name="line.405"></a>
-<FONT color="green">406</FONT>         * <a name="line.406"></a>
-<FONT color="green">407</FONT>         * @return the percent-escaped string, never &lt;code&gt;null&lt;/code&gt;<a name="line.407"></a>
-<FONT color="green">408</FONT>         */<a name="line.408"></a>
-<FONT color="green">409</FONT>        public final static String encode(final String decoded,<a name="line.409"></a>
-<FONT color="green">410</FONT>            final String encoding)<a name="line.410"></a>
-<FONT color="green">411</FONT>        {<a name="line.411"></a>
-<FONT color="green">412</FONT>            return codec.encode(decoded, encoding);<a name="line.412"></a>
-<FONT color="green">413</FONT>        }<a name="line.413"></a>
-<FONT color="green">414</FONT>        /**<a name="line.414"></a>
-<FONT color="green">415</FONT>         * Like {@link #encode(String, String)} passing UTF-8 as encoding.<a name="line.415"></a>
-<FONT color="green">416</FONT>         * @param decoded A {@link String}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.416"></a>
-<FONT color="green">417</FONT>         * @return A {@link String}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.417"></a>
-<FONT color="green">418</FONT>         */<a name="line.418"></a>
-<FONT color="green">419</FONT>        public final static String encode(final String decoded)<a name="line.419"></a>
-<FONT color="green">420</FONT>        {<a name="line.420"></a>
-<FONT color="green">421</FONT>            return encode(decoded, UTF_8);<a name="line.421"></a>
-<FONT color="green">422</FONT>        }<a name="line.422"></a>
-<FONT color="green">423</FONT>    <a name="line.423"></a>
-<FONT color="green">424</FONT>        <a name="line.424"></a>
-<FONT color="green">425</FONT>    <a name="line.425"></a>
-<FONT color="green">426</FONT>        <a name="line.426"></a>
+<FONT color="green">392</FONT>        public final static String decodeURL(final String encoded,<a name="line.392"></a>
+<FONT color="green">393</FONT>            final String encoding) throws URIException<a name="line.393"></a>
+<FONT color="green">394</FONT>        {<a name="line.394"></a>
+<FONT color="green">395</FONT>            try<a name="line.395"></a>
+<FONT color="green">396</FONT>            {<a name="line.396"></a>
+<FONT color="green">397</FONT>                final String u2 = codec.decodeURL(encoded,<a name="line.397"></a>
+<FONT color="green">398</FONT>                    encoding);<a name="line.398"></a>
+<FONT color="green">399</FONT>                return u2;<a name="line.399"></a>
+<FONT color="green">400</FONT>            }<a name="line.400"></a>
+<FONT color="green">401</FONT>            catch (Exception e)<a name="line.401"></a>
+<FONT color="green">402</FONT>            {<a name="line.402"></a>
+<FONT color="green">403</FONT>                throw new URIException("Could not URL-decode:" + encoded, encoded, e);<a name="line.403"></a>
+<FONT color="green">404</FONT>            }<a name="line.404"></a>
+<FONT color="green">405</FONT>        }<a name="line.405"></a>
+<FONT color="green">406</FONT>        public final static String decodeURL(final String encoded) throws URIException<a name="line.406"></a>
+<FONT color="green">407</FONT>        {<a name="line.407"></a>
+<FONT color="green">408</FONT>            return decodeURL(encoded, UTF_8);<a name="line.408"></a>
+<FONT color="green">409</FONT>        }<a name="line.409"></a>
+<FONT color="green">410</FONT>        /**<a name="line.410"></a>
+<FONT color="green">411</FONT>         * Decodes an percent-escaped string following URI rules and using the UTF-8<a name="line.411"></a>
+<FONT color="green">412</FONT>         * encoding.<a name="line.412"></a>
+<FONT color="green">413</FONT>         * &lt;p&gt;<a name="line.413"></a>
+<FONT color="green">414</FONT>         * Note: &lt;code&gt;+&lt;/code&gt; remains &lt;code&gt;+&lt;/code&gt;, while following URL rules it<a name="line.414"></a>
+<FONT color="green">415</FONT>         * becomes a space.<a name="line.415"></a>
+<FONT color="green">416</FONT>         * <a name="line.416"></a>
+<FONT color="green">417</FONT>         * @throws URIException when<a name="line.417"></a>
+<FONT color="green">418</FONT>         *             &lt;ul&gt;<a name="line.418"></a>
+<FONT color="green">419</FONT>         *             &lt;li&gt;The syntax of the escaped uri is wrong.<a name="line.419"></a>
+<FONT color="green">420</FONT>         *             &lt;/ul&gt;<a name="line.420"></a>
+<FONT color="green">421</FONT>         * @return the decoded string, never &lt;code&gt;null&lt;/code&gt;<a name="line.421"></a>
+<FONT color="green">422</FONT>         */<a name="line.422"></a>
+<FONT color="green">423</FONT>        public final static String decode(final String encoded) throws URIException<a name="line.423"></a>
+<FONT color="green">424</FONT>        {<a name="line.424"></a>
+<FONT color="green">425</FONT>            return decode(encoded, UTF_8);<a name="line.425"></a>
+<FONT color="green">426</FONT>        }<a name="line.426"></a>
 <FONT color="green">427</FONT>    <a name="line.427"></a>
-<FONT color="green">428</FONT>    }<a name="line.428"></a>
+<FONT color="green">428</FONT>        <a name="line.428"></a>
+<FONT color="green">429</FONT>        /**<a name="line.429"></a>
+<FONT color="green">430</FONT>         * Percent-escapes a string following URI rules and using the passed encoding.<a name="line.430"></a>
+<FONT color="green">431</FONT>         * <a name="line.431"></a>
+<FONT color="green">432</FONT>         * @return the percent-escaped string, never &lt;code&gt;null&lt;/code&gt;<a name="line.432"></a>
+<FONT color="green">433</FONT>         */<a name="line.433"></a>
+<FONT color="green">434</FONT>        public final static String encode(final String decoded,<a name="line.434"></a>
+<FONT color="green">435</FONT>            final String encoding)<a name="line.435"></a>
+<FONT color="green">436</FONT>        {<a name="line.436"></a>
+<FONT color="green">437</FONT>            return codec.encode(decoded, encoding);<a name="line.437"></a>
+<FONT color="green">438</FONT>        }<a name="line.438"></a>
+<FONT color="green">439</FONT>        /**<a name="line.439"></a>
+<FONT color="green">440</FONT>         * Like {@link #encode(String, String)} passing UTF-8 as encoding.<a name="line.440"></a>
+<FONT color="green">441</FONT>         * @param decoded A {@link String}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.441"></a>
+<FONT color="green">442</FONT>         * @return A {@link String}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.442"></a>
+<FONT color="green">443</FONT>         */<a name="line.443"></a>
+<FONT color="green">444</FONT>        public final static String encode(final String decoded)<a name="line.444"></a>
+<FONT color="green">445</FONT>        {<a name="line.445"></a>
+<FONT color="green">446</FONT>            return encode(decoded, UTF_8);<a name="line.446"></a>
+<FONT color="green">447</FONT>        }<a name="line.447"></a>
+<FONT color="green">448</FONT>    <a name="line.448"></a>
+<FONT color="green">449</FONT>        <a name="line.449"></a>
+<FONT color="green">450</FONT>    <a name="line.450"></a>
+<FONT color="green">451</FONT>        <a name="line.451"></a>
+<FONT color="green">452</FONT>    <a name="line.452"></a>
+<FONT color="green">453</FONT>    }<a name="line.453"></a>
 
 
 

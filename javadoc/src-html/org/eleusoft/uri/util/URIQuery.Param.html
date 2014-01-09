@@ -127,7 +127,7 @@
 <FONT color="green">124</FONT>                        String nameDecoded = querySegment;<a name="line.124"></a>
 <FONT color="green">125</FONT>                        try<a name="line.125"></a>
 <FONT color="green">126</FONT>                        {<a name="line.126"></a>
-<FONT color="green">127</FONT>                            nameDecoded = URIFactory.decode(querySegment, encoding);<a name="line.127"></a>
+<FONT color="green">127</FONT>                            nameDecoded = decodeQuery(querySegment, encoding); <a name="line.127"></a>
 <FONT color="green">128</FONT>                        }<a name="line.128"></a>
 <FONT color="green">129</FONT>                        catch (Exception e) {<a name="line.129"></a>
 <FONT color="green">130</FONT>                            // silent, mark error<a name="line.130"></a>
@@ -144,7 +144,7 @@
 <FONT color="green">141</FONT>                        String nameDecoded = name;<a name="line.141"></a>
 <FONT color="green">142</FONT>                        try<a name="line.142"></a>
 <FONT color="green">143</FONT>                        {<a name="line.143"></a>
-<FONT color="green">144</FONT>                            valueDecoded = URIFactory.decode(value, encoding );<a name="line.144"></a>
+<FONT color="green">144</FONT>                            valueDecoded = decodeQuery(value, encoding );<a name="line.144"></a>
 <FONT color="green">145</FONT>                        }<a name="line.145"></a>
 <FONT color="green">146</FONT>                        catch (Exception e) {<a name="line.146"></a>
 <FONT color="green">147</FONT>                            // silent, mark error<a name="line.147"></a>
@@ -152,7 +152,7 @@
 <FONT color="green">149</FONT>                        }<a name="line.149"></a>
 <FONT color="green">150</FONT>                        try<a name="line.150"></a>
 <FONT color="green">151</FONT>                        {<a name="line.151"></a>
-<FONT color="green">152</FONT>                            nameDecoded = URIFactory.decode(name, encoding);<a name="line.152"></a>
+<FONT color="green">152</FONT>                            nameDecoded = decodeQuery(name, encoding);<a name="line.152"></a>
 <FONT color="green">153</FONT>                        }<a name="line.153"></a>
 <FONT color="green">154</FONT>                        catch (Exception e) {<a name="line.154"></a>
 <FONT color="green">155</FONT>                            // silent, mark error<a name="line.155"></a>
@@ -166,72 +166,77 @@
 <FONT color="green">163</FONT>            this.exception = exception;<a name="line.163"></a>
 <FONT color="green">164</FONT>        }<a name="line.164"></a>
 <FONT color="green">165</FONT>        <a name="line.165"></a>
-<FONT color="green">166</FONT>        /**<a name="line.166"></a>
-<FONT color="green">167</FONT>         * The URI passed in constructor<a name="line.167"></a>
-<FONT color="green">168</FONT>         * or constructed from the string passed<a name="line.168"></a>
-<FONT color="green">169</FONT>         * in constructor, may include other components<a name="line.169"></a>
-<FONT color="green">170</FONT>         * than the query string.<a name="line.170"></a>
-<FONT color="green">171</FONT>         * @return A {@link URI}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.171"></a>
-<FONT color="green">172</FONT>         */<a name="line.172"></a>
-<FONT color="green">173</FONT>        // Removed since it may remove the possibility to load unparsable URI(s)<a name="line.173"></a>
-<FONT color="green">174</FONT>    //    public URI getUri()<a name="line.174"></a>
-<FONT color="green">175</FONT>    //    {<a name="line.175"></a>
-<FONT color="green">176</FONT>    //        return uri;<a name="line.176"></a>
-<FONT color="green">177</FONT>    //    }<a name="line.177"></a>
-<FONT color="green">178</FONT>        /**<a name="line.178"></a>
-<FONT color="green">179</FONT>         * Retrieves the last, if any, exception<a name="line.179"></a>
-<FONT color="green">180</FONT>         * catched parsing values. Values are parsed<a name="line.180"></a>
-<FONT color="green">181</FONT>         * all also if one is invalid, the invalid param<a name="line.181"></a>
-<FONT color="green">182</FONT>         * gets the invalid value not percent decoded.<a name="line.182"></a>
-<FONT color="green">183</FONT>         */<a name="line.183"></a>
-<FONT color="green">184</FONT>        public Exception getException()<a name="line.184"></a>
-<FONT color="green">185</FONT>        {<a name="line.185"></a>
-<FONT color="green">186</FONT>            return exception;<a name="line.186"></a>
-<FONT color="green">187</FONT>        }<a name="line.187"></a>
-<FONT color="green">188</FONT>        /**<a name="line.188"></a>
-<FONT color="green">189</FONT>         * Retrieves an enumeration of {@link Param}<a name="line.189"></a>
-<FONT color="green">190</FONT>         * @return A {@link Enumeration}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.190"></a>
-<FONT color="green">191</FONT>         */<a name="line.191"></a>
-<FONT color="green">192</FONT>        public Enumeration getParams()<a name="line.192"></a>
-<FONT color="green">193</FONT>        {<a name="line.193"></a>
-<FONT color="green">194</FONT>            return params.elements();<a name="line.194"></a>
-<FONT color="green">195</FONT>        }<a name="line.195"></a>
-<FONT color="green">196</FONT>        /**<a name="line.196"></a>
-<FONT color="green">197</FONT>         * Retrieves the first value of the parameter<a name="line.197"></a>
-<FONT color="green">198</FONT>         * with decoded name as passed, the value is returned percent decoded,<a name="line.198"></a>
-<FONT color="green">199</FONT>         * or if is impossible to percent-decode the value, as found in<a name="line.199"></a>
-<FONT color="green">200</FONT>         * the request.<a name="line.200"></a>
-<FONT color="green">201</FONT>         * @param name A {@link String}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.201"></a>
-<FONT color="green">202</FONT>         * @return A {@link String} or &lt;code&gt;null&lt;/code&gt;.<a name="line.202"></a>
-<FONT color="green">203</FONT>         */<a name="line.203"></a>
-<FONT color="green">204</FONT>        public String getParameterValue(final String name)<a name="line.204"></a>
-<FONT color="green">205</FONT>        {<a name="line.205"></a>
-<FONT color="green">206</FONT>            final Enumeration en = getParams();<a name="line.206"></a>
-<FONT color="green">207</FONT>            while (en.hasMoreElements())<a name="line.207"></a>
-<FONT color="green">208</FONT>            {<a name="line.208"></a>
-<FONT color="green">209</FONT>                final Param p = (Param) en.nextElement();<a name="line.209"></a>
-<FONT color="green">210</FONT>                if (p.getNameDecoded().equals(name))<a name="line.210"></a>
-<FONT color="green">211</FONT>                {<a name="line.211"></a>
-<FONT color="green">212</FONT>                    return p.getValueDecoded();<a name="line.212"></a>
-<FONT color="green">213</FONT>                }<a name="line.213"></a>
-<FONT color="green">214</FONT>            }<a name="line.214"></a>
-<FONT color="green">215</FONT>            return null;<a name="line.215"></a>
-<FONT color="green">216</FONT>            <a name="line.216"></a>
-<FONT color="green">217</FONT>        }<a name="line.217"></a>
-<FONT color="green">218</FONT>        /**<a name="line.218"></a>
-<FONT color="green">219</FONT>         * Static helper to perform a very common<a name="line.219"></a>
-<FONT color="green">220</FONT>         * operation: get a single parameter value<a name="line.220"></a>
-<FONT color="green">221</FONT>         * in a single shot from a string URI.<a name="line.221"></a>
-<FONT color="green">222</FONT>         * @param uri A {@link String}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.222"></a>
-<FONT color="green">223</FONT>         * @param name A {@link String}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.223"></a>
-<FONT color="green">224</FONT>         * @return A {@link String} or &lt;code&gt;null&lt;/code&gt;.<a name="line.224"></a>
-<FONT color="green">225</FONT>         * @throws URIException<a name="line.225"></a>
-<FONT color="green">226</FONT>         */<a name="line.226"></a>
-<FONT color="green">227</FONT>        public static String getParameterValue(String uri, String name) throws URIException<a name="line.227"></a>
-<FONT color="green">228</FONT>        {<a name="line.228"></a>
-<FONT color="green">229</FONT>            return new URIQuery(uri).getParameterValue(name);<a name="line.229"></a>
-<FONT color="green">230</FONT>        }<a name="line.230"></a>
-<FONT color="green">231</FONT>    }<a name="line.231"></a>
+<FONT color="green">166</FONT>        private String decodeQuery(String querySegment, String encoding) throws URIException<a name="line.166"></a>
+<FONT color="green">167</FONT>        {<a name="line.167"></a>
+<FONT color="green">168</FONT>            return URIFactory.decodeURL(querySegment, encoding); // THIS IS URL DECODING: '+' becomes space<a name="line.168"></a>
+<FONT color="green">169</FONT>        }<a name="line.169"></a>
+<FONT color="green">170</FONT>    <a name="line.170"></a>
+<FONT color="green">171</FONT>        /**<a name="line.171"></a>
+<FONT color="green">172</FONT>         * The URI passed in constructor<a name="line.172"></a>
+<FONT color="green">173</FONT>         * or constructed from the string passed<a name="line.173"></a>
+<FONT color="green">174</FONT>         * in constructor, may include other components<a name="line.174"></a>
+<FONT color="green">175</FONT>         * than the query string.<a name="line.175"></a>
+<FONT color="green">176</FONT>         * @return A {@link URI}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.176"></a>
+<FONT color="green">177</FONT>         */<a name="line.177"></a>
+<FONT color="green">178</FONT>        // Removed since it may remove the possibility to load unparsable URI(s)<a name="line.178"></a>
+<FONT color="green">179</FONT>    //    public URI getUri()<a name="line.179"></a>
+<FONT color="green">180</FONT>    //    {<a name="line.180"></a>
+<FONT color="green">181</FONT>    //        return uri;<a name="line.181"></a>
+<FONT color="green">182</FONT>    //    }<a name="line.182"></a>
+<FONT color="green">183</FONT>        /**<a name="line.183"></a>
+<FONT color="green">184</FONT>         * Retrieves the last, if any, exception<a name="line.184"></a>
+<FONT color="green">185</FONT>         * catched parsing values. Values are parsed<a name="line.185"></a>
+<FONT color="green">186</FONT>         * all also if one is invalid, the invalid param<a name="line.186"></a>
+<FONT color="green">187</FONT>         * gets the invalid value not percent decoded.<a name="line.187"></a>
+<FONT color="green">188</FONT>         */<a name="line.188"></a>
+<FONT color="green">189</FONT>        public Exception getException()<a name="line.189"></a>
+<FONT color="green">190</FONT>        {<a name="line.190"></a>
+<FONT color="green">191</FONT>            return exception;<a name="line.191"></a>
+<FONT color="green">192</FONT>        }<a name="line.192"></a>
+<FONT color="green">193</FONT>        /**<a name="line.193"></a>
+<FONT color="green">194</FONT>         * Retrieves an enumeration of {@link Param}<a name="line.194"></a>
+<FONT color="green">195</FONT>         * @return A {@link Enumeration}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.195"></a>
+<FONT color="green">196</FONT>         */<a name="line.196"></a>
+<FONT color="green">197</FONT>        public Enumeration getParams()<a name="line.197"></a>
+<FONT color="green">198</FONT>        {<a name="line.198"></a>
+<FONT color="green">199</FONT>            return params.elements();<a name="line.199"></a>
+<FONT color="green">200</FONT>        }<a name="line.200"></a>
+<FONT color="green">201</FONT>        /**<a name="line.201"></a>
+<FONT color="green">202</FONT>         * Retrieves the first value of the parameter<a name="line.202"></a>
+<FONT color="green">203</FONT>         * with decoded name as passed, the value is returned percent decoded,<a name="line.203"></a>
+<FONT color="green">204</FONT>         * or if is impossible to percent-decode the value, as found in<a name="line.204"></a>
+<FONT color="green">205</FONT>         * the request.<a name="line.205"></a>
+<FONT color="green">206</FONT>         * @param name A {@link String}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.206"></a>
+<FONT color="green">207</FONT>         * @return A {@link String} or &lt;code&gt;null&lt;/code&gt;.<a name="line.207"></a>
+<FONT color="green">208</FONT>         */<a name="line.208"></a>
+<FONT color="green">209</FONT>        public String getParameterValue(final String name)<a name="line.209"></a>
+<FONT color="green">210</FONT>        {<a name="line.210"></a>
+<FONT color="green">211</FONT>            final Enumeration en = getParams();<a name="line.211"></a>
+<FONT color="green">212</FONT>            while (en.hasMoreElements())<a name="line.212"></a>
+<FONT color="green">213</FONT>            {<a name="line.213"></a>
+<FONT color="green">214</FONT>                final Param p = (Param) en.nextElement();<a name="line.214"></a>
+<FONT color="green">215</FONT>                if (p.getNameDecoded().equals(name))<a name="line.215"></a>
+<FONT color="green">216</FONT>                {<a name="line.216"></a>
+<FONT color="green">217</FONT>                    return p.getValueDecoded();<a name="line.217"></a>
+<FONT color="green">218</FONT>                }<a name="line.218"></a>
+<FONT color="green">219</FONT>            }<a name="line.219"></a>
+<FONT color="green">220</FONT>            return null;<a name="line.220"></a>
+<FONT color="green">221</FONT>            <a name="line.221"></a>
+<FONT color="green">222</FONT>        }<a name="line.222"></a>
+<FONT color="green">223</FONT>        /**<a name="line.223"></a>
+<FONT color="green">224</FONT>         * Static helper to perform a very common<a name="line.224"></a>
+<FONT color="green">225</FONT>         * operation: get a single parameter value<a name="line.225"></a>
+<FONT color="green">226</FONT>         * in a single shot from a string URI.<a name="line.226"></a>
+<FONT color="green">227</FONT>         * @param uri A {@link String}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.227"></a>
+<FONT color="green">228</FONT>         * @param name A {@link String}, never &lt;code&gt;null&lt;/code&gt;.<a name="line.228"></a>
+<FONT color="green">229</FONT>         * @return A {@link String} or &lt;code&gt;null&lt;/code&gt;.<a name="line.229"></a>
+<FONT color="green">230</FONT>         * @throws URIException<a name="line.230"></a>
+<FONT color="green">231</FONT>         */<a name="line.231"></a>
+<FONT color="green">232</FONT>        public static String getParameterValue(String uri, String name) throws URIException<a name="line.232"></a>
+<FONT color="green">233</FONT>        {<a name="line.233"></a>
+<FONT color="green">234</FONT>            return new URIQuery(uri).getParameterValue(name);<a name="line.234"></a>
+<FONT color="green">235</FONT>        }<a name="line.235"></a>
+<FONT color="green">236</FONT>    }<a name="line.236"></a>
 
 
 
