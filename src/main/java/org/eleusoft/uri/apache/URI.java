@@ -3024,7 +3024,7 @@ import java.util.Locale;
 
         // REMINDME: paths are never null
         String base = (basePath == null) ? "" : new String(basePath);
-        System.out.println("Resolve path:" + base + " with " + new String(relPath));
+        //System.out.println("Resolve path:" + base + " with " + new String(relPath));
         int at = base.lastIndexOf('/');
         if (at != -1) {
             basePath = base.substring(0, at + 1).toCharArray();
