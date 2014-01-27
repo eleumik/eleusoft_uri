@@ -2,9 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.eleusoft</groupId>
   <artifactId>eleusoft_uri</artifactId>
-  <version>1.2.1</version>
-  <name>eleusoft_uri</name>
-  <description>Eleusoft URI package</description>
+  <version>1.0.0</version>
+  <name>Eleusoft URI</name>
+  <description>Eleusoft URI Library</description>
   <dependencies>
   	<dependency>
 		<scope>test</scope>
@@ -13,4 +13,21 @@
 		<version>3.8.1</version>
 	</dependency>
   </dependencies>
+  <build>
+      <defaultGoal>install</defaultGoal>
+      <pluginManagement>
+      	<plugins>
+      	</plugins>
+      </pluginManagement>
+      <plugins>
+         <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.0.2</version>
+            <configuration>
+               <source>1.2</source>
+               <target>1.2</target>
+            </configuration>
+         </plugin>
+      </plugins>
+      </build>
 </project>
